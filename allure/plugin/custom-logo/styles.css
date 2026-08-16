@@ -1,0 +1,304 @@
+/* ============================================================
+   QA E2E Automation — Allure Report Theme
+   Brand: #4f5bd5 (primary), #2D2440 (sidebar dark)
+   ============================================================ */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --app-primary: #4f5bd5;
+    --app-primary-light: #7c8cff;
+    --app-primary-dark: #3f49b8;
+    --app-primary-soft: rgba(79, 91, 213, 0.10);
+    --app-sidebar: #2D2440;
+    --app-sidebar-line: #3D3456;
+    --app-text: #1F1A2E;
+    --app-text-muted: #6B6480;
+    --app-border: #E6E1F2;
+    --app-surface: #FFFFFF;
+    --app-surface-alt: #F7F4FB;
+    --app-failed: #E5484D;
+    --app-broken: #F76808;
+    --app-skipped: #8E8AA3;
+    --app-unknown: #B7B5C4;
+}
+
+/* --- Typography (Pretendard for KR + Latin) --- */
+body, .side-nav, .widget, .pane, .pane__title, .table, .tree__row,
+.tabs__title, .input__field, .button, .label, .search-result,
+.step__title, .test-result__title {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+                 'Apple SD Gothic Neo', 'Roboto', 'Helvetica Neue', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code, pre, .step__code, .attach__pre, .attachment-row__name,
+.step__time, .step__duration {
+    font-family: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace !important;
+    font-feature-settings: 'liga' 0;
+}
+
+/* --- App canvas --- */
+.app, .app__content {
+    background: var(--app-surface-alt) !important;
+}
+.app__main, .pane {
+    background: transparent !important;
+}
+
+/* --- Sidebar --- */
+.side-nav {
+    background: var(--app-sidebar) !important;
+}
+.side-nav__head {
+    border-bottom: 1px solid var(--app-sidebar-line) !important;
+}
+.side-nav__brand {
+    background: none !important;
+    background-size: 48px 48px !important;
+    margin-left: 0;
+    padding: 56px 0 8px 0 !important;
+    text-align: center;
+    line-height: normal !important;
+}
+.side-nav__brand-text {
+    display: none;
+}
+.side-nav__brand::after {
+    content: 'QA E2E Automation';
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.3px;
+    text-align: center;
+    margin-top: 4px;
+}
+.side-nav__collapse,
+.side-nav__link {
+    color: #b3a8d3 !important;
+    transition: color 0.15s, background 0.15s;
+}
+.side-nav__collapse:hover,
+.side-nav__link:hover {
+    color: #fff !important;
+    background: rgba(79, 91, 213, 0.10) !important;
+}
+.side-nav__collapse_active,
+.side-nav__link_active {
+    border-right: 4px solid var(--app-primary) !important;
+    color: #fff !important;
+    background: rgba(79, 91, 213, 0.18) !important;
+}
+.side-nav__footer {
+    border-top: 1px solid var(--app-sidebar-line) !important;
+    padding-top: 12px !important;
+}
+
+/* --- Pane / titles --- */
+.pane__title {
+    background: var(--app-surface) !important;
+    color: var(--app-text) !important;
+    border-bottom: 1px solid var(--app-border) !important;
+    font-weight: 700 !important;
+}
+.pane__title-text {
+    color: var(--app-text) !important;
+    white-space: nowrap !important;       /* "실패 로그" 줄바꿈 방지 */
+    margin-right: auto !important;         /* 오른쪽 아이콘들 끝으로 정렬 */
+}
+
+/* --- Widget cards --- */
+.widget {
+    background: var(--app-surface) !important;
+    border: 1px solid var(--app-border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 1px 2px rgba(45, 36, 64, 0.04) !important;
+    overflow: hidden;
+}
+.widget__title {
+    font-weight: 700 !important;
+    font-size: 1.1em !important;
+    color: var(--app-text) !important;
+    border-bottom: 1px solid var(--app-border) !important;
+    padding: 14px 16px !important;
+}
+.widget__body {
+    background: var(--app-surface) !important;
+}
+
+/* --- Status: passed = brand purple --- */
+.chart__fill_status_passed,
+.bar__fill_status_passed { fill: var(--app-primary) !important; }
+.chart__legend-icon_status_passed { background: var(--app-primary) !important; }
+.chart__line_status_passed { stroke: var(--app-primary) !important; }
+.label_status_passed, .status_passed { color: var(--app-primary) !important; }
+
+/* Failed */
+.chart__fill_status_failed,
+.bar__fill_status_failed { fill: var(--app-failed) !important; }
+.chart__legend-icon_status_failed { background: var(--app-failed) !important; }
+.chart__line_status_failed { stroke: var(--app-failed) !important; }
+
+/* Broken */
+.chart__fill_status_broken,
+.bar__fill_status_broken { fill: var(--app-broken) !important; }
+.chart__legend-icon_status_broken { background: var(--app-broken) !important; }
+.chart__line_status_broken { stroke: var(--app-broken) !important; }
+
+/* Skipped */
+.chart__fill_status_skipped,
+.bar__fill_status_skipped { fill: var(--app-skipped) !important; }
+.chart__legend-icon_status_skipped { background: var(--app-skipped) !important; }
+.chart__line_status_skipped { stroke: var(--app-skipped) !important; }
+
+/* Unknown */
+.chart__fill_status_unknown,
+.bar__fill_status_unknown { fill: var(--app-unknown) !important; }
+.chart__legend-icon_status_unknown { background: var(--app-unknown) !important; }
+
+/* --- Tables / trees --- */
+.table__row, .tree__row {
+    border-bottom: 1px solid #EFECF7 !important;
+    transition: background 0.12s;
+    padding: 8px 12px !important;
+    line-height: 1.55 !important;
+}
+.table__row:hover, .tree__row:hover {
+    background: var(--app-surface-alt) !important;
+}
+.table__col, .tree__name {
+    color: var(--app-text) !important;
+    word-break: break-word !important;     /* 긴 예외 메시지 줄바꿈 */
+}
+.table__head, .tree__row_head {
+    background: var(--app-surface-alt) !important;
+    color: var(--app-text-muted) !important;
+    font-weight: 600 !important;
+    border-bottom: 1px solid var(--app-border) !important;
+}
+
+/* --- Sort header (order / name / duration / status) — 더 차분하게 --- */
+.line-sort, .sort-by {
+    background: var(--app-surface-alt) !important;
+    color: var(--app-text-muted) !important;
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+    border-bottom: 1px solid var(--app-border) !important;
+}
+.sort-by__row {
+    color: var(--app-text-muted) !important;
+    font-weight: 500 !important;
+}
+
+/* --- Tabs --- */
+.tabs__title {
+    color: var(--app-text-muted) !important;
+    font-weight: 500 !important;
+    transition: color 0.15s;
+}
+.tabs__title:hover {
+    color: var(--app-text) !important;
+}
+.tabs__title_active {
+    color: var(--app-text) !important;
+    border-bottom: 2px solid var(--app-primary) !important;
+    font-weight: 700 !important;
+}
+
+/* --- Buttons --- */
+.button {
+    border-radius: 8px !important;
+    transition: background 0.15s, border-color 0.15s;
+}
+.button_action, .button_primary {
+    background: var(--app-primary) !important;
+    border-color: var(--app-primary) !important;
+    color: #fff !important;
+}
+.button_action:hover, .button_primary:hover {
+    background: var(--app-primary-dark) !important;
+    border-color: var(--app-primary-dark) !important;
+}
+
+/* --- Inputs (search) --- */
+.input__field, .search__input {
+    border: 1px solid var(--app-border) !important;
+    border-radius: 8px !important;
+    background: var(--app-surface) !important;
+}
+.input__field:focus, .search__input:focus {
+    border-color: var(--app-primary) !important;
+    box-shadow: 0 0 0 3px var(--app-primary-soft) !important;
+    outline: none !important;
+}
+
+/* --- Severity icons --- */
+.severity__icon_blocker { color: #8B0000 !important; }
+.severity__icon_critical { color: var(--app-failed) !important; }
+.severity__icon_normal { color: var(--app-primary) !important; }
+.severity__icon_minor { color: var(--app-text-muted) !important; }
+.severity__icon_trivial { color: var(--app-unknown) !important; }
+
+/* --- Steps / attachments --- */
+.step__title {
+    color: var(--app-text) !important;
+    font-weight: 500 !important;
+}
+.step__time, .step__duration {
+    color: var(--app-text-muted) !important;
+    font-size: 0.85em !important;
+}
+.attach__pre {
+    background: #FAF8FE !important;
+    border: 1px solid var(--app-border) !important;
+    border-radius: 8px !important;
+    padding: 8px 10px !important;
+}
+.attachment-row {
+    background: #FAF8FE !important;
+}
+.attachment-row__content {
+    background: var(--app-surface) !important;
+    border-top: 1px solid var(--app-border) !important;
+}
+
+/* --- Status counter 배지 (사이드바 Status: 0 5 0 0 0) --- */
+/* 색상을 QA Demo 톤으로 통일 */
+.n-label_status_passed   { color: var(--app-primary) !important; border-color: var(--app-primary) !important; }
+.n-label_status_failed   { color: var(--app-failed)  !important; border-color: var(--app-failed)  !important; }
+.n-label_status_broken   { color: var(--app-broken)  !important; border-color: var(--app-broken)  !important; }
+.n-label_status_skipped  { color: var(--app-skipped) !important; border-color: var(--app-skipped) !important; }
+.n-label_status_unknown  { color: var(--app-unknown) !important; border-color: var(--app-unknown) !important; }
+
+/* 한국어 라벨을 배지 안 숫자 옆에 추가 (한 눈에 무슨 색인지 식별) */
+.n-label {
+    padding: 2px 6px !important;            /* 기본 1px 3px → 라벨 추가에 맞게 여유 */
+}
+.n-label_status_passed::after,
+.n-label_status_failed::after,
+.n-label_status_broken::after,
+.n-label_status_skipped::after,
+.n-label_status_unknown::after {
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 4px;
+    letter-spacing: 0;
+    opacity: 0.95;
+}
+.n-label_status_passed::after  { content: '통과'; }
+.n-label_status_failed::after  { content: '실패'; }
+.n-label_status_broken::after  { content: '깨짐'; }
+.n-label_status_skipped::after { content: '스킵'; }
+.n-label_status_unknown::after { content: '미정'; }
+
+/* --- Misc polish --- */
+.spinner__circle {
+    border-color: var(--app-primary) transparent transparent transparent !important;
+}
+::selection {
+    background: rgba(79, 91, 213, 0.25);
+    color: var(--app-text);
+}

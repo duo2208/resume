@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="allure-report-uuid" content="785d4b7f-3588-4726-90b7-35638e65df9f">
+    <title>E2E Sample 리포트</title>
+    <link rel="icon" href="assets/favicon-BDLHVmV7.ico">
+    <!-- allure-core-head:start -->
+    <!-- allure-core-head:end -->
+  <link rel="stylesheet" type="text/css" href="plugin/custom-logo/styles.css">
+  <link rel="stylesheet" type="text/css" href="plugin/custom-logo/failures.css">
+</head>
+<body>
+
+  <aside class="app-side-nav" id="injected-sidebar">
+    <div class="app-side-nav__head">
+      <div class="app-side-nav__logo" style="font-size:34px;line-height:1">🤖</div>
+      <div class="app-side-nav__title">QA E2E Automation</div>
+    </div>
+    <nav class="app-side-nav__menu">
+      <a class="app-side-nav__link app-side-nav__link--active" href="overview.html"><span class="app-side-nav__icon">🏠</span><span>요약</span></a>
+      <a class="app-side-nav__link" href="failures.html"><span class="app-side-nav__icon">🚩</span><span>실패 로그</span></a>
+      <a class="app-side-nav__link" href="trends.html"><span class="app-side-nav__icon">📈</span><span>추이</span></a>
+      <a class="app-side-nav__link" href="timeline.html"><span class="app-side-nav__icon">🕐</span><span>타임라인</span></a>
+      <a class="app-side-nav__link" href="test-cases.html"><span class="app-side-nav__icon">💼</span><span>테스트 케이스</span></a>
+    </nav>
+  </aside>
+<style id="injected-style">
+.side-nav { display:none !important; }
+.app { display:block !important; }
+.app__content { margin-left:220px !important; min-height:100vh !important; position:relative !important; overflow:auto !important; }
+</style>
+<script id="injected-redirect">
+(function(){
+  function go(){ if(location.search.indexOf("keepAllure=1")>=0)return;
+    var h=location.hash||""; if(h!==""&&h!=="#")return;
+    var base=location.href.split("#")[0].split("?")[0].replace(/index\.html$/,""); location.replace(base+"overview.html"); }
+  window.addEventListener("hashchange",go); go();
+})();
+</script>
+
+    <div id="alert"></div>
+    <div id="content">
+        <span class="spinner">
+            <span class="spinner__circle"></span>
+        </span>
+    </div>
+    <div id="popup"></div>
+    <!-- allure-core-body:start -->
+    <script>
+        window.__allureCoreLoaded = new Promise(function (resolve, reject) {
+        window.__allureResolveCoreLoaded = resolve;
+        window.__allureRejectCoreLoaded = reject;
+    });
+    </script>
+    <script src="assets/index-BraRl9ss.js"></script>
+    <script>
+        if (typeof window.__allureResolveCoreLoaded === "function") {
+            window.__allureResolveCoreLoaded([]);
+        }
+    </script>
+    <!-- allure-core-body:end -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FVWC4GKEYS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FVWC4GKEYS', {
+          'allureVersion': '2.43.0',
+          'reportUuid': '785d4b7f-3588-4726-90b7-35638e65df9f',
+          'single_file': false
+        });
+    </script>
+</body>
+</html>
