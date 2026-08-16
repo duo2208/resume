@@ -434,6 +434,12 @@
         font-size: 12px;
         font-weight: 700;
       }
+      /* 카드 배경 없이 본문 그대로 놓는 도입문 */
+      .case-lead {
+        margin: 0;
+        font-size: 14.5px;
+        color: #333;
+      }
       .explain {
         background: #f5f5f2;
         border: 1px solid var(--line);
@@ -760,7 +766,7 @@
         .case-layout,
         .doc-board,
         .side-finds,
-        .axis {
+        .side-finds.three {
           grid-template-columns: 1fr;
         }
         /* 5단 흐름은 좁은 화면에서 2단으로 접고, 연결선은 숨긴다 */
@@ -769,10 +775,6 @@
         }
         .wf + .wf::before {
           display: none;
-        }
-        .trace-steps > li {
-          grid-template-columns: 1fr;
-          gap: 6px;
         }
         .toc {
           position: static;
@@ -907,6 +909,104 @@
         grid-template-columns: repeat(5, 1fr);
         gap: 8px;
       }
+      /* 셀러 유형마다 갈리는 조건 — 문장으로 풀지 않고 태그로만 남긴다 */
+      .cond-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 10px;
+      }
+      .cond-tags span {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 3px 9px;
+        background: #fff;
+      }
+      /* 검증 단계 — 결과(533 TC)만이 아니라 거기까지 간 순서를 보여준다 */
+      .stages {
+        margin-top: 22px;
+        padding: 18px 0 20px;
+      }
+      .stages-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 9px;
+        margin-bottom: 12px;
+      }
+      .stages-head strong {
+        font-size: 13px;
+      }
+      .stages-head span {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--blue);
+      }
+      .stage-list {
+        list-style: none;
+        counter-reset: st;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 9px;
+      }
+      .stage-list > li {
+        counter-increment: st;
+        position: relative;
+        padding-left: 32px;
+      }
+      .stage-list > li::before {
+        content: counter(st);
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 21px;
+        height: 21px;
+        border-radius: 50%;
+        background: var(--blue-soft);
+        color: var(--blue);
+        font-size: 11px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .stage-list b {
+        font-size: 13.5px;
+        letter-spacing: -0.02em;
+      }
+      .stage-list p {
+        margin: 2px 0 0;
+        font-size: 13px;
+        color: #555;
+      }
+      /* 케이스 안에서 블록을 나누는 소제목 */
+      .blk-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 22px;
+      }
+      .blk-h {
+        margin: 0;
+        font-size: 15px;
+        letter-spacing: -0.02em;
+      }
+      .blk-note {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--muted);
+      }
+      .side-finds.three {
+        grid-template-columns: repeat(3, 1fr);
+      }
       .wf {
         position: relative;
         background: #fff;
@@ -956,68 +1056,6 @@
         color: #444;
       }
 
-      .trace {
-        margin-top: 18px;
-        border: 1px solid var(--line);
-        border-left: 3px solid var(--blue);
-        border-radius: var(--radius-sm);
-        background: #fff;
-        padding: 18px;
-      }
-      .trace-head {
-        margin-bottom: 14px;
-      }
-      .trace-tag {
-        display: inline-block;
-        font-size: 10.5px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--blue);
-        background: var(--blue-soft);
-        border-radius: 999px;
-        padding: 3px 9px;
-      }
-      .trace-head h4 {
-        margin: 9px 0 0;
-        font-size: 17px;
-        letter-spacing: -0.03em;
-      }
-      .trace-steps {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      .trace-steps > li {
-        display: grid;
-        grid-template-columns: 62px 1fr;
-        gap: 14px;
-        padding: 14px 0;
-        border-top: 1px solid var(--line);
-      }
-      .ts-n {
-        font-size: 11.5px;
-        font-weight: 900;
-        letter-spacing: 0.04em;
-        color: var(--blue);
-        padding-top: 2px;
-      }
-      .ts-b p {
-        margin: 0;
-        font-size: 13.5px;
-        color: #333;
-      }
-      .ts-b .mini-table,
-      .ts-b .lane {
-        margin-top: 10px;
-      }
-      .ts-b .lane + .lane {
-        margin-top: 6px;
-      }
-      .row-bad td {
-        background: var(--red-soft);
-      }
-
       .side-finds {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1028,22 +1066,37 @@
         border: 1px solid var(--line);
         border-radius: var(--radius-sm);
         background: #fcfcfb;
-        padding: 13px 15px;
+        padding: 15px 16px 16px;
       }
-      .sf b {
-        font-size: 12.5px;
+      /* 카드 제목(직계 b)만 문장형이라 줄바꿈을 전제로 잡고 선으로 근거와 가른다.
+         본문 안의 b는 강조일 뿐이므로 굵기만 준다 */
+      .sf > b {
+        display: block;
+        font-size: 13px;
+        line-height: 1.45;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        padding-bottom: 9px;
+        border-bottom: 1px solid var(--line);
       }
       .sf p {
-        margin: 5px 0 0;
+        margin: 10px 0 0;
         font-size: 12.5px;
+        line-height: 1.65;
         color: #555;
+      }
+      .sf p b {
+        font-weight: 700;
+        color: var(--ink);
       }
 
       /* ===== 10 용인시청 전용 — 성능/환경 두 축 대비 ===== */
+      /* 두 축을 나란히 두면 각 축의 표·이미지가 좁아져 읽히지 않는다.
+         위아래로 쌓아 폭을 온전히 쓴다 */
       .axis {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
+        grid-template-columns: 1fr;
+        gap: 16px;
         margin-top: 14px;
       }
       .ax {
@@ -1053,23 +1106,10 @@
         padding: 18px;
       }
       .ax-h {
-        border-bottom: 1px solid var(--line);
-        padding-bottom: 11px;
         margin-bottom: 12px;
       }
-      .ax-n {
-        display: inline-block;
-        font-size: 10.5px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--blue);
-        background: var(--blue-soft);
-        border-radius: 999px;
-        padding: 3px 9px;
-      }
       .ax-h h4 {
-        margin: 9px 0 0;
+        margin: 0;
         font-size: 16px;
         letter-spacing: -0.03em;
       }
@@ -1077,46 +1117,6 @@
         margin: 0 0 12px;
         font-size: 13px;
         color: #555;
-      }
-      /* 지표 3개 — 앞의 둘은 안전해 보이고 마지막이 예외라는 대비 */
-      .metric {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-      }
-      .mt {
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        background: #fcfcfb;
-        padding: 10px;
-        text-align: center;
-      }
-      .mt.bad {
-        border-color: #e9c9a1;
-        background: var(--amber-soft);
-      }
-      .mt-k {
-        display: block;
-        font-size: 11px;
-        color: var(--muted);
-        font-weight: 700;
-      }
-      .mt-v {
-        display: block;
-        margin-top: 3px;
-        font-size: 20px;
-        letter-spacing: -0.03em;
-      }
-      .mt-v.ok {
-        color: var(--green);
-      }
-      .mt-v.warn {
-        color: var(--amber);
-      }
-      .ax-find {
-        margin: 12px 0 0;
-        font-size: 13px;
-        color: #333;
       }
       /* 환경 조건 → 증상 → 처리 3단 */
       .envlist {
@@ -1153,11 +1153,31 @@
       .ax-fig {
         margin: 14px 0 0;
       }
+      /* 한 열이 되면서 폭이 넓어졌다. 표·다이어그램 스크린샷은 작으면 글씨가 안 읽히므로
+         열 폭을 그대로 쓴다.
+         둥근 테두리는 링크(a)가 갖고, 이미지는 안쪽에 여백을 두고 앉힌다.
+         캡처 안의 표 테두리가 모서리 곡선에 잘리는 것을 막기 위해서다. */
+      .ax-fig a {
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #fff;
+        padding: 10px;
+      }
       .ax-fig img {
         display: block;
         width: 100%;
-        border: 1px solid var(--line);
-        border-radius: 8px;
+        border-radius: 2px;
+      }
+      /* 세 캡처(다이어그램·JMeter·통합테스트 표)는 가로 폭을 동일하게 맞춘다.
+         크기가 제각각이면 무엇이 더 중요한지 잘못된 신호를 준다. */
+      /* 성능 수치는 해석 없이 숫자만 */
+      .ax-stat {
+        margin: 14px 0 0;
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: -0.01em;
       }
       .ax-ph {
         display: none;
@@ -1168,22 +1188,6 @@
         border: 1px dashed var(--line-strong);
         border-radius: 8px;
         background: #fbfbf8;
-      }
-      .ax-fig figcaption {
-        margin-top: 7px;
-        font-size: 11.5px;
-        color: var(--muted);
-      }
-      .ax-take {
-        margin: 14px 0 0;
-        padding-top: 12px;
-        border-top: 1px solid var(--line);
-        font-size: 12.5px;
-        color: #444;
-      }
-      .ax-take b {
-        color: var(--blue);
-        margin-right: 7px;
       }
       /* 두 축을 지금 하는 일과 잇는 마무리 */
       .bridge {
@@ -3438,7 +3442,7 @@ Purchase → <b>Active</b>
                 <summary>
                   <div>
                     <h3>09. WMS 풀필먼트 리뉴얼 QC</h3>
-                    <div class="meta">다우기술 · PHP → Java/Vue 전환 · 533+ TC · 418 결함 추적</div>
+                    <div class="meta">다우기술 · PHP → Java/Vue 전환 </div>
                   </div>
                   <span class="role-badge">Fulfillment QA</span>
                 </summary>
@@ -3446,16 +3450,14 @@ Purchase → <b>Active</b>
                   <div class="case-title">
                     <div>
                       <h3>09. WMS 풀필먼트 리뉴얼 QC</h3>
-                      <div class="meta">다우기술 · PHP → Java/Vue 전환 · 533+ TC · 418 결함 추적</div>
+                      <div class="meta">다우기술 · 2024.10–2025.01 · PHP → Java/Vue 리뉴얼 · 3PL/1PL 물류 · 7개 업무 시나리오</div>
                     </div>
                     <span class="role-badge">Fulfillment QA</span>
                   </div>
-                  <div class="explain">
-                    <p>
-                      WMS는 상품 등록, 입고, 출고, 택배 연동, CS가 하나의 업무 흐름으로 이어집니다. 리뉴얼에서 확인해야 할 것은
-                      화면이 잘 뜨는지가 아니라, <b>업무 흐름과 데이터가 새 시스템으로 그대로 옮겨졌는지</b>였습니다.
-                    </p>
-                  </div>
+                  <p class="case-lead">
+                    WMS는 상품 등록, 입고, 출고, 택배 연동, CS가 하나의 업무 흐름으로 이어집니다. 리뉴얼에서 확인해야 할 것은
+                    화면이 잘 뜨는지가 아니라, <b>기존 업무 흐름과 데이터 정합성이 새 시스템에서도 유지되는지</b>였습니다.
+                  </p>
 
                   <!-- ① 검증 대상 지도 — 어떤 흐름을 어떤 권한으로 봤는가 -->
                   <div class="wms-map">
@@ -3471,73 +3473,72 @@ Purchase → <b>Active</b>
                       <div class="wf"><b>CS</b><span>고객사</span><em>취소 · 반품 정합성</em></div>
                     </div>
                     <p class="wms-map-note">
-                      3PL/1PL 물류사와 대형~소형 셀러를 조합해 End-to-End 시나리오를 설계했고, 같은 기능도 마스터·물류사·고객사
-                      권한별로 접근 범위가 다른지 교차 검증했습니다. <b>533건 이상의 TC와 418건의 결함</b>을 심각도별로 추적했습니다.
+                      3PL/1PL 물류사와 셀러 유형을 조합해 7개 업무 시나리오를 구성하고, 마스터·물류사·고객사 권한별 기능과
+                      데이터 흐름을 교차 검증했습니다.
                     </p>
                   </div>
 
-                  <!-- ② 대표 결함 하나를 추적 과정 그대로 -->
-                  <div class="trace">
-                    <div class="trace-head">
-                      <span class="trace-tag">대표 결함 추적</span>
-                      <h4>택배 접수가 실패해도, 상태는 정상이었습니다</h4>
+                  <!-- ② 어떤 순서로 좁혀 갔는가 -->
+                  <div class="stages">
+                    <div class="stages-head">
+                      <strong>검증 단계</strong>
+                      <span>7 Business Scenarios · 533+ TC · 418 Defects</span>
                     </div>
-
-                    <ol class="trace-steps">
+                    <ol class="stage-list">
                       <li>
-                        <div class="ts-n">발견</div>
-                        <div class="ts-b">
-                          <p>택배 접수가 <b>간헐적으로</b> 실패했습니다. 재현되지 않아 일시적 오류로 넘어가기 쉬운 형태였습니다.</p>
-                        </div>
+                        <b>1차 단위테스트</b>
+                        <p>TC 기반으로 메뉴별 기능을 검증했습니다.</p>
                       </li>
                       <li>
-                        <div class="ts-n">격리</div>
-                        <div class="ts-b">
-                          <p>반복 테스트로 실패 조건을 재현했습니다. 그 과정에서 실패한 건과 성공한 건의 <b>상태값이 같다는 것</b>을 발견했습니다.</p>
-                          <table class="mini-table">
-                            <thead>
-                              <tr><th>주문번호</th><th>택배사</th><th>접수 상태</th><th>송장번호</th><th>실제 결과</th></tr>
-                            </thead>
-                            <tbody>
-                              <tr><td>20250…0896</td><td>CJ대한통운</td><td>접수완료</td><td>6889…12</td><td>정상</td></tr>
-                              <tr><td>20250…0424</td><td>한진</td><td>접수완료</td><td>6889…13</td><td>정상</td></tr>
-                              <tr class="row-bad"><td>20250…9350</td><td>CJ대한통운</td><td>접수요청</td><td>—</td><td>⚠ 접수 실패인데 상태는 ‘요청’ 그대로</td></tr>
-                            </tbody>
-                          </table>
-                        </div>
+                        <b>권한별 탐색 테스트</b>
+                        <p>사이드 이펙트를 고려해 권한별 전체 메뉴를 탐색 테스트로 검증했습니다. 사전에 정의한 TC 밖의 결함도 이 과정에서 다수 발견했습니다.</p>
                       </li>
                       <li>
-                        <div class="ts-n">원인</div>
-                        <div class="ts-b">
-                          <p>
-                            실패를 표현할 상태값이 아예 없었습니다. 접수에 실패해도 <b>‘접수 요청’에 머무를 뿐</b>이라, 화면상으로는
-                            아직 처리 중인 정상 주문과 구분되지 않았습니다.
-                          </p>
-                          <div class="lane"><span class="who">기존</span><span class="chip">접수 요청</span><span class="arrow">→</span><span class="chip">실패 발생</span><span class="arrow">→</span><span class="chip gap">❌ 여전히 ‘접수 요청’</span></div>
-                          <div class="lane"><span class="who">개선 제안</span><span class="chip">접수 요청</span><span class="arrow">→</span><span class="chip">실패 발생</span><span class="arrow">→</span><span class="chip grant">✅ ‘접수 실패’로 표시</span></div>
-                        </div>
+                        <b>시나리오 테스트</b>
+                        <p>셀러 유형별 업무 흐름을 End-to-End로 이었습니다.</p>
                       </li>
                       <li>
-                        <div class="ts-n">제안</div>
-                        <div class="ts-b">
-                          <p>
-                            버그 리포트로 끝내지 않고 <b>상태 체계 자체를 나누자고 제안</b>했습니다. 실패가 정상 상태에 묻히면
-                            운영에서는 영영 보이지 않기 때문입니다.
-                          </p>
-                        </div>
+                        <b>추가 개발 메뉴 테스트</b>
+                        <p>리뉴얼과 함께 신규 개발된 재고 관리 메뉴를 별도 범위로 검증했습니다.</p>
+                      </li>
+                      <li>
+                        <b>운송장 출력 전수검사</b>
+                        <p>택배사별 출력 규격을 전수 검증했습니다.</p>
+                      </li>
+                      <li>
+                        <b>자동화 검수 모니터링</b>
+                        <p>자동화 검수 결과의 에러 로그를 모니터링하고 이슈를 보고했습니다.</p>
                       </li>
                     </ol>
                   </div>
 
-                  <!-- ③ 그 외 결함은 짧게 -->
-                  <div class="side-finds">
+                  <!-- ③ 왜 거길 봤는가 — 세 사례 모두 정책 개선으로 끝난다 -->
+                  <div class="blk-head">
+                    <h4 class="blk-h">그러려니 넘기지 않고, 기준을 다시 확인했습니다</h4>
+                  </div>
+                  <div class="side-finds three">
                     <div class="sf">
-                      <b>엑셀 대량 입력</b>
-                      <p>대량 등록 시 값이 유실될 수 있는 경로를 발견해 유효성 검증 로직 추가를 제안했습니다.</p>
+                      <b>구현 방식이 달라졌다면 경계값도 다시 봅니다</b>
+                      <p>
+                        PHP/Java 기반 시스템이 Vue.js로 전환되면서 숫자 입력값을 처리하는 방식에도 차이가 생긴다는 점을
+                        인지했습니다. 경계값을 검증해 <b>잘못된 값이 저장되는 오류</b>를 발견하고, 입력 단계에서 유효성
+                        검사를 적용하도록 제안했습니다.
+                      </p>
                     </div>
                     <div class="sf">
-                      <b>권한 교차 검증</b>
-                      <p>마스터·물류사·고객사별로 같은 기능의 접근 가능 범위가 설계와 일치하는지 확인했습니다.</p>
+                      <b>연결된 상태를 확인합니다</b>
+                      <p>
+                        개별 화면의 정상 동작만 보지 않고 주문·택배 등 연동된 정보까지 함께 검증했습니다. 그 과정에서
+                        간헐적으로 접수가 실패해도 <b>‘접수 요청’ 상태에 그대로 머무는 것</b>을 발견해, 별도 실패 상태값 도입을
+                        제안하고 고객 이관 테스트 체크리스트에 반영했습니다.
+                      </p>
+                    </div>
+                    <div class="sf">
+                      <b>이전 경험도 새로운 도메인의 검증 기준으로 씁니다</b>
+                      <p>
+                        검색 솔루션 개발 경험을 바탕으로 검색 정확도를 검증하면서, 공통 검색 정책을 일부 필드에는 그대로
+                        적용할 수 없는 예외를 발견했습니다. 공통 정책과 예외 조건을 구분해 시스템 가이드라인에 반영했습니다.
+                      </p>
                     </div>
                   </div>
                 </article>
@@ -3548,7 +3549,7 @@ Purchase → <b>Active</b>
                 <summary>
                   <div>
                     <h3>10. 용인시청 민원상담 챗봇</h3>
-                    <div class="meta">아이브릭스 · 2023.06–10 · 성능 테스트 250,000건 · 통합테스트 직접 설계</div>
+                    <div class="meta">아이브릭스 · 성능 테스트 · 통합테스트</div>
                   </div>
                   <span class="role-badge">Dev + Test</span>
                 </summary>
@@ -3556,93 +3557,55 @@ Purchase → <b>Active</b>
                   <div class="case-title">
                     <div>
                       <h3>10. 용인시청 민원상담 챗봇</h3>
-                      <div class="meta">아이브릭스 · 2023.06–10 · 성능 테스트 250,000건 · 통합테스트 직접 설계</div>
+                      <div class="meta">아이브릭스 · 2023.06–2023.10 · 성능 테스트 250,000건 · 통합테스트 직접 설계</div>
                     </div>
                     <span class="role-badge">Dev + Test</span>
                   </div>
-                  <div class="explain">
-                    <p>
-                      QA로 전향하기 전, 개발자로 기능을 만들면서 성능 테스트와 통합테스트를 직접 설계해 수행했습니다.
-                      <b>내가 만든 기능이 동작하는가</b>가 아니라 <b>실제 사용자 환경에서 동작하는가</b>를 확인해야 한다는 기준이
-                      이때 생겼습니다.
-                    </p>
-                  </div>
 
-                  <!-- 두 축: 성능(숫자가 숨긴 것) / 환경(내 코드가 아닌 것) -->
                   <div class="axis">
                     <section class="ax">
                       <header class="ax-h">
-                        <span class="ax-n">축 1</span>
-                        <h4>평균값이 숨기고 있던 꼬리</h4>
+                        <h4>성능 테스트</h4>
                       </header>
-                      <p class="ax-lead">JMeter로 25만 건을 태워 응답 분포를 봤습니다.</p>
-
-                      <div class="metric">
-                        <div class="mt"><span class="mt-k">평균</span><b class="mt-v ok">41ms</b></div>
-                        <div class="mt"><span class="mt-k">오류율</span><b class="mt-v ok">0.00%</b></div>
-                        <div class="mt bad"><span class="mt-k">최대</span><b class="mt-v warn">14s</b></div>
-                      </div>
-
-                      <p class="ax-find">
-                        앞의 두 숫자만 보면 <b>문제가 없는 시스템</b>입니다. 실패한 요청도 없습니다.
-                        그런데 최대 응답은 14초였습니다. 실패가 아니라 <b>지연으로만 나타나는 구간</b>이 존재했고,
-                        평균은 그것을 완전히 가리고 있었습니다.
+                      <p class="ax-lead">
+                        각 부서 콜센터의 민원 상담 데이터를 NiFi로 수집·정제해 Elasticsearch에 적재하고,
+                        시민이 질문하면 유사 민원을 찾아 답변하는 챗봇이었습니다. 요청 하나가 수집·검색·DB를
+                        모두 거치는 구조라, <b>JMeter로 25만 건을 태워 응답 분포</b>를 확인했습니다.
                       </p>
 
                       <figure class="ax-fig">
-                        <img src="assets/yongin-loadtest.png" alt="JMeter Summary Report — 250,000건 요청 성능 테스트 결과"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
-                        <div class="ax-ph">assets/yongin-loadtest.png</div>
-                        <figcaption>JMeter Summary Report · 250,000 requests</figcaption>
+                        <a href="assets/yongin-integration.png" target="_blank" rel="noopener">
+                          <img src="assets/yongin-integration.png" alt="챗봇 데이터 파이프라인 구성 — 챗봇, Node.js, Elasticsearch, DB 프로시저를 잇는 NiFi 프로세서 흐름"
+                               onerror="this.style.display='none'; this.closest('a').nextElementSibling.style.display='block'" />
+                        </a>
+                        <div class="ax-ph">assets/yongin-integration.png</div>
                       </figure>
 
-                      <p class="ax-take"><b>이때 배운 것</b> 지표 하나로 성능을 판단하지 않는다. 평균과 최대를 같이 본다.</p>
+                      <figure class="ax-fig">
+                        <a href="assets/yongin-loadtest.png" target="_blank" rel="noopener">
+                          <img src="assets/yongin-loadtest.png" alt="JMeter Summary Report — 250,000건 요청 성능 테스트 결과"
+                               onerror="this.style.display='none'; this.closest('a').nextElementSibling.style.display='block'" />
+                        </a>
+                        <div class="ax-ph">assets/yongin-loadtest.png</div>
+                      </figure>
+
+                      <p class="ax-stat">250,000 requests · 평균 41ms · 최대 14.4s · 오류율 0%</p>
                     </section>
 
                     <section class="ax">
                       <header class="ax-h">
-                        <span class="ax-n">축 2</span>
-                        <h4>내 코드가 아니라 사용자 환경</h4>
+                        <h4>통합테스트</h4>
                       </header>
-                      <p class="ax-lead">통합테스트 시나리오를 직접 작성해 브라우저·접속 조건·기기 설정을 교차 검증했습니다.</p>
-
-                      <ul class="envlist">
-                        <li>
-                          <div class="ev-cond">네이버 웨일</div>
-                          <div class="ev-sym">특정 팝업이 호출되지 않음</div>
-                          <div class="ev-fix">화면 코드 수정</div>
-                        </li>
-                        <li>
-                          <div class="ev-cond">HTTP 접속</div>
-                          <div class="ev-sym">geolocation 동의가 진행되지 않음</div>
-                          <div class="ev-fix">HTTPS 강제 이동</div>
-                        </li>
-                        <li>
-                          <div class="ev-cond">글자 크기 확대</div>
-                          <div class="ev-sym">퀵버튼 스타일이 깨짐</div>
-                          <div class="ev-fix">webview text 고정</div>
-                        </li>
-                      </ul>
-
-                      <p class="ax-find">
-                        세 건 모두 로직 오류가 아니었습니다. <b>개발 환경에서만 확인했다면 전부 그대로 배포됐을</b> 결함입니다.
-                      </p>
-
+                      <p class="ax-lead">브라우저·접속 환경·기기 설정을 교차한 통합테스트 시나리오를 직접 작성·수행했습니다.</p>
                       <figure class="ax-fig">
-                        <img src="assets/yongin-integration.png" alt="통합테스트 수행 기록 — 결함 내용과 처리 결과"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
-                        <div class="ax-ph">assets/yongin-integration.png</div>
-                        <figcaption>통합테스트 수행 기록 · 결함과 처리 결과</figcaption>
+                        <a href="assets/yongin-testcase.png" target="_blank" rel="noopener">
+                          <img src="assets/yongin-testcase.png" alt="통합테스트 수행 기록 — 캡쳐 화면, 수정 및 보완 사항, 발생일, 처리일, 처리 결과, 추가 수정·확인사항"
+                               onerror="this.style.display='none'; this.closest('a').nextElementSibling.style.display='block'" />
+                        </a>
+                        <div class="ax-ph">assets/yongin-testcase.png</div>
                       </figure>
-
-                      <p class="ax-take"><b>이때 배운 것</b> 기능이 아니라 사용자가 놓인 조건을 테스트한다.</p>
                     </section>
                   </div>
-
-                  <p class="bridge">
-                    두 축 모두 <b>“통과했는데 실제로는 문제가 있는 상태”</b>를 찾는 일이었습니다.
-                    지금 하는 자동화에서 flaky를 격리하고 실패 원인을 분류하는 것도 결국 같은 문제입니다.
-                  </p>
                 </article>
               </details>
             </div>
