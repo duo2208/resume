@@ -17,6 +17,12 @@ playwright-report/
 .env
 .env.local
 
+# 면접 준비용 개인 메모 — 공개 레포에 올리지 않는다
+_interview/
+
+# 포트폴리오 근거 자료(가공 전 원본) — 사내 정보가 섞이므로 공개 금지
+_source/
+
 # OS / 에디터
 .DS_Store
 .idea/

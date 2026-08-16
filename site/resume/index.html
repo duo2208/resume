@@ -96,13 +96,30 @@
     li{margin:5px 0}
     .result{margin-top:14px;padding:12px 14px;background:var(--soft);border-left:3px solid #d0d5dd;font-size:14px;font-weight:700;color:#344054}
     /* 회사 단위 도입문 — 개별 프로젝트를 읽기 전 도메인 전체를 한 문단으로 규정한다 */
-    .company-lede{font-size:15px;color:#344054;margin:0 0 30px}
+    .company-lede{font-size:15px;color:#344054;margin:0 0 18px}
+    /* 담당 규모 — 문장으로 풀지 않고 숫자만 남긴다 */
+    .scale{display:flex;flex-wrap:wrap;gap:10px 26px;margin:0 0 30px;font-size:13.5px;color:var(--muted)}
+    .scale b{color:var(--text);font-weight:800;margin-right:5px}
+    /* 역량 묶음 — 한 프로젝트 안에서 검증 영역별로 나눠 스캔되게 한다 */
+    .cap{margin-top:16px}
+    .cap-k{font-size:13px;font-weight:800;color:#2f4a7a;letter-spacing:-.01em;margin-bottom:5px}
+    .cap ul{padding-left:18px}
+    .cap li{font-size:14.5px;color:#344054}
+    /* 아직 시작하지 않은 예정 업무는 본문과 구분해 조용히 */
+    .upcoming{margin:18px 0 0;padding-top:12px;border-top:1px dashed var(--line);
+      font-size:13px;color:var(--muted)}
+    /* AI가 맡는 것 / 코드가 맡는 것 — 경계를 나란히 보여준다 */
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+    .sp{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:var(--soft)}
+    .sp-k{font-size:12px;font-weight:800;color:#2f4a7a;margin-bottom:4px}
+    .sp p{margin:0;font-size:13.5px;color:#344054}
+    .note-line{margin:12px 0 0;font-size:14px;color:#475467}
     .stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
     /* 제목 바로 아래에 놓인 태그 줄은 위 여백을 좁힌다 */
     .subtitle + .stack{margin-top:0;margin-bottom:16px}
     .stack span{font-size:12px;border:1px solid var(--line);border-radius:6px;padding:4px 8px;color:#475467;background:#fff}
     /* 본문 맨 아래 오른쪽에 붙여 케이스 상세로 연결 */
-    .linkrow{display:flex;justify-content:flex-end;margin-top:16px}
+    .linkrow{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 20px;margin-top:16px}
     .case-link{font-size:12.5px;font-weight:600;color:#2f4a7a;
       text-decoration:none;border-bottom:1px solid #c3cede;white-space:nowrap}
     .case-link:hover{border-color:#2f4a7a}
@@ -142,7 +159,7 @@
       h1{font-size:34px}
       .company{grid-template-columns:1fr;gap:16px}
       .company-meta{position:static}
-      .grid2,.certs{grid-template-columns:1fr}
+      .grid2,.certs,.split{grid-template-columns:1fr}
       #experience .section-title{font-size:24px}
       .sitebar-inner{padding:11px 20px;gap:12px}
       .sitebar-name span{display:none}
@@ -194,10 +211,10 @@
       <h1>이지민</h1>
       <div class="role">QA Engineer</div>
       <p class="intro">
-        개발자 출신의 기술적 역량을 바탕으로 서비스 품질을 기술적으로 검증하고, 반복 가능한 품질 체계를 만드는 QA Engineer입니다.
-        커머스·풀필먼트에서 주문·클레임·재고·배송으로 이어지는 transaction lifecycle QA를 시작해,
-        B2C OTT의 결제·구독·계정으로 같은 문제를 확장해 왔습니다.
-        최근에는 E2E 자동화와 AI 기반 QA 프로세스 개선을 주도하고 있습니다.
+        커머스·풀필먼트의 주문·클레임·재고·배송부터 B2C OTT의 결제·구독·계정·플레이어까지
+        복잡한 상태와 정책을 검증해왔습니다.
+        최근에는 E2E 자동화와 CI Gate, AI 기반 QA 프로세스를 경험하며,
+        개인의 경험과 기억에 의존하는 검증을 어떻게 반복 가능한 체계로 바꿀 수 있을지에 관심을 가지고 있습니다.
       </p>
       <div class="skills">
         <span class="chip">Python</span><span class="chip">Pytest</span><span class="chip">Playwright</span><span class="chip">Selenium</span>
@@ -213,116 +230,133 @@
         <aside class="company-meta">
           <div class="company-name">라프텔 (Laftel)</div>
           <div class="company-role"><span class="sep">프로덕트팀 ·</span> <span class="sep">QA Engineer</span></div>
-          <div class="company-period">2025.04 — Present</div>
+          <div class="company-period">2025.04 — 현재</div>
+          <div class="company-domain">OTT · Quality Engineering</div>
         </aside>
         <div>
+          <p class="company-lede">
+            B2C OTT 서비스의 Web · iOS · Android · Smart TV 품질을 담당합니다. 프로젝트 초기부터 QA POC로 참여해 요구사항 분석,
+            테스트 설계, E2E 검증 및 릴리즈 품질 관리를 수행하고 있으며, 테스트 자동화와 AI를 활용한 QA 프로세스 개선을 함께
+            진행하고 있습니다.
+          </p>
+          <div class="scale">
+            <span><b>30+</b> Projects / Squads</span>
+            <span><b>30+</b> Regular Releases</span>
+          </div>
+
           <div class="project">
-            <h3>Web E2E 테스트 자동화 프레임워크 구축</h3>
-            <div class="subtitle">테스트 자동화 · CI/CD · OTT 핵심 회귀</div>
-            <div class="stack"><span>Python</span><span>Pytest</span><span>Playwright</span><span>GitHub Actions</span><span>Chrome CDP</span></div>
-            <p class="description">3인 규모 QA 조직에서 Playwright 기반 E2E 자동화 프레임워크를 제로베이스로 구축하고 팀 공통 자산으로 확장했습니다.</p>
-            <div class="label">What I did</div>
+            <h3><span class="pnum">01</span>Product Quality</h3>
+            <div class="subtitle">멀티플랫폼 OTT 서비스 품질 검증</div>
+            <div class="stack"><span>Web</span><span>iOS</span><span>Android</span><span>Smart TV</span><span>OTT</span></div>
+
+            <div class="cap">
+              <div class="cap-k">Account / Authentication</div>
+              <ul>
+                <li>Apple · Google · Kakao 소셜 로그인과 계정 상태 조합을 기반으로 가입·인증 E2E 검증.</li>
+                <li>비정상 계정 상태를 구조화하고 정책 개선 후 관련 CS 사실상 0건, 이메일 미인증 계정 30~37% 감소.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Billing / Subscription</div>
+              <ul>
+                <li>Apple IAP 전환 및 결제·구독·복원·해지로 이어지는 멤버십 상태 전이 검증.</li>
+                <li>Sandbox · Sentry · API · DB를 교차 활용하여 외부 결제 상태와 내부 구독 데이터 정합성 검증.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Player / Live</div>
+              <ul>
+                <li>VOD · Live의 콘텐츠 진입부터 재생 종료까지 E2E 검증.</li>
+                <li>EPG · Chromecast · Media Session · DRM 등 디바이스 및 플랫폼별 재생 환경 검증.</li>
+                <li>React Native New Architecture 전환 과정의 iOS / Android 핵심 회귀 검증.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Commerce / Partnership</div>
+              <ul>
+                <li>Store의 상품 탐색 → 주문 → 결제로 이어지는 Commerce E2E 검증.</li>
+                <li>외부 제휴 서비스의 이용권·권한·동시재생 정책 및 서비스 간 상태 정합성 검증.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Experiment</div>
+              <ul>
+                <li>Firebase 기반 A/B Test의 실험군 분기, 이벤트 로깅 및 플랫폼별 정책 정합성 검증.</li>
+                <li>요구사항에 명시되지 않은 상태 조합과 경계 조건을 분석하여 테스트 범위 확장.</li>
+              </ul>
+            </div>
+            <p class="upcoming">2026.09 — Global Domain QA 담당 예정</p>
+          </div>
+
+          <div class="project">
+            <h3><span class="pnum">02</span>Test Automation</h3>
+            <div class="subtitle">OTT Web E2E Automation Framework · 반복 회귀 검증을 CI에서 지속 실행되는 Quality Gate로 전환</div>
+            <div class="stack"><span>Python</span><span>Pytest</span><span>Playwright</span><span>GitHub Actions</span><span>Allure</span></div>
             <ul>
-              <li>Playwright 기반 4-Layer 아키텍처를 설계해 UI 변경에 대한 유지보수성을 확보했습니다.</li>
-              <li>DRM 보호 콘텐츠 재생 검증을 위해 실제 Chrome 브라우저를 활용한 자동화 실행 구조를 구축했습니다.</li>
-              <li>worker별 포트·프로필·프로세스를 격리해 병렬 실행 시 발생하는 flaky 요인을 제거했습니다.</li>
-              <li>Storage State 기반으로 비회원·프리미엄·소셜 계정 등 다양한 권한 상태를 재사용해 인증 비용을 줄였습니다.</li>
-              <li>GitHub Actions 기반 일 3회 회귀 테스트 및 배포 PR 단위 자동화 게이트를 운영했습니다.</li>
-              <li>재현율 기반 Flaky 자가 격리와 Slack 봇 기반 AI 1차 실패 진단 파이프라인을 운영했습니다.</li>
+              <li>Python · Pytest · Playwright 기반 4-Layer E2E Framework를 제로베이스에서 설계·구축.</li>
+              <li>로그인 · 계정 · 콘텐츠 탐색 · 플레이어 · 결제 등 OTT 핵심 사용자 경로 120여 개 자동화.</li>
+              <li>DRM 콘텐츠와 다중 멤버십·권한 환경을 포함한 실제 OTT 사용자 시나리오의 무인 실행 환경 구축.</li>
+              <li>GitHub Actions 기반 정기 회귀(일 4회) · 2시간 간격 헬스체크 · PR 단위 Quality Gate 운영.</li>
+              <li>계정·브라우저·프로세스 격리 및 재현율 기반 flaky 관리 기준을 정의하여 병렬 실행 안정화.</li>
+              <li>Storage State 적용으로 인증 준비 15s → 0.5s, 핵심 회귀 검증 30min → 5min 단축.</li>
             </ul>
-            <div class="result">배포 전 검증 시간 83% 단축 · 인증 속도 96% 단축</div>
+            <div class="result">Regression ↓ 83% · 120+ E2E Scenarios · CI Quality Gate</div>
+            <div class="linkrow">
+              <a class="case-link" href="https://duo2208.github.io/resume/qa-portfolio/" target="_blank" rel="noopener">아키텍처 · 문제 해결 상세 ↗</a>
+              <a class="case-link" href="https://duo2208.github.io/resume/allure/overview.html" target="_blank" rel="noopener">실행 결과 · flaky 추이 ↗</a>
+            </div>
           </div>
 
           <div class="project">
-            <h3>AI Native QA 프로세스 개선</h3>
-            <div class="subtitle">Spec-driven Test Design · Agent Workflow</div>
-            <p class="description">반복적인 테스트 케이스 작성과 검증을 줄이기 위해 SDD 스펙 기반의 4단계 에이전트 파이프라인을 설계했습니다.</p>
-            <div class="label">What I did</div>
+            <h3><span class="pnum">03</span>AI Native QA</h3>
+            <div class="subtitle">AI를 개별 업무 보조가 아닌 QA 프로세스 전반에 연결</div>
+            <div class="stack"><span>Spec Analysis</span><span>Impact Analysis</span><span>Test Design</span><span>Validation</span><span>Sync</span></div>
+
+            <div class="cap">
+              <div class="cap-k">Test Design Workflow</div>
+              <ul>
+                <li>요구사항을 구조화하고 변경 내용을 ADD / MODIFY / DELETE로 분류하여 기존 테스트 영향 후보 탐색.</li>
+                <li>생성 → 작성 → 검증 → Drive Sync로 이어지는 Agent Workflow 설계.</li>
+                <li>요구사항 변경에 따른 TC 생성·수정·삭제 후보를 자동 제안하고 QA가 최종 판단하는 Human-in-the-loop 구조 운영.</li>
+                <li>반복적인 테스트 설계 및 문서화 과정 자동화로 TC 작성 시간 약 60% 단축.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Automation Failure Analysis</div>
+              <ul>
+                <li>E2E 실행 결과와 로그를 AI가 분석하여 실패 원인을 1차 분류.</li>
+                <li>분석 결과를 Slack으로 전달해 QA가 확인해야 할 실패의 우선순위를 빠르게 판단.</li>
+                <li>AI 분석 정확도를 지속적으로 추적하여 자동 분석의 신뢰도 관리.</li>
+              </ul>
+            </div>
+
+            <div class="split">
+              <div class="sp">
+                <div class="sp-k">AI가 잘하는 것</div>
+                <p>Spec Analysis · Test Generation · Failure Analysis</p>
+              </div>
+              <div class="sp">
+                <div class="sp-k">Deterministic Code가 담당하는 것</div>
+                <p>Execution · Assertion · Pass / Fail</p>
+              </div>
+            </div>
+            <p class="note-line">
+              생성과 분석에는 AI를 활용하되, 테스트 실행과 품질 판정은 결정론적인 코드로 분리하여 자동화 신뢰성을 유지했습니다.
+            </p>
+            <div class="result">TC Writing ↓ 60% · Agent Workflow · Human-in-the-loop</div>
+          </div>
+
+          <div class="project">
+            <h3><span class="pnum">04</span>QA Ownership</h3>
+            <div class="subtitle">QA POC / Quality Ownership · 30+ Squads · 30+ Releases</div>
+            <div class="stack"><span>Shift-Left</span><span>RCA</span><span>Testability</span><span>Risk</span><span>Reporting</span></div>
             <ul>
-              <li>스펙을 기반으로 테스트 케이스를 생성·검증하는 4단계 Agent Workflow를 설계했습니다.</li>
-              <li>AI를 테스트 작성 및 1차 분석에 활용하되 실행과 최종 판정은 결정론적인 자동화 영역으로 분리했습니다.</li>
-              <li>자동화 실패 진단 결과의 정확도를 추적할 수 있도록 데이터를 적재했습니다.</li>
-            </ul>
-            <div class="result">수동 TC 작성 시간 60% 절감</div>
-          </div>
-
-          <div class="project">
-            <h3>Apple IAP 개선</h3>
-            <div class="subtitle">결제 · 글로벌 플랫폼 · 상태 정합성</div>
-            <div class="stack"><span>iOS</span><span>Apple IAP</span><span>Sandbox</span><span>Sentry</span><span>ProxyMan</span><span>API</span><span>DB</span></div>
-            <p class="description">App Store 인앱 결제 전환 과정에서 외부 플랫폼 정책과 내부 구독 상태의 정합성을 검증했습니다.</p>
-            <div class="label">What I did</div>
-            <ul>
-              <li>App Store 심사 거절 리스크와 Apple Sandbox 환경의 기술적 제약을 사전 분석했습니다.</li>
-              <li>ProxyMan을 활용해 Sandbox 테스트 환경의 제약을 우회 검증했습니다.</li>
-              <li>Sentry·DB 로그·API 호출 이력을 교차 분석해 Billing Retry 미추적에 따른 상태 불일치 결함을 특정했습니다.</li>
-              <li>타 부서 의존성을 줄이기 위해 QA가 직접 테스트 데이터를 제어할 수 있는 어드민 기능을 기획·제안했습니다.</li>
-            </ul>
-            <div class="result">배포 후 Apple 인앱 결제액 약 2배 증가</div>
-          </div>
-
-          <div class="project">
-            <h3>계정 체계 개선</h3>
-            <div class="subtitle">Account · Social Login · 데이터 정합성</div>
-            <p class="description">가입 중 이탈로 필수 정보가 누락되는 비정상 계정 문제를 구조화하고 계정 상태 조합을 전수 검증했습니다.</p>
-            <div class="label">What I did</div>
-            <ul>
-              <li>본인확인·이메일·이메일 인증·비밀번호·이용약관 등 필수 정보 누락 조합을 정의했습니다.</li>
-              <li>Apple·Google·Kakao 소셜 로그인 수단별 비정상 계정 케이스를 교차 검증했습니다.</li>
-              <li>복잡한 가입 상태를 테스트 시나리오로 구조화해 재발 가능성을 줄였습니다.</li>
-            </ul>
-            <div class="result">더미 계정 관련 CS 사실상 0건 · 이메일 미인증 계정 30~37% 감소</div>
-          </div>
-
-          <div class="project">
-            <h3>라이브 스트리밍 품질 검증</h3>
-            <div class="subtitle">Streaming · Player · End-to-End</div>
-            <p class="description">애니플러스·애니맥스 실시간 라이브 채널의 초기 진입부터 시청 완료까지 E2E 품질 검증을 담당했습니다.</p>
-            <div class="label">What I did</div>
-            <ul>
-              <li>EPG 시간·날짜 경계 로직을 검증했습니다.</li>
-              <li>화질 변경·Chromecast 연동·프로그레스 바 제어 등 실시간 플레이어 기능을 검증했습니다.</li>
-              <li>진입점과 플랫폼 차이를 기준으로 플레이어 결함을 분리 분석했습니다.</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <h3>프론트엔드 아키텍처 전환 검증</h3>
-            <div class="subtitle">React Native · iOS / Android · Regression</div>
-            <p class="description">React Native New Architecture 및 공통 모듈 분리 전환 과정에서 사용자 동작 변화와 사이드 이펙트를 검증했습니다.</p>
-            <div class="label">What I did</div>
-            <ul>
-              <li>iOS/Android 전반의 컴포넌트 UI·네비게이션·렌더링 회귀를 검증했습니다.</li>
-              <li>아키텍처 전환 전후 동작을 교차 비교해 예상치 못한 사용자 경험 변화를 탐지했습니다.</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <h3>DB Read / Write 분리 검증</h3>
-            <div class="subtitle">DB 이중화 · 대용량 트래픽 · 데이터 정합성</div>
-            <p class="description">대량 유저 인입 시 발생 가능한 데이터 동기화 지연과 결제·유저 정보 불일치 리스크를 사전 검증했습니다.</p>
-          </div>
-
-          <div class="project">
-            <h3>NC-soft 제휴 QA</h3>
-            <div class="subtitle">제휴 · 과금 · 권한 · API 연동</div>
-            <p class="description">복잡한 과금·권한·API 연동 정책을 검증하고 환경 차이에서 발생할 수 있는 리스크를 현장에서 식별했습니다.</p>
-            <div class="label">What I did</div>
-            <ul>
-              <li>에러 응답을 역분석해 Reverse Spec을 선제적으로 정의하고 검증에 적용했습니다.</li>
-            </ul>
-          </div>
-
-          <div class="project">
-            <h3>프로젝트 QA POC / Shift-Left</h3>
-            <div class="subtitle">20+ 스쿼드 · 30+ 정기 릴리즈</div>
-            <p class="description">기획 초기부터 프로젝트에 참여해 요구사항의 모순과 엣지 케이스를 분석하고, 릴리즈 리스크를 기준으로 품질 의사결정을 주도했습니다.</p>
-            <div class="label">Working Style</div>
-            <ul>
-              <li>검증이 어려운 동적 조건은 테스트 기능을 개발 스펙에 선반영해 Testability를 확보했습니다.</li>
-              <li>adb logcat 기반 네이티브 오류 분석과 클라이언트·서버·네트워크 계층 분리로 RCA를 수행했습니다.</li>
-              <li>VOC 데이터를 정량화해 핵심 QA 파이프라인에 반영했습니다.</li>
-              <li>크리티컬 결함 발생 시 검수 Hold 및 고위험 티켓의 별도 릴리즈를 제안했습니다.</li>
+              <li>프로젝트 초기부터 QA POC로 참여하여 요구사항의 모순·정책 누락·경계 조건을 분석하고 테스트 전략 수립.</li>
+              <li>검증이 어려운 동적 상태는 개발 단계에서 테스트 기능을 요구하여 Testability 확보.</li>
+              <li>adb logcat · Sentry · API · DB 등을 활용해 Client / Server / Network / Data 계층으로 결함 원인 분리.</li>
+              <li>결함 심각도와 Side Effect를 기반으로 검수 Hold 또는 별도 릴리즈 등 품질 리스크 의사결정에 참여.</li>
+              <li>릴리즈 검수 결과를 검증 범위·잔여 리스크·후속 검증 계획으로 구조화해 공유하여, 품질 대시보드가 없는 환경에서 릴리즈 의사결정에 필요한 품질 가시성 확보.</li>
+              <li>VOC와 운영 이슈를 테스트 시나리오와 회귀 범위에 반영.</li>
             </ul>
           </div>
         </div>
@@ -337,7 +371,7 @@
         </aside>
         <div>
           <p class="company-lede">
-            사방넷의 Commerce API 연동과 Fulfillment 라이프 사이클을 검증했습니다.
+            사방넷의 Commerce API 연동과 풀필먼트 전 과정을 검증했습니다.
             상품·주문부터 입고·재고·출고·배송 및 취소·교환·반품까지, 데이터와 상태가 여러 시스템을 거쳐
             일관되게 유지되는지를 중심으로 테스트했습니다.
           </p>
@@ -348,7 +382,7 @@
             <div class="stack"><span>Commerce</span><span>WMS</span><span>Fulfillment</span><span>Regression</span></div>
             <ul>
               <li>PHP 기반 레거시 WMS의 Java/Vue.js 리뉴얼 과정에서 상품·입고·재고·발주·출고·택배 영역의 단위/통합/Regression 테스트 수행.</li>
-              <li>판매상품 ↔ 출고상품 매핑부터 발주 → 출고요청 → 송장등록 → 출고완료로 이어지는 Fulfillment lifecycle 및 상태 전이 검증.</li>
+              <li>판매상품 ↔ 출고상품 매핑부터 발주 → 출고요청 → 송장등록 → 출고완료로 이어지는 출고 흐름과 상태 전이 검증.</li>
               <li>AS-IS 정책과 실제 업무 플로우를 분석하여 경계값·상태 조합·예외 조건 기반 테스트 케이스 설계.</li>
               <li>유통기한·가용재고·합포장·출고분리·운송장 등 재고 및 배송 정책의 데이터 정합성과 연계 동작 검증.</li>
               <li>레거시 정책 불일치 및 기능 결함을 발견하고 정책 개선에 기여.</li>
@@ -364,7 +398,7 @@
             <div class="stack"><span>Commerce</span><span>API</span><span>SCM</span><span>Order</span><span>Claim</span><span>Data Integrity</span></div>
             <ul>
               <li>신규 쇼핑몰의 상품 등록/수정 → 주문 수집 → 취소·교환·반품 → 송장 송신 API 연동 검증.</li>
-              <li>단품·다수량·다옵션·합포 등 실제 Commerce 주문 조건을 구성하여 주문 라이프 사이클 기반 테스트 수행.</li>
+              <li>단품·다수량·다옵션·합포 등 실제 주문 조건을 구성하여 주문 처리 전 과정 테스트 수행.</li>
               <li>외부 쇼핑몰 SCM과 사방넷의 상품·옵션·재고·주문 필드 및 상태값을 교차 검증.</li>
               <li>API 응답, 쇼핑몰 원본 데이터와 사방넷 수집 결과를 비교하여 외부 쇼핑몰 스펙·환경 이슈와 사방넷 연동 결함을 분리.</li>
             </ul>
@@ -375,12 +409,19 @@
       <article class="company">
         <aside class="company-meta">
           <div class="company-name">아이브릭스</div>
-          <div class="company-role"><span class="sep">지능정보개발팀</span> <span class="sep">Software Engineer</span></div>
+          <div class="company-role"><span class="sep">지능정보개발팀 ·</span> <span class="sep">Software Engineer</span></div>
           <div class="company-period">2022.12 — 2024.06</div>
+          <div class="company-domain">Web · API · Search · Data Pipeline</div>
         </aside>
         <div>
+          <p class="company-lede">
+            공공·금융 SI 프로젝트에서 개발자로 서비스를 직접 구현했습니다.
+            개발 기능의 통합 테스트와 성능 테스트를 함께 수행하며,
+            운영 환경과 클라이언트 환경의 차이에서 발생하는 결함을 다뤘습니다.
+          </p>
+
           <div class="project">
-            <h3>용인시청 민원상담 챗봇 시스템 개선</h3>
+            <h3><span class="pnum">01</span>용인시청 민원상담 챗봇 시스템 개선</h3>
             <div class="subtitle">2023.06 — 2023.10</div>
             <div class="stack"><span>React</span><span>Node.js</span><span>Express</span><span>Elasticsearch</span><span>Apache NiFi</span><span>JMeter</span></div>
             <p class="description">React · Node.js · Elasticsearch 기반 민원상담 챗봇의 기능 개발과 통합 테스트를 수행했습니다. 개발한 기능뿐 아니라 실제 운영 환경과 클라이언트 환경의 차이에서 발생하는 결함까지 검증했습니다.</p>
@@ -396,14 +437,16 @@
           </div>
 
           <div class="project">
-            <h3>경남은행 KMS 재구축</h3>
-            <div class="subtitle">2023.11 — 2023.12</div>
+            <h3><span class="pnum">02</span>경남은행 KMS 재구축</h3>
+            <div class="subtitle">2023.11 — 2023.12 · STT / TA 상담 어시스트</div>
+            <div class="stack"><span>API</span><span>STT</span><span>TA</span></div>
             <p class="description">STT/TA 기반 상담 어시스트 시스템 API 개발.</p>
           </div>
 
           <div class="project">
-            <h3>대법원 차세대 전자소송 시스템</h3>
-            <div class="subtitle">2024.01 — 2024.02</div>
+            <h3><span class="pnum">03</span>대법원 차세대 전자소송 시스템</h3>
+            <div class="subtitle">2024.01 — 2024.02 · Web Accessibility</div>
+            <div class="stack"><span>Web Accessibility</span><span>WCAG</span><span>UI</span></div>
             <p class="description">웹 접근성 심사 기준에 부합하도록 코딩 표준을 수정하고 고령자·장애인 친화 UI를 구현.</p>
           </div>
         </div>
