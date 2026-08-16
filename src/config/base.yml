@@ -1,0 +1,17 @@
+# 환경 설정 — URL·타임아웃·테스트 계정
+# (saucedemo 계정은 공개 데모 크리덴셜이라 그대로 둬도 무방)
+base_url: "https://www.saucedemo.com"
+default_wait_timeout: 10000          # ms
+
+users:
+  standard:
+    username: "standard_user"
+    password: "secret_sauce"
+  locked_out:
+    username: "locked_out_user"
+    password: "secret_sauce"
+
+customer:
+  first_name: "Ollie"
+  last_name: "QA"
+  postal_code: "06236"

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "제품 결함 (Product defect)",
+    "matchedStatuses": ["failed"]
+  },
+  {
+    "name": "테스트 측 결함 (Test defect)",
+    "matchedStatuses": ["broken"]
+  },
+  {
+    "name": "환경 / Flaky (Infra)",
+    "matchedStatuses": ["broken", "failed"],
+    "messageRegex": ".*(Timeout|TargetClosed|ECONNRESET|net::|Connection).*"
+  },
+  {
+    "name": "건너뜀 (Skipped)",
+    "matchedStatuses": ["skipped"]
+  }
+]

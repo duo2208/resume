@@ -1,0 +1,71 @@
+name: E2E
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"   # 매일 09:00 KST 정기 회귀
+
+permissions:
+  contents: write          # Allure 리포트를 gh-pages 에 배포하기 위함
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Install Playwright browsers
+        run: uv run playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: uv run pytest tests/ --alluredir=allure-results
+        continue-on-error: true   # 리포트는 실패해도 항상 생성·배포
+
+      - name: Get Allure history
+        if: always()
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Setup Java (Allure CLI 용)
+        if: always()
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Generate showcase report (Sample 데이터)
+        if: always()
+        run: |
+          # 실제 테스트는 위 "Run E2E tests"에서 검증됨.
+          # 배포 대시보드는 시연용 합성(Sample) 데이터로 채운다 — 페이지에 "Sample data" 라벨 표기.
+          python3 scripts/seed_mock_data.py mock-results
+          # 이전 실행의 트렌드 이력을 이어붙인다 (Allure는 /allure/ 하위에 배포됨)
+          if [ -d gh-pages/allure/history ]; then cp -r gh-pages/allure/history mock-results/history; fi
+          npm install -g allure-commandline --silent
+          allure generate mock-results --clean -o allure-report
+          python3 scripts/apply_branding.py allure-report mock-results
+          # 배포 루트를 새로 구성: site/ 하위 페이지는 각 경로로, Allure는 /allure/ 로
+          mkdir -p publish
+          cp -r site/* publish/          # /index.html(허브) · /portfolio/ · /resume/
+          mkdir -p publish/allure
+          cp -r allure-report/* publish/allure/   # /allure/overview.html 등
+
+      - name: Deploy report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: publish

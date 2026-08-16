@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.python-version
+
+# Playwright / 테스트 산출물
+allure-results/
+allure-report/
+allure-history/
+reports/
+screenshots/
+test-results/
+playwright-report/
+
+# 환경
+.env
+.env.local
+
+# OS / 에디터
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,24 @@
+[project]
+name = "playwright-e2e-framework"
+version = "0.1.0"
+description = "웹 E2E 자동화 프레임워크 — Playwright · pytest · POM 4-Layer · Allure · CI (target: saucedemo.com)"
+requires-python = ">=3.12"
+dependencies = [
+    "playwright>=1.48",
+    "pytest>=8.3",
+    "pytest-xdist>=3.6",
+    "allure-pytest>=2.13",
+    "pyyaml>=6.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# 프레임워크 패키지(pages·flows·locators·utils·config)는 src/ 아래에 둔다.
+# pythonpath 로 src 를 import 루트에 올려 `from pages...` 형태를 그대로 유지한다.
+pythonpath = ["src"]
+addopts = "-v"
+markers = [
+    "p0: 핵심 경로 (로그인·체크아웃 등)",
+    "p1: 부가 기능",
+    "quarantine: flaky 격리 — RUN_QUARANTINED=1 일 때만 실행",
+]
