@@ -753,6 +753,10 @@
           gap: 8px;
         }
       }
+
+      /* case 05/06 통합 후 구 URL 호환용 숨김 앵커 */
+      .legacy-anchor { position: relative; top: -82px; visibility: hidden; height: 0; }
+
       /* ── 푸터 ── */
       footer {
         padding: 50px 0 70px;
@@ -2655,6 +2659,9 @@
                   rel="noopener"
                   >Allure 데모 보기 →</a
                 >
+                <a class="dd-btn" href="https://duo2208.github.io/resume/e2e-portfolio/" target="_blank" rel="noopener"
+                  >전체 구조 보기 →</a
+                >
                 <a class="dd-btn" href="https://blog.laftel.net/post/55" target="_blank" rel="noopener">구축 과정 보기 →</a>
               </div>
             </div>
@@ -2724,188 +2731,51 @@
               <div class="toc-label first">라프텔</div>
               <a href="#case-account">01 계정 체계</a>
               <a href="#case-apple">02 애플 인앱</a>
-              <a href="#case-membership">03 A/B 실험</a>
-              <a href="#case-ncsoft">04 B2B 제휴</a>
-              <a href="#case-perf">05 기기 파편화</a>
-              <a href="#case-performance">06 성능</a>
-              <a href="#case-newarch">07 RN 전환</a>
-              <a href="#case-live">08 라이브</a>
+              <a href="#case-live">03 Live / Player</a>
+              <a href="#case-tv">04 Smart TV</a>
+
+              <div class="toc-label">More</div>
+              <a href="#case-membership">A/B Experiment</a>
+              <a href="#case-ncsoft">B2B Partnership</a>
+              <a href="#case-newarch">RN Migration</a>
+              <a href="#case-technical">Technical Investigation</a>
+
               <div class="toc-label">다우기술</div>
               <a href="#case-wms">09 WMS 풀필먼트</a>
               <div class="toc-label">아이브릭스</div>
               <a href="#case-yongin">10 용인시청 챗봇</a>
             </aside>
             <div class="case-list">
-              <!-- ────────── 02. Apple In-App 검증 (표시순서 재배치) ────────── -->
-              <article class="case" id="case-apple" style="order: 2">
-                <div class="case-title">
-                  <div>
-                    <h3>02. Apple In-App 결제</h3>
-                    <div class="meta">Native In-App · 구독 상태 머신 · 상태 전이 검증</div>
-                  </div>
-                  <span class="role-badge">Payment QA</span>
-                </div>
-                <div class="explain">
-                  <p>
-                    App Store 결제는 구독 상태가 올바르게 전이되는지가 중요했습니다. <br />
-                    Pending, OnHold, 복원 등 상태가 하나의 흐름으로 이어지기 때문에 상태 전이를 기준으로 검증했습니다.
-                  </p>
-                </div>
-                <div class="par">
-                  <div class="box problem">
-                    <div class="l">PROBLEM</div>
-                    <p>
-                      결제 결과뿐 아니라 StoreKit 상태에 따라<br />
-                      권한 · UI · API 가 서로 다르게 동작했습니다.
-                    </p>
-                  </div>
-                  <div class="box">
-                    <div class="l">ACTION</div>
-                    <p>
-                      구독 상태를 상태 머신으로 정리하고 Pending, On Hold, 복원 등 주요 상태 전이를 기준으로 검증 시나리오를
-                      설계했습니다.
-                    </p>
-                  </div>
-                  <div class="box result">
-                    <div class="l">RESULT</div>
-                    <p>
-                      상태 전이 기준으로 결제 검증을 표준화해 결제 관련 CS를 사실상 0건으로 줄였고, 애플 Billing Retry 상태의 회원
-                      탈퇴 원인을 특정했습니다.
-                    </p>
-                  </div>
-                </div>
-                <div class="evidence">
-                  <div class="evidence-head">
-                    <strong>문서 예시 - 구독 상태 전이 검증</strong>
-                    <em class="re-badge">실제 문서 기반 재구성</em>
-                  </div>
-                  <div class="evidence-body">
-                    <div class="doc-board">
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">Subscription State Flow</div>
-                            <div class="doc-sub">구독 상태가 어떤 조건에서 이동하는지 먼저 정리</div>
-                          </div>
-                          <span class="tag">State</span>
-                        </div>
-                        <pre class="term">
-Purchase → <b>Active</b>
-
-<b>Active</b> ├ 갱신 성공 → <b>Active</b>
-       ├ 갱신 실패 → <b>On Hold</b> → 재시도 성공 → <b>Active</b>
-       │                       └ 기간 종료 → <b>Expired</b>
-       ├ 해지 예약 후 만료 → <b>Expired</b>
-       └ 환불 → <b>Refunded</b>
-
-<b>Expired</b> / 권한 미반영 ── Restore → <b>Active</b></pre>
-                        <p class="doc-caption"></p>
-                      </div>
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">State Verification Matrix</div>
-                            <div class="doc-sub">상태별 권한 · UI · API 기대값</div>
-                          </div>
-                          <span class="tag">Matrix</span>
-                        </div>
-                        <table class="mini-table">
-                          <thead>
-                            <tr>
-                              <th>상태</th>
-                              <th>권한</th>
-                              <th>UI 기대값</th>
-                              <th>API 기대값</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>ACTIVE</td>
-                              <td>부여</td>
-                              <td>멤버십 유지</td>
-                              <td>current=Basic</td>
-                            </tr>
-                            <tr>
-                              <td>ON_HOLD</td>
-                              <td>정책 기준 유지/제한</td>
-                              <td>결제 재시도 안내</td>
-                              <td>apple_on_hold=true</td>
-                            </tr>
-                            <tr>
-                              <td>EXPIRED</td>
-                              <td>해제</td>
-                              <td>구독 만료 노출</td>
-                              <td>current=null</td>
-                            </tr>
-                            <tr>
-                              <td>RESTORE</td>
-                              <td>복구</td>
-                              <td>복원 완료/실패 안내</td>
-                              <td>영수증 검증 결과 반영</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <p class="doc-caption">상태별 권한·UI·API가 서로 일치하는지 하나의 매트릭스로 검증했습니다.</p>
-                      </div>
-                      <div class="doc-shot wide">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">실제 사용자 이력까지 검증</div>
-                            <div class="doc-sub">깨끗한 Sandbox 계정만으로는 놓칠 수 있는 결제 수단 전환 케이스</div>
-                          </div>
-                          <span class="tag">Environment</span>
-                        </div>
-                        <div class="duo">
-                          <div class="lane">
-                            <span class="who">Sandbox</span><span class="chip">깨끗한 계정</span><span class="arrow">→</span
-                            ><span class="chip pay">Apple 결제</span><span class="arrow">→</span
-                            ><span class="chip grant">상태 전이 확인</span>
-                          </div>
-                          <div class="lane">
-                            <span class="who">상용 이력</span><span class="chip">Google/PG 결제 이력</span
-                            ><span class="arrow">→</span><span class="chip pay">Apple 결제 전환</span><span class="arrow">→</span
-                            ><span class="chip gap">상태 불일치 가능</span>
-                          </div>
-                        </div>
-                        <p class="doc-body">
-                          샌드박스에서는 깨끗한 계정으로 테스트하는 것이 권장되지만, 실제 서비스에서는 기존 Google/PG 결제 이력이
-                          남은 상태에서 Apple 결제가 시작될 수 있습니다. 실제 사용자 환경을 고려해 결제 이력이 혼합된 계정까지
-                          검증하며, 결제 수단 전환 시 서버 상태가 올바르게 동기화되는지 확인했습니다.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <!-- ────────── 01. 계정 체계 개선 (표시순서 재배치 · 히어로 서사 연결) ────────── -->
+              
+              <!-- ────────── 01. 계정 체계 개선 ────────── -->
               <article class="case" id="case-account" style="order: 1">
                 <div class="case-title">
                   <div>
                     <h3>01. 계정 체계 개선</h3>
-                    <div class="meta">Dummy Account · Social Login · 필수 정보 조합 검증 / CS 감소</div>
+                    <div class="meta">Account · Social Login · 상태 조합 검증 · CS 감소</div>
                   </div>
                   <span class="role-badge">Account QA</span>
                 </div>
+
                 <div class="par">
                   <div class="box problem">
                     <div class="l">PROBLEM</div>
-                    <p>가입 중 이탈로 정보가 누락된 더미 계정이 반복 CS를 만들었습니다.</p>
+                    <p>가입 중 이탈로 필수 정보가 누락된 계정이 남아 로그인·결제·탈퇴에서 반복적인 CS를 만들었습니다.</p>
                   </div>
                   <div class="box">
                     <div class="l">ACTION</div>
-                    <p>
-                      계정이 어떤 상태로 남을 수 있는지 먼저 구조화한 뒤, 각 상태에서 로그인·결제·탈퇴까지 이어지는 흐름을 하나씩
-                      검증했습니다.
-                    </p>
+                    <p>계정이 남을 수 있는 상태를 먼저 조합으로 구조화하고, 각 상태에서 가입·로그인·복구·민감 플로우를 검증했습니다.</p>
                   </div>
                   <div class="box result">
                     <div class="l">RESULT</div>
-                    <p>배포 후 이메일 미인증 계정을 30~37% 줄였고, 더미 계정으로 인한 고객 문의도 크게 감소했습니다.</p>
+                    <p>이메일 미인증 계정을 30~37% 줄였고, 더미 계정 관련 고객 문의를 사실상 제거했습니다.</p>
                   </div>
                 </div>
+
                 <div class="evidence">
                   <div class="evidence-head">
-                    <strong>문서 예시 - 계정 상태 조합표</strong> <em class="re-badge">실제 문서 기반 재구성</em>
+                    <strong>계정 상태 조합표</strong>
+                    <span>상태를 먼저 정의하고 흐름을 검증</span>
                   </div>
                   <div class="evidence-body">
                     <div class="doc-board">
@@ -2913,732 +2783,389 @@ Purchase → <b>Active</b>
                         <div class="doc-top">
                           <div>
                             <div class="doc-title">Account Completeness Matrix</div>
-                            <div class="doc-sub">
-                              계정이 만들어질 수 있는 모든 상태를 먼저 정리한 뒤,<br />
-                              각 상태를 기준으로 검증을 설계했습니다.
-                            </div>
+                            <div class="doc-sub">Email · 본인확인 · 약관 · Social Provider 조합</div>
                           </div>
                           <span class="tag">Matrix</span>
                         </div>
-                        <div class="matrix">
-                          <div class="cell head">상태</div>
-                          <div class="cell head">Email</div>
-                          <div class="cell head">본인확인</div>
-                          <div class="cell head">약관</div>
-                          <div class="cell ok">정상</div>
-                          <div class="cell ok">Y</div>
-                          <div class="cell ok">Y</div>
-                          <div class="cell ok">Y</div>
-                          <div class="cell warn">가입중 이탈</div>
-                          <div class="cell bad">N</div>
-                          <div class="cell warn">선택</div>
-                          <div class="cell ok">Y</div>
-                          <div class="cell warn">소셜 전환</div>
-                          <div class="cell warn">provider 의존</div>
-                          <div class="cell bad">N</div>
-                          <div class="cell warn">재동의 필요</div>
-                        </div>
+                        <table class="mini-table">
+                          <thead>
+                            <tr><th>상태</th><th>Email</th><th>본인확인</th><th>약관</th></tr>
+                          </thead>
+                          <tbody>
+                            <tr><td>정상</td><td>Y</td><td>Y</td><td>Y</td></tr>
+                            <tr><td>가입 중 이탈</td><td>N</td><td>선택</td><td>Y</td></tr>
+                            <tr><td>소셜 전환</td><td>provider 의존</td><td>N</td><td>재동의 필요</td></tr>
+                          </tbody>
+                        </table>
                       </div>
+
                       <div class="doc-shot">
                         <div class="doc-top">
                           <div>
-                            <div class="doc-title">User Flow 재현 예시</div>
-                            <div class="doc-sub">가입 이탈 → 재로그인 → 보정 플로우</div>
+                            <div class="doc-title">Recovery Flow</div>
+                            <div class="doc-sub">비정상 상태에서 정상 서비스 진입까지</div>
                           </div>
                           <span class="tag">Flow</span>
                         </div>
                         <div class="flow">
-                          <span class="node">가입 시작</span><span class="arrow">→</span><span class="node">이탈</span
-                          ><span class="arrow">→</span><span class="node">소셜 로그인</span><span class="arrow">→</span
-                          ><span class="node">정보 보정</span><span class="arrow">→</span><span class="node">정상 진입</span>
+                          <span class="node">가입 이탈</span><span class="arrow">→</span>
+                          <span class="node">소셜 로그인</span><span class="arrow">→</span>
+                          <span class="node">정보 보정</span><span class="arrow">→</span>
+                          <span class="node">정상 진입</span>
                         </div>
                         <ul class="mini-list">
-                          <li><b>확인 기준</b>누락 정보가 있으면 서비스 진입 전 보정 플로우로 유도.</li>
-                          <li><b>방어 기준</b>결제·탈퇴·이메일 변경 등 민감 플로우에서 null 계정 차단.</li>
-                          <li><b>회귀 기준</b>Apple/Google/Kakao별 provider 값과 이메일 소유권 확인.</li>
+                          <li><b>확인 기준</b>누락 정보가 있으면 서비스 진입 전 보정 플로우로 유도</li>
+                          <li><b>방어 기준</b>결제·탈퇴·이메일 변경 등 민감 플로우에서 비정상 계정 차단</li>
+                          <li><b>회귀 기준</b>Apple·Google·Kakao별 provider 값과 이메일 소유권 확인</li>
                         </ul>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="callout">
-                  <b>왜 시작했나 — 손대기 미뤄온 계정 레거시.</b> 소셜 가입 중 이탈하면 정보가 빈 더미 계정이 남았고, 이를 매일
-                  배치로 삭제했지만 “가입한 적 없는데 이미 가입됐다”는 CS가 끊이지 않았습니다. 급기야 삭제 로직이 멤버십 결제
-                  계정을 오탈퇴시키는 사고까지 나면서, 미뤄온 계정 레거시를 청산하는 스쿼드가 시작됐습니다. QA는 정상·비정상
-                  계정이 될 수 있는 모든 상태를 먼저 구조화하는 것부터 들어갔습니다.
-                </div>
               </article>
-              <!-- ────────── 03. 멤버십 A/B 실험 ────────── -->
-              <article class="case" id="case-membership" style="order: 3">
+
+
+              <!-- ────────── 02. Apple In-App 결제 ────────── -->
+              <article class="case" id="case-apple" style="order: 2">
                 <div class="case-title">
                   <div>
-                    <h3>03. 신규 멤버십 전환율 A/B 실험</h3>
-                    <div class="meta">A/B Experiment · 실험군 분배 · 테스트 계정 제어 · 데이터 오염 검증</div>
+                    <h3>02. Apple In-App 결제</h3>
+                    <div class="meta">Billing · Subscription · 상태 전이 · 데이터 정합성</div>
+                  </div>
+                  <span class="role-badge">Payment QA</span>
+                </div>
+
+                <p class="case-lead">
+                  결제 성공 여부만 보는 대신 <b>StoreKit 상태와 내부 멤버십 권한·UI·API가 같은 상태를 가리키는지</b>를 기준으로 검증했습니다.
+                </p>
+
+                <div class="par">
+                  <div class="box problem">
+                    <div class="l">RISK</div>
+                    <p>Pending · On Hold · Restore처럼 비동기로 변하는 결제 상태와 내부 구독 상태가 어긋날 수 있었습니다.</p>
+                  </div>
+                  <div class="box">
+                    <div class="l">STRATEGY</div>
+                    <p>구독 상태를 상태 머신으로 정리하고 Sandbox · Sentry · API · DB를 교차해 상태별 기대값을 확인했습니다.</p>
+                  </div>
+                  <div class="box result">
+                    <div class="l">RESULT</div>
+                    <p>상태 전이 기준으로 회귀 범위를 표준화하고 Billing Retry 등 실제 사용자 이력에서 발생하는 불일치를 추적했습니다.</p>
+                  </div>
+                </div>
+
+                <div class="evidence">
+                  <div class="evidence-head">
+                    <strong>Subscription State Verification</strong>
+                    <span>권한 · UI · API를 한 상태 기준으로 대조</span>
+                  </div>
+                  <div class="evidence-body">
+                    <div class="doc-board">
+                      <div class="doc-shot">
+                        <div class="doc-top">
+                          <div>
+                            <div class="doc-title">State Flow</div>
+                            <div class="doc-sub">구독 상태가 언제 이동하는지 먼저 정의</div>
+                          </div>
+                          <span class="tag">State</span>
+                        </div>
+                        <pre class="term">Purchase → Active
+Active ├ 갱신 성공 → Active
+       ├ 갱신 실패 → On Hold → 재시도 성공 → Active
+       │                       └ 기간 종료 → Expired
+       ├ 해지 예약 후 만료 → Expired
+       └ 환불 → Refunded
+
+Expired / 권한 미반영 ── Restore → Active</pre>
+                      </div>
+
+                      <div class="doc-shot">
+                        <div class="doc-top">
+                          <div>
+                            <div class="doc-title">Verification Matrix</div>
+                            <div class="doc-sub">상태별 권한 · UI · API 기대값</div>
+                          </div>
+                          <span class="tag">Matrix</span>
+                        </div>
+                        <table class="mini-table">
+                          <thead>
+                            <tr><th>상태</th><th>권한</th><th>UI 기대값</th><th>API 기대값</th></tr>
+                          </thead>
+                          <tbody>
+                            <tr><td>ACTIVE</td><td>부여</td><td>멤버십 유지</td><td>current=Basic</td></tr>
+                            <tr><td>ON_HOLD</td><td>정책 기준</td><td>결제 재시도 안내</td><td>apple_on_hold=true</td></tr>
+                            <tr><td>EXPIRED</td><td>해제</td><td>구독 만료 노출</td><td>current=null</td></tr>
+                            <tr><td>RESTORE</td><td>복구</td><td>복원 결과 안내</td><td>영수증 검증 반영</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+
+                      <div class="doc-shot wide">
+                        <div class="doc-top">
+                          <div>
+                            <div class="doc-title">실제 사용자 이력까지 검증</div>
+                            <div class="doc-sub">깨끗한 Sandbox 계정 밖의 결제 수단 전환 케이스</div>
+                          </div>
+                          <span class="tag">Environment</span>
+                        </div>
+                        <div class="duo">
+                          <div class="lane"><span class="who">Sandbox</span><span class="chip">깨끗한 계정</span><span class="arrow">→</span><span class="chip pay">Apple 결제</span><span class="arrow">→</span><span class="chip grant">상태 확인</span></div>
+                          <div class="lane"><span class="who">상용 이력</span><span class="chip">기존 결제 이력</span><span class="arrow">→</span><span class="chip pay">Apple 전환</span><span class="arrow">→</span><span class="chip gap">상태 불일치 가능</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+
+              <!-- ────────── 03. Live / Player ────────── -->
+              <article class="case" id="case-live" style="order: 3">
+                <div class="case-title">
+                  <div>
+                    <h3>03. Live / Player</h3>
+                    <div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
+                  </div>
+                  <span class="role-badge">Live QA</span>
+                </div>
+
+                <div class="par">
+                  <div class="box problem">
+                    <div class="l">RISK</div>
+                    <p>편성표·플레이어·시간 경계가 동시에 바뀌어 기능 단위 테스트만으로는 상태 전이를 놓치기 쉬웠습니다.</p>
+                  </div>
+                  <div class="box">
+                    <div class="l">STRATEGY</div>
+                    <p>프로그램 전환 시점을 기준으로 EPG · 재생 · 연령 등급 · 프로그레스가 함께 갱신되는 E2E 흐름을 설계했습니다.</p>
+                  </div>
+                  <div class="box result">
+                    <div class="l">RESULT</div>
+                    <p>Live 검증을 시간 경계 중심의 공통 시나리오로 정리해 반복 회귀 기준으로 사용했습니다.</p>
+                  </div>
+                </div>
+
+                <div class="evidence">
+                  <div class="evidence-head">
+                    <strong>시간 경계 E2E 시나리오</strong>
+                    <span>프로그램 전환 순간에 함께 바뀌어야 하는 상태</span>
+                  </div>
+                  <div class="evidence-body">
+                    <div class="live-mock">
+                      <div class="player-slim">
+                        <b>LIVE</b><span class="ps-time">23:59</span><span class="ps-track"></span><span>ANIPLUS</span>
+                      </div>
+
+                      <div class="epg2">
+                        <div class="epg2-col a">
+                          <div class="t">23:58 — 23:59</div>
+                          <b>프로그램 A</b>
+                          <span>15세</span>
+                        </div>
+                        <div class="epg2-bound" data-label="00:00"></div>
+                        <div class="epg2-col">
+                          <div class="t">00:00 —</div>
+                          <b>프로그램 B</b>
+                          <span>19세</span>
+                        </div>
+                      </div>
+
+                      <ul class="bound-list">
+                        <li>제목 변경</li>
+                        <li>EPG 갱신</li>
+                        <li>연령 등급 재체크</li>
+                        <li>프로그레스 유지</li>
+                        <li>플레이어 끊김 없음</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+
+              <!-- ────────── 04. Smart TV 멀티플랫폼 QA ────────── -->
+              <article class="case" id="case-tv" style="order: 4">
+                <div class="case-title">
+                  <div>
+                    <h3>04. Smart TV 멀티플랫폼 QA</h3>
+                    <div class="meta">Android TV · Tizen · webOS · Apple TV · Full TC · 리빌드/리팩토링</div>
+                  </div>
+                  <span class="role-badge">Smart TV QA</span>
+                </div>
+
+                <p class="case-lead">
+                  같은 OTT 기능도 TV에서는 OS와 입력 방식, 포커스 이동, 재생 환경이 달랐습니다.
+                  <b>플랫폼 차이를 테스트 조건으로 구조화하고 Full TC와 전수검사를 수행했습니다.</b>
+                </p>
+
+                <div class="par">
+                  <div class="box problem">
+                    <div class="l">RISK</div>
+                    <p>리빌드·리팩토링 과정에서 공통 기능은 같아도 플랫폼별 입력·포커스·플레이어 동작이 다르게 깨질 수 있었습니다.</p>
+                  </div>
+                  <div class="box">
+                    <div class="l">STRATEGY</div>
+                    <p>Android TV · Tizen · webOS · Apple TV를 플랫폼 축으로 두고 핵심 사용자 흐름과 재생 조건을 매트릭스로 구성했습니다.</p>
+                  </div>
+                  <div class="box result">
+                    <div class="l">RESULT</div>
+                    <p>플랫폼별 Full TC를 기준으로 리빌드/리팩토링 전수검사를 수행하고 TV 회귀 자산을 정리했습니다.</p>
+                  </div>
+                </div>
+
+                <div class="evidence">
+                  <div class="evidence-head">
+                    <strong>Multi-platform Test Matrix</strong>
+                    <span>플랫폼 차이를 별도 테스트 조건으로 관리</span>
+                  </div>
+                  <div class="evidence-body">
+                    <table class="mini-table">
+                      <thead>
+                        <tr><th>검증 축</th><th>Android TV</th><th>Tizen</th><th>webOS</th><th>Apple TV</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>앱 실행 / 진입</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                        <tr><td>로그인 / 계정</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                        <tr><td>탐색 / 포커스</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                        <tr><td>Player / 재생</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+                        <tr><td>회귀 범위</td><td colspan="4">플랫폼별 Full TC · 핵심 사용자 흐름 전수검사</td></tr>
+                      </tbody>
+                    </table>
+                    <p class="doc-caption">
+                      ※ 실제 포트폴리오에는 공개 가능한 범위에서 실제 검증한 플랫폼·기능 조합만 유지합니다.
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+
+              <div class="more-head">
+                <p>대표 사례 외 경험은 핵심 판단과 결과만 남겼습니다. 제목을 누르면 펼쳐집니다.</p>
+              </div>
+
+
+              <!-- ────────── 05. A/B Experiment ────────── -->
+              <details class="more-case" id="case-membership">
+                <summary>
+                  <div>
+                    <h3>A/B Experiment</h3>
+                    <div class="meta">실험군 분배 · 테스트 계정 제어 · 데이터 오염 검증</div>
                   </div>
                   <span class="role-badge">Experiment QA</span>
-                </div>
-                <div class="par">
-                  <div class="box problem">
-                    <div class="l">PROBLEM</div>
-                    <p>실험 결과보다 먼저, 실험 환경이 신뢰할 수 있는지 검증해야 했습니다.</p>
-                  </div>
-                  <div class="box">
-                    <div class="l">ACTION</div>
-                    <p>
-                      Firebase 기반 실험의 재현 한계를 개선하기 위해 서버에서 실험군을 제어하는 구조를 제안했고, 전환 과정에서
-                      실험군 분배·강제 할당·데이터 오염 여부를 검증했습니다.
-                    </p>
-                  </div>
-                  <div class="box result">
-                    <div class="l">RESULT</div>
-                    <p>
-                      QA가 원하는 실험군을 안정적으로 재현할 수 있는 환경을 마련했고, 실험군 분배와 데이터 오염 리스크를
-                      검증했습니다.
-                    </p>
-                  </div>
-                </div>
-                <div class="evidence">
-                  <div class="evidence-head">
-                    <strong>문서 예시 - 실험 환경 검증</strong>
-                    <em class="re-badge">실제 문서 기반 재구성</em>
-                  </div>
-                  <div class="evidence-body">
-                    <div class="doc-board">
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">실험 환경 검증 체크리스트</div>
-                            <div class="doc-sub">항목 · 확인 방법 · 기준</div>
-                          </div>
-                          <span class="tag">Checklist</span>
-                        </div>
-                        <table class="mini-table">
-                          <thead>
-                            <tr>
-                              <th>항목</th>
-                              <th>확인 방법</th>
-                              <th>기준</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>실험군 분배</td>
-                              <td>어드민 실험 활성 + 계정별 할당 조회</td>
-                              <td>의도한 비율로 배정</td>
-                            </tr>
-                            <tr>
-                              <td>강제 할당</td>
-                              <td>테스트 계정을 특정 그룹으로 지정</td>
-                              <td>지정한 그룹으로 노출</td>
-                            </tr>
-                            <tr>
-                              <td>데이터 오염</td>
-                              <td>테스트 계정이 실험 지표에 섞이는지 확인</td>
-                              <td>지표에서 제외</td>
-                            </tr>
-                            <tr>
-                              <td>무료체험 권한</td>
-                              <td>동시 재생·동일 CI 재사용 시도</td>
-                              <td>경계 방어(차단)</td>
-                            </tr>
-                            <tr>
-                              <td>만료 후 UI</td>
-                              <td>체험 종료 시점</td>
-                              <td>멤버십 유도 노출</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">검증 환경 개선</div>
-                            <div class="doc-sub">QA가 실험 플랫폼을 바꾼 지점</div>
-                          </div>
-                          <span class="tag">Proposal</span>
-                        </div>
-                        <div class="vflow">
-                          <div class="vf-item">Firebase 할당</div>
-                          <div class="vf-arrow">↓</div>
-                          <div class="vf-item pain">QA가 특정 실험군을 선택하기 어려움</div>
-                          <div class="vf-arrow">↓</div>
-                          <div class="vf-item propose">서버에서 실험군을 제어하는 구조 제안</div>
-                          <div class="vf-arrow">↓</div>
-                          <div class="vf-item">테스트 계정을 원하는 그룹으로 강제 지정</div>
-                          <div class="vf-arrow">↓</div>
-                          <div class="vf-item gain">재현성과 검증 효율 향상</div>
-                        </div>
-                      </div>
+                </summary>
+                <article class="case">
+                  <div class="case-title">
+                    <div>
+                      <h3>05. 신규 멤버십 전환율 A/B 실험</h3>
+                      <div class="meta">Firebase · Experiment · Testability · Shift-Left</div>
                     </div>
+                    <span class="role-badge">Experiment QA</span>
                   </div>
-                </div>
-                <div class="callout">
-                  <b>Shift-Left</b> — 빠른 실험을 위해 설계 단계에서 버그가 생길 여지를 줄이는 데 집중했습니다.
-                  스토리보드 리뷰 단계에서 무료체험·동시 재생·권한 경계를 미리 검토해 엣지 케이스를 스펙에 반영하고 검증을
-                  시작했습니다.
-                </div>
-              </article>
-              <!-- ────────── 04. B2B 제휴 검증 ────────── -->
-              <article class="case" id="case-ncsoft" style="order: 4">
-                <div class="case-title">
+
+                  <div class="par">
+                    <div class="box problem"><div class="l">PROBLEM</div><p>QA가 원하는 실험군을 안정적으로 재현하기 어려웠습니다.</p></div>
+                    <div class="box"><div class="l">ACTION</div><p>서버에서 테스트 계정을 특정 그룹으로 제어하는 구조를 제안하고 실험군 분배·강제 할당·데이터 오염 여부를 검증했습니다.</p></div>
+                    <div class="box result"><div class="l">RESULT</div><p>실험군 재현성을 높이고 무료체험·권한·동시재생 같은 경계 조건을 설계 단계부터 검증할 수 있게 했습니다.</p></div>
+                  </div>
+                </article>
+              </details>
+
+
+              <!-- ────────── 06. B2B Partnership ────────── -->
+              <details class="more-case" id="case-ncsoft">
+                <summary>
                   <div>
-                    <h3>04. B2B 제휴 검증</h3>
-                    <div class="meta">Partnership · External API · Reverse Spec · 현장 검수</div>
+                    <h3>B2B Partnership</h3>
+                    <div class="meta">External API · Reverse Spec · 권한 · 동시재생 · 정산</div>
                   </div>
                   <span class="role-badge">Partnership QA</span>
-                </div>
-                <div class="explain">
-                  <p>
-                    PC방 제휴는 라프텔과 외부 사업자가 하나의 서비스를 함께 운영하는 프로젝트였습니다. 멤버십 권한, 동시 재생,
-                    이용 시간 정산처럼 서비스 경계가 두 시스템에 나뉘어 있었고, 문서에 없는 동작은 실제 응답과 화면을 비교하며
-                    검증 기준을 직접 정리해야 했습니다.
+                </summary>
+                <article class="case">
+                  <div class="case-title">
+                    <div>
+                      <h3>06. B2B 제휴 검증</h3>
+                      <div class="meta">외부 서비스 경계 · Reverse Spec · 현장 검수</div>
+                    </div>
+                    <span class="role-badge">Partnership QA</span>
+                  </div>
+
+                  <p class="case-lead">
+                    두 서비스에 나뉜 멤버십 권한·동시재생·정산 상태를 하나의 사용자 흐름으로 검증했습니다.
                   </p>
-                </div>
-                <div class="par">
-                  <div class="box problem">
-                    <div class="l">PROBLEM</div>
-                    <p>문서만으로는 정상 동작을 판단하기 어려운 응답과 정책 차이가 존재했습니다.</p>
-                  </div>
-                  <div class="box">
-                    <div class="l">ACTION</div>
-                    <p>에러 응답을 역분석해 Reverse Spec을 만들고, 동시 재생·과금·권한 경계를 분리했습니다.</p>
-                  </div>
-                  <div class="box result">
-                    <div class="l">RESULT</div>
-                    <p>제휴 환경에서도 일관된 기준으로 품질을 검증할 수 있는 프로토콜을 만들었습니다.</p>
-                  </div>
-                </div>
-                <div class="evidence">
-                  <div class="evidence-head">
-                    <strong>문서 예시 - Reverse Spec</strong> <em class="re-badge">실제 문서 기반 재구성</em>
-                  </div>
-                  <div class="evidence-body">
-                    <div class="doc-board">
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">Error Mapping</div>
-                            <div class="doc-sub">응답 → 원인 → 화면 문구 → QA 판정</div>
-                          </div>
-                          <span class="tag">Reverse Spec</span>
-                        </div>
-                        <table class="mini-table">
-                          <thead>
-                            <tr>
-                              <th>응답</th>
-                              <th>추정 원인</th>
-                              <th>화면 기대값</th>
-                              <th>판정</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>403</td>
-                              <td>비제휴 좌석</td>
-                              <td>제휴 이용 불가 안내</td>
-                              <td>PASS</td>
-                            </tr>
-                            <tr>
-                              <td>409</td>
-                              <td>동시 재생 충돌</td>
-                              <td>선 실행 세션 유지</td>
-                              <td>PASS</td>
-                            </tr>
-                            <tr>
-                              <td>422</td>
-                              <td>과금 시작 불가</td>
-                              <td>재시도/문의 안내</td>
-                              <td>BLOCKER</td>
-                            </tr>
-                            <tr>
-                              <td>5xx</td>
-                              <td>외부 연동 실패</td>
-                              <td>일시 오류 안내</td>
-                              <td>HOLD</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">제휴 검증 구조</div>
-                            <div class="doc-sub">정책을 4개 축으로 분리</div>
-                          </div>
-                          <span class="tag">Scenario</span>
-                        </div>
-                        <div class="flow">
-                          <span class="node">PC방 인증</span><span class="arrow">→</span><span class="node">권한 부여</span
-                          ><span class="arrow">→</span><span class="node">재생 시작</span><span class="arrow">→</span
-                          ><span class="node">15초 정산</span>
-                        </div>
-                        <ul class="mini-list">
-                          <li><b>권한</b>멤버십 보유자/비보유자/비로그인 케이스 분리.</li>
-                          <li><b>동시재생</b>선 실행 우선 정책 기준으로 신규 세션 차단 확인.</li>
-                          <li><b>정산</b>라프텔 1분 단위와 제휴 15초 단위 차이 확인.</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="callout">
-                  <b>지원 스펙보다 실제 환경.</b> <br />
-                  현장 검증 중 PC방에서 Edge 사용 비중이 높다는 점을 확인했습니다. 라프텔의 공식 지원 브라우저는 Chrome과
-                  Safari였지만, 실제 이용 환경과의 차이를 고려해 브라우저 안내 모달 개선을 제안했습니다.
-                </div>
-              </article>
-              <div class="more-head">
-                <p>대표 사례 외 나머지는 접어뒀습니다. 제목을 누르면 전문이 펼쳐집니다.</p>
-              </div>
-              <!-- ────────── 05. 기기 파편화 대응 ────────── -->
-              <details class="more-case" id="case-perf">
-                <summary>
-                  <div>
-                    <h3>05. 기기 파편화 대응</h3>
-                    <div class="meta">단말 편차 · 렌더링 이슈 추적 / Android · 120Hz·60Hz · gfxinfo</div>
-                  </div>
-                  <span class="role-badge">Device QA</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>05. 기기 파편화 대응</h3>
-                      <div class="meta">단말 편차 · 렌더링 이슈 추적 / Android · 120Hz·60Hz · gfxinfo</div>
-                    </div>
-                    <span class="role-badge">Device QA</span>
-                  </div>
-                  <div class="explain">
-                    <p>
-                      OTT는 Web·앱·스마트TV·태블릿에 걸쳐 OS 버전·해상도·주사율 조합이 방대해, 특정 단말에서만 재현되는 이슈가
-                      흔합니다. 단순히 재현하는 것이 아니라, 방대한 단말 조합 중 어디서 터지는지를 좁혀 원인을 특정하는 것이
-                      핵심이었습니다.
-                    </p>
-                  </div>
                   <div class="par">
-                    <div class="box problem">
-                      <div class="l">PROBLEM</div>
-                      <p>
-                        120Hz 태블릿에서 스크롤 렉과 발열이 발생했지만, CPU·GPU·렌더링 중 어느 계층이 병목인지 확인되지
-                        않았습니다.
-                      </p>
-                    </div>
-                    <div class="box">
-                      <div class="l">ACTION</div>
-                      <p>
-                        60Hz·120Hz 단말을 비교하고 gfxinfo, Pipeline(Skia/Vulkan), Janky Frames를 분석해 GPU 병목을 제외했습니다.
-                        이후 캐러셀 조건을 분리하며 병목이 발생하는 계층을 단계적으로 좁혔습니다.
-                      </p>
-                    </div>
-                    <div class="box result">
-                      <div class="l">RESULT</div>
-                      <p>
-                        원인을 expo-image의 반복 재디코드까지 좁혔고, 수정 이후 프레임 저하와 이미지 떨림이 개선됨을 검증했습니다.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="evidence">
-                    <div class="evidence-head">
-                      <strong>문서 예시 - 성능 병목 추적</strong>
-                      <em class="re-badge">실제 문서 기반 재구성</em>
-                    </div>
-                    <div class="evidence-body">
-                      <div class="doc-board">
-                        <div class="doc-shot">
-                          <div class="doc-top">
-                            <div>
-                              <div class="doc-title">성능 분석 체크리스트</div>
-                              <div class="doc-sub">계층을 하나씩 제외하며 확인</div>
-                            </div>
-                            <span class="tag">Checklist</span>
-                          </div>
-                          <table class="mini-table">
-                            <thead>
-                              <tr>
-                                <th>항목</th>
-                                <th>확인</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>120Hz / 60Hz 비교</td>
-                                <td>✓</td>
-                              </tr>
-                              <tr>
-                                <td>Pipeline(Skia/Vulkan)</td>
-                                <td>✓</td>
-                              </tr>
-                              <tr>
-                                <td>Janky Frames</td>
-                                <td>✓</td>
-                              </tr>
-                              <tr>
-                                <td>GPU Frame Time</td>
-                                <td>✓</td>
-                              </tr>
-                              <tr>
-                                <td>캐러셀 노출 비교</td>
-                                <td>✓</td>
-                              </tr>
-                              <tr>
-                                <td>버전 비교</td>
-                                <td>3.99 ↔ 3.100</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="doc-shot">
-                          <div class="doc-top">
-                            <div>
-                              <div class="doc-title">Root Cause 분석</div>
-                              <div class="doc-sub">계층을 제외하며 원인으로 수렴</div>
-                            </div>
-                            <span class="tag">RCA</span>
-                          </div>
-                          <div class="vflow">
-                            <div class="vf-item">CS 제보</div>
-                            <div class="vf-arrow">↓</div>
-                            <div class="vf-item">120Hz 태블릿에서 재현</div>
-                            <div class="vf-arrow">↓</div>
-                            <div class="vf-item pain">GPU 병목 의심</div>
-                            <div class="vf-arrow">↓</div>
-                            <div class="vf-item">gfxinfo 분석 → GPU 정상</div>
-                            <div class="vf-arrow">↓</div>
-                            <div class="vf-item">캐러셀 조건 분리</div>
-                            <div class="vf-arrow">↓</div>
-                            <div class="vf-item propose">expo-image 반복 재디코드 발견</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <div class="box problem"><div class="l">PROBLEM</div><p>문서만으로 정상 동작을 판단하기 어려운 응답과 정책 차이가 있었습니다.</p></div>
+                    <div class="box"><div class="l">ACTION</div><p>실제 API 응답과 화면을 대조해 에러 조건을 Reverse Spec으로 정리하고 권한·동시재생·정산 경계를 분리했습니다.</p></div>
+                    <div class="box result"><div class="l">RESULT</div><p>문서에 없던 조건까지 QA 판정 기준으로 남겨 제휴 환경의 회귀 기준을 만들었습니다.</p></div>
                   </div>
                 </article>
               </details>
-              <!-- ────────── 06. 배포 장애 후 재배포 안전성 검증 ────────── -->
-              <details class="more-case" id="case-performance">
-                <summary>
-                  <div>
-                    <h3>06. 배포 장애 후 재배포 안전성 검증</h3>
-                    <div class="meta">JMeter · 재배포 안전성 부하 검증 · 신규 스택 성능 리스크 점검</div>
-                  </div>
-                  <span class="role-badge">Performance QA</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>06. 배포 장애 후 재배포 안전성 검증</h3>
-                      <div class="meta">JMeter · 재배포 안전성 부하 검증 · 신규 스택 성능 리스크 점검</div>
-                    </div>
-                    <span class="role-badge">Performance QA</span>
-                  </div>
-                  <div class="explain">
-                    <p>
-                      프레임워크 메이저 업그레이드 배포 후 일부 페이지에서 500 장애가 발생해 롤백됐고, 원인은 배포 환경 설정
-                      이슈로 요청이 정상 처리되지 않는 현상으로 이미 확인된 상태였습니다. 저는 “설정만 고쳐 재배포하면
-                      정말 안전한가”를 QA 환경에서 부하로 확인해야 했고, JMeter로 주요 페이지와 핵심 API에 부하를 걸어 응답시간·throughput을
-                      분석하며 잠재적인 성능 병목과 재배포 위험을 점검했습니다.
-                    </p>
-                  </div>
-                  <div class="par">
-                    <div class="box problem">
-                      <div class="l">PROBLEM</div>
-                      <p>
-                        장애 원인은 배포 환경 설정 이슈로 확인됐지만, 설정만 수정하면 재배포해도 안전한지는 근거가 없었습니다.
-                      </p>
-                    </div>
-                    <div class="box">
-                      <div class="l">ACTION</div>
-                      <p>
-                        JMeter로 요청률을 제어해 주요 페이지와 핵심 API에 단계별 부하를 걸고, throughput · p95 응답시간 · 에러율을
-                        측정하며 재배포 시 재발 가능성을 분석했습니다.
-                      </p>
-                    </div>
-                    <div class="box result">
-                      <div class="l">RESULT</div>
-                      <p>
-                        설정 수정 외에 신규 스택의 성능 병목 여부까지 함께 점검했고, QA 환경 관측치와 그 한계를 함께 리포트해
-                        재배포 리스크를 데이터 기반으로 판단할 근거를 마련했습니다.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="evidence">
-                    <div class="evidence-head">
-                      <strong>문서 예시 - 부하 테스트 결과와 재배포 안전성 검증</strong>
-                      <em class="re-badge">실제 리포트 기반 재구성</em>
-                    </div>
-                    <div class="evidence-body">
-                      <div class="doc-board">
-                        <div class="doc-shot">
-                          <div class="doc-top">
-                            <div>
-                              <div class="doc-title">Load Test Result</div>
-                              <div class="doc-sub">주요 페이지와 목록 API를 나눠 측정</div>
-                            </div>
-                            <span class="tag">JMeter</span>
-                          </div>
-                          <table class="mini-table">
-                            <thead>
-                              <tr>
-                                <th>지표</th>
-                                <th>주요 페이지</th>
-                                <th>목록 API</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>목표 부하</td>
-                                <td>10 RPS</td>
-                                <td>5 RPS</td>
-                              </tr>
-                              <tr>
-                                <td>실측 throughput</td>
-                                <td>10.0 RPS</td>
-                                <td>3.1 RPS</td>
-                              </tr>
-                              <tr>
-                                <td>p95 응답</td>
-                                <td>2.1s</td>
-                                <td>22.4s</td>
-                              </tr>
-                              <tr class="miss">
-                                <td>부하 시 응답</td>
-                                <td>270초 후 2.5배↑</td>
-                                <td>단일 2.5s → 13.7s</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <p class="doc-caption">
-                            목록 API는 응답 크기가 작은데도 저부하에서 응답이 13~25초로 급격히 느려지는 형태를 QA 환경에서
-                            관측했습니다. 다만 QA 환경 특성일 수 있어, 실제 장애 원인으로 단정하지 않고 선행 점검 포인트로만 남겼습니다.
-                          </p>
-                        </div>
-                        <div class="doc-shot">
-                          <div class="doc-top">
-                            <div>
-                              <div class="doc-title">재배포 안전성 검증</div>
-                              <div class="doc-sub">설정 수정만으로 안전한지 부하로 확인</div>
-                            </div>
-                            <span class="tag">RCA</span>
-                          </div>
-                          <div class="vflow">
-                            <div class="vf-item">배포 장애 발생 (일부 페이지 500)</div>
-                            <div class="vf-arrow">↓</div>
-                            <div class="vf-item">원인: 배포 환경 설정 이슈로 요청이 정상 처리되지 않는 현상 확인</div>
-                            <div class="vf-arrow">↓</div>
-                            <div class="vf-item">QA 환경에서 유사 부하 재현</div>
-                            <div class="vf-arrow">↓</div>
-                            <div class="vf-item">응답시간 · throughput 분석</div>
-                            <div class="vf-arrow">↓</div>
-                            <div class="vf-item propose">재배포 리스크 검증 및 선행 점검 포인트 도출</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="callout">
-                    <b>테스트의 한계를 함께 명시했습니다.</b> QA 환경에서 API를 직접 호출한 방식이라 실제 장애가 발생한 경로를
-                    그대로 재현하지는 못했고, 요청 규모를 실제 장애 수준까지 올리지 못한 것도 리포트에 한계로
-                    적었습니다. 그래서 QA 환경 관측을 실제 장애 원인으로 단정하지 않고, 재배포 전 선행 점검 포인트로만
-                    남겼습니다.
-                  </div>
-                </article>
-              </details>
-              <!-- ────────── 07. RN 신아키텍처 마이그레이션 ────────── -->
+
+
+              <!-- ────────── 07. RN Migration ────────── -->
               <details class="more-case" id="case-newarch">
                 <summary>
                   <div>
-                    <h3>07. React Native 신아키텍처 마이그레이션</h3>
-                    <div class="meta">RN New Architecture · 반복 회귀 검수 · 잔여 티켓 트리아지 / 약 3개월</div>
+                    <h3>RN New Architecture Migration</h3>
+                    <div class="meta">반복 회귀 · 잔여 티켓 트리아지 · 핵심 도메인</div>
                   </div>
                   <span class="role-badge">Migration QA</span>
                 </summary>
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>07. React Native 신아키텍처 마이그레이션 QA</h3>
-                      <div class="meta">RN New Architecture · 반복 회귀 검수 · 잔여 티켓 트리아지 / 약 3개월</div>
+                      <h3>07. React Native 신아키텍처 마이그레이션</h3>
+                      <div class="meta">대규모 재플랫폼 · 약 3개월 반복 회귀</div>
                     </div>
                     <span class="role-badge">Migration QA</span>
                   </div>
-                  <div class="explain">
-                    <p>
-                      앱의 기반 아키텍처를 통째로 바꾸는 마이그레이션입니다. 기능은 그대로여야 하지만 내부가 전부 바뀌므로, 여러
-                      빌드를 거치며 “기존에 없던 버그”가 새로 생겼습니다. QA는 같은 기능을 반복 회귀하며 지켜야 했습니다.
-                    </p>
-                  </div>
+
                   <div class="par">
-                    <div class="box problem">
-                      <div class="l">PROBLEM</div>
-                      <p>긴 작업 기간·잦은 배포로 여러 버전을 합치는 과정에서 기존에 없던 버그가 유입됐습니다.</p>
-                    </div>
-                    <div class="box">
-                      <div class="l">ACTION</div>
-                      <p>
-                        new-arch 빌드를 반복 통합 검수하고, 결제·계정·재생 등 핵심 도메인을 회귀 검증. 잔여 티켓을 상태별로
-                        트리아지해 릴리즈 범위를 확정했습니다.
-                      </p>
-                    </div>
-                    <div class="box result">
-                      <div class="l">RESULT</div>
-                      <p>약 3개월 마이그레이션을 회귀 사고 없이 프로덕션(3.95.0)에 배포했습니다.</p>
-                    </div>
-                  </div>
-                  <div class="evidence">
-                    <div class="evidence-head">
-                      <strong>문서 예시 - 잔여 티켓 트리아지</strong><span>릴리즈 범위를 상태로 정리</span>
-                      <em class="re-badge">실제 문서 기반 재구성</em>
-                    </div>
-                    <div class="evidence-body">
-                      <div class="doc-board">
-                        <div class="doc-shot">
-                          <div class="doc-top">
-                            <div>
-                              <div class="doc-title">Residual Ticket Triage</div>
-                              <div class="doc-sub">분류 · 기준 · 처리</div>
-                            </div>
-                            <span class="tag">Triage</span>
-                          </div>
-                          <table class="mini-table">
-                            <thead>
-                              <tr>
-                                <th>분류</th>
-                                <th>기준</th>
-                                <th>처리</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>리큐 이관</td>
-                                <td>이번 릴리즈 스코프 밖·우선순위 낮음</td>
-                                <td>to-do 전환</td>
-                              </tr>
-                              <tr>
-                                <td>완료</td>
-                                <td>수정 확인됨</td>
-                                <td>close</td>
-                              </tr>
-                              <tr>
-                                <td>후속 조치</td>
-                                <td>사전 합의된 별도 처리</td>
-                                <td>다음 스쿼드</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div class="doc-shot">
-                          <div class="doc-top">
-                            <div>
-                              <div class="doc-title">마이그레이션 회귀 관점</div>
-                              <div class="doc-sub">반복 빌드를 견디는 검수</div>
-                            </div>
-                            <span class="tag">Note</span>
-                          </div>
-                          <ul class="mini-list">
-                            <li><b>반복 회귀</b>버전을 합칠 때마다 핵심 도메인을 다시 통과시켜 신규 회귀 차단.</li>
-                            <li><b>우선순위</b>일정 준수를 위해 리스크 기반으로 검수 순서를 판단.</li>
-                            <li>
-                              <b>상용 버그 편승</b>전수 검수에서 발견한 기존 상용 버그를 이번 릴리즈 수정 범위에 포함하도록 조율.
-                            </li>
-                            <li>
-                              <b>후속 과제</b>회고에서 중복 이슈 처리의 비효율을 짚어, 지라 중복 티켓 탐지·티켓 그룹화를 QA 후속
-                              과제로 도출.
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="callout">
-                    <b>흩어진 제보를 공통 원인으로 묶습니다.</b> 여러 검수자가 각자 올리던 바텀시트 버그들이 사실 같은 공통
-                    컴포넌트에서 나온다는 걸 먼저 알아채고, 하나의 작업으로 묶어 개발이 한 번에 고치도록 정리했습니다. 검수자가
-                    여럿일수록 같은 원인의 티켓이 중복으로 쌓이기 쉬워, 중복을 먼저 걸러 검수·개발 공수를 줄이는 조율 역할을
-                    했습니다.
+                    <div class="box problem"><div class="l">RISK</div><p>기능은 같아야 하지만 내부 구조가 크게 바뀌며 빌드마다 신규 회귀가 유입될 수 있었습니다.</p></div>
+                    <div class="box"><div class="l">ACTION</div><p>결제·계정·재생 등 핵심 도메인을 반복 통합 검수하고 잔여 티켓을 상태별로 트리아지해 릴리즈 범위를 정리했습니다.</p></div>
+                    <div class="box result"><div class="l">RESULT</div><p>약 3개월의 마이그레이션을 프로덕션에 배포하고, 공통 원인의 중복 이슈를 묶어 개발·검수 공수를 줄였습니다.</p></div>
                   </div>
                 </article>
               </details>
-              <!-- ────────── 08. 실시간 라이브 채널 ────────── -->
-              <details class="more-case" id="case-live">
+
+
+              <!-- ────────── 08. Technical Investigation ────────── -->
+              <span id="case-perf" class="legacy-anchor"></span><span id="case-performance" class="legacy-anchor"></span>
+              <details class="more-case" id="case-technical">
                 <summary>
                   <div>
-                    <h3>08. 실시간 라이브 채널</h3>
-                    <div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
+                    <h3>Technical Investigation</h3>
+                    <div class="meta">Device RCA · gfxinfo · JMeter · 재배포 안전성</div>
                   </div>
-                  <span class="role-badge">Live QA</span>
+                  <span class="role-badge">Technical QA</span>
                 </summary>
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>08. 실시간 라이브 채널</h3>
-                      <div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
+                      <h3>08. 기술적 원인 분석과 성능 검증</h3>
+                      <div class="meta">기기 파편화 RCA + 재배포 안전성 부하 검증</div>
                     </div>
-                    <span class="role-badge">Live QA</span>
+                    <span class="role-badge">Technical QA</span>
                   </div>
-                  <div class="par">
-                    <div class="box problem">
-                      <div class="l">PROBLEM</div>
+
+                  <div class="side-finds">
+                    <div class="sf">
+                      <b>특정 단말 렌더링 문제를 계층별로 좁혔습니다</b>
                       <p>
-                        편성표, 플레이어, 시간 경계가 동시에 영향을 주는 기능이라 일반적인 기능 단위 검증만으로는 놓치기
-                        쉬웠습니다.
+                        120Hz 태블릿의 스크롤 렉·발열을 60Hz 단말과 비교하고 gfxinfo, Janky Frames, Pipeline을 확인해
+                        GPU 병목을 제외했습니다. 이후 조건을 분리하며 원인을 이미지 반복 재디코드까지 좁혀 수정 후 개선을 검증했습니다.
                       </p>
                     </div>
-                    <div class="box">
-                      <div class="l">ACTION</div>
-                      <p>시간 경계를 기준으로 EPG, 플레이어, 화질, 연령 등급 갱신을 하나의 End-to-End 시나리오로 설계했습니다.</p>
-                    </div>
-                    <div class="box result">
-                      <div class="l">RESULT</div>
-                      <p>라이브를 하나의 검증 시나리오로 표준화했습니다.</p>
-                    </div>
-                  </div>
-                  <div class="evidence">
-                    <div class="evidence-head">
-                      <strong>문서 예시 - 라이브 E2E 검증 시나리오</strong> <em class="re-badge">실제 문서 기반 재구성</em>
-                    </div>
-                    <div class="evidence-body">
-                      <div class="doc-board">
-                        <div class="doc-shot wide">
-                          <div class="doc-top plain">
-                            <div>
-                              <div class="doc-title">시간 경계 검증</div>
-                              <div class="doc-sub">00:00이 되는 순간, 아래 다섯 가지가 동시에 만족되어야 합니다</div>
-                            </div>
-                            <span class="tag">Screen</span>
-                          </div>
-                          <div class="live-mock">
-                            <div class="player-slim">
-                              <span class="live-badge">LIVE</span>
-                              <b>ANIPLUS LIVE</b>
-                              <span class="ps-time">23:58</span>
-                              <div class="ps-track"></div>
-                              <span class="ps-time">LIVE</span>
-                            </div>
-                            <div class="epg2">
-                              <div class="epg2-col a">
-                                <div class="t">23:59</div>
-                                <b>프로그램 A</b>
-                                <span>15세</span>
-                              </div>
-                              <div class="epg2-bound" data-label="00:00"></div>
-                              <div class="epg2-col b">
-                                <div class="t">00:00</div>
-                                <b>프로그램 B</b>
-                                <span>19세</span>
-                              </div>
-                            </div>
-                            <ul class="bound-list">
-                              <li>제목 변경</li>
-                              <li>EPG 갱신</li>
-                              <li>연령 등급 변경</li>
-                              <li>프로그레스 유지</li>
-                              <li>플레이어 끊김 없음</li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
+                    <div class="sf">
+                      <b>장애 원인과 재배포 안전성은 별도로 검증했습니다</b>
+                      <p>
+                        배포 환경 설정 문제로 롤백된 뒤 JMeter로 주요 페이지와 API의 throughput·p95·에러율을 측정했습니다.
+                        QA 환경의 한계를 함께 명시하고 결과를 장애 원인으로 단정하지 않은 채 재배포 선행 점검 근거로 사용했습니다.
+                      </p>
                     </div>
                   </div>
                 </article>
               </details>
-              <!-- ────────── 09. WMS 풀필먼트 QC ────────── -->
+
+<!-- ────────── 09. WMS 풀필먼트 QC ────────── -->
               <details class="more-case" id="case-wms">
                 <summary>
                   <div>
