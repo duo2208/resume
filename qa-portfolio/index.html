@@ -251,8 +251,7 @@
         padding: 84px 0;
         border-top: 1px solid var(--line);
       }
-      main > section:first-child,
-      #process {
+      main > section:first-child {
         border-top: none;
       }
       .section-head {
@@ -434,6 +433,31 @@
         font-size: 12px;
         font-weight: 700;
       }
+      /* 케이스를 닫는 성과 바 — 임시 텍스트로 보이지 않게 라벨과 면을 준다 */
+      .case-result {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin: 22px 0 0;
+        padding: 14px 18px;
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--green);
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        background: var(--green-soft);
+        font-size: 13.5px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      .cr-label {
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--green);
+        flex: none;
+      }
       /* 카드 배경 없이 본문 그대로 놓는 도입문 */
       .case-lead {
         margin: 0;
@@ -447,9 +471,10 @@
         padding: 15px;
         margin: 16px 0;
       }
+      /* 문장 중간 강조로만 쓴다 — 예전엔 소제목이었으나 block 이면 줄바꿈이 생긴다 */
       .explain b {
-        display: block;
-        margin-bottom: 4px;
+        color: var(--ink);
+        font-weight: 700;
       }
       .explain p {
         margin: 0;
@@ -887,6 +912,230 @@
         border-style: dashed;
       }
       /* ===== 09 WMS 전용 — 검증 범위 지도 + 결함 추적 서사 ===== */
+      /* 담당 도메인 — 제목 바로 아래 한 줄로만. 상세는 Coverage 표가 맡는다 */
+      .domains {
+        margin: 12px 0 0;
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--blue);
+      }
+      /* 어떤 QA인가 — 추상적 선언 대신 실제로 쓰는 도구와 계층으로 보여준다 */
+      .layers {
+        display: grid;
+        gap: 0;
+        border-top: 1px solid var(--line);
+      }
+      .ly {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 24px;
+        padding: 22px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .ly-k {
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+      }
+      .ly-t {
+        grid-column: 1;
+        margin-top: 6px;
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 11.5px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: -0.01em;
+      }
+      .ly p {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.8;
+        color: #4d4d4d;
+      }
+      @media (max-width: 760px) {
+        .ly {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+        .ly p {
+          grid-column: 1;
+          grid-row: auto;
+          margin-top: 6px;
+        }
+      }
+
+      /* Product QA Coverage      /* Product QA Coverage — 담당 범위 전체를 표 하나로.
+         케이스가 있는 항목은 링크로 걸어 상세로 내려보낸다 */
+      .cov-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: var(--paper);
+      }
+      .cov {
+        width: 100%;
+        min-width: 680px;
+        border-collapse: collapse;
+      }
+      /* 첫 열과 마지막 열은 카드 안쪽 여백을 더 줘서 테두리에 붙지 않게 한다 */
+      .cov th,
+      .cov td {
+        text-align: left;
+        vertical-align: top;
+        padding: 13px 14px;
+        font-size: 13px;
+        border-bottom: 1px solid var(--line);
+      }
+      .cov th:first-child,
+      .cov td:first-child {
+        padding-left: 22px;
+      }
+      .cov th:last-child,
+      .cov td:last-child {
+        padding-right: 22px;
+      }
+      .cov thead th {
+        background: #f5f5f2;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .cov tbody tr:last-child td {
+        border-bottom: none;
+      }
+      .cov tbody tr:hover td {
+        background: #fcfcfb;
+      }
+      /* 1열 = 프로젝트명, 2·3열 = 조건, 4열 = 무엇을 봤나 */
+      .cov td:first-child {
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+      }
+      .cov td:first-child a {
+        color: var(--blue);
+        border-bottom: 1px solid #c3cede;
+      }
+      .cov td:first-child a:hover {
+        border-bottom-color: var(--blue);
+      }
+      .cov td:nth-child(2),
+      .cov td:nth-child(3) {
+        color: var(--muted);
+        white-space: nowrap;
+        font-size: 12.5px;
+      }
+      .cov td:last-child {
+        color: #4d4d4d;
+      }
+      /* Blast Radius — 아키텍처 변경이 어디까지 번지는지 계층으로 그린다.
+         "몇 개 찾았다"보다 "왜 그 범위를 봤는가"가 이 케이스의 요점 */
+      .blast {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: #fcfcfb;
+        padding: 18px 16px;
+        margin-top: 14px;
+      }
+      .blast-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .blast-head strong {
+        font-size: 13px;
+      }
+      .blast-head span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .blast-root {
+        display: block;
+        width: fit-content;
+        margin: 0 auto 6px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 12.5px;
+        font-weight: 700;
+        border-radius: 8px;
+        padding: 8px 16px;
+        text-align: center;
+      }
+      .blast-stem {
+        width: 1px;
+        height: 14px;
+        background: var(--line-strong);
+        margin: 0 auto;
+      }
+      .blast-cols {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        border-top: 1px solid var(--line-strong);
+        padding-top: 14px;
+      }
+      .bc {
+        text-align: center;
+      }
+      .bc-k {
+        font-size: 12.5px;
+        font-weight: 800;
+        color: var(--blue);
+        background: var(--blue-soft);
+        border-radius: 7px;
+        padding: 7px 6px;
+      }
+      .bc ul {
+        list-style: none;
+        margin: 8px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 5px;
+      }
+      .bc li {
+        font-size: 11.5px;
+        color: #555;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 5px 4px;
+        background: #fff;
+      }
+      .blast-note {
+        margin: 14px 0 0;
+        font-size: 12.5px;
+        line-height: 1.7;
+        color: #444;
+      }
+      @media (max-width: 760px) {
+        .blast-cols {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+      }
+      /* 케이스를 닫는 한 줄 — 범위를 어떻게 재설계했는지로 끝낸다 */
+      .blast-result {
+        margin: 16px 0 0;
+        padding-left: 13px;
+        border-left: 2px solid var(--blue);
+        font-size: 12.5px;
+        line-height: 1.75;
+        color: #444;
+      }
+      .blast-result b {
+        color: var(--blue);
+        font-weight: 800;
+        margin-right: 8px;
+      }
       .wms-map {
         border: 1px solid var(--line);
         border-radius: var(--radius-sm);
@@ -2376,6 +2625,16 @@
         .matrix {
           break-inside: avoid;
         }
+        .cov-wrap {
+          overflow: visible;
+        }
+        .cov tbody tr {
+          break-inside: avoid;
+        }
+        .cov thead th {
+          background: #f0f0ed;
+          color: #4d4d4d;
+        }
         .section-head,
         .evidence-head,
         .case-title,
@@ -2395,132 +2654,131 @@
     <nav class="nav">
       <div class="wrap">
         <a class="brand" href="#top">이지민 · QA Engineer</a>
-        <div class="links"><a href="#skills">Skills</a><a href="#process">Process</a><a href="#cases">Case Studies</a></div>
+        <div class="links"><a href="#approach">Approach</a><a href="#coverage">Coverage</a><a href="#process">Engineering</a><a href="#cases">Case Studies</a></div>
       </div>
     </nav>
-    <!-- ===== Hero : 타이틀 · 리드 문장 · 핵심 지표 ===== -->
-    <header id="top" class="hero">
-      <div class="wrap">
-        <h1>
-          설명 가능한 테스트를 지향합니다.
-        </h1>
-        <div class="hero-grid">
-          <p class="hero-p">
-            좋은 테스트는 많이 하는 것이 아니라, 누가 실행해도 같은 결론에 도달할 수 있는 테스트라고 생각합니다. <br />
-            저는 버그를 찾는 데서 끝나지 않고, 검증 기준을 정의하고 원인을 설명하며, <br />
-            팀이 계속 활용할 수 있는 검증 기준을 만드는 QA를 지향합니다. <br />
-          </p>
-          <div class="mini-metrics">
-            <div class="m">
-              <svg
-                class="mi"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-                <polyline points="17 6 23 6 23 12" />
-              </svg>
-              <div><strong>0→1</strong><span>Web E2E 자동화 구축</span></div>
-            </div>
-            <div class="m">
-              <svg
-                class="mi"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              <div><strong>83%</strong><span>배포 전 검증 시간 단축</span></div>
-            </div>
-            <div class="m">
-              <svg
-                class="mi"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-              <div><strong>30+</strong><span>스쿼드 QA 전담</span></div>
-            </div>
-            <div class="m">
-              <svg
-                class="mi"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <ellipse cx="12" cy="5" rx="9" ry="3" />
-                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-              </svg>
-              <div><strong>RCA</strong><span>로그·API·DB 기반 추적</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-    <main>
-      <!-- ===== Core Skills ===== -->
-      <section id="skills">
+    <main id="top">
+      <!-- ===== 01. 어떤 QA인가 : 말 대신 담당 범위로 ===== -->
+      <!-- ===== 01. 어떤 QA인가 : 실제 검증 방식 ===== -->
+      <section id="approach">
         <div class="wrap">
           <div class="section-head">
             <div>
               <h2>어떤 QA인가</h2>
+              <div class="domains">OTT · Payment · Account · Player · DRM · Smart TV · Web/App</div>
             </div>
           </div>
-          <div class="skills">
-            <div class="skill">
-              <h3>Domain QA</h3>
-              <ul>
-                <li>OTT 재생 · DRM · 미디어 세션</li>
-                <li>멤버십 · 결제 · 권한 정책</li>
-                <li>Web · App · Smart TV · Tablet 환경 검증</li>
-              </ul>
+          <div class="layers">
+            <div class="ly">
+              <div class="ly-k">UI에서 끝내지 않습니다</div>
+              <div class="ly-t">DevTools · Network · API · Sentry</div>
+              <p>
+                화면과 API 응답이 다르면 Network와 실제 응답을 확인하고, 상태 불일치는 Sentry · API · DB 이력을 함께
+                대조합니다.
+              </p>
             </div>
-            <div class="skill">
-              <h3>Technical QA</h3>
-              <ul>
-                <li>API 응답 · 상태 코드 분석</li>
-                <li>Charles로 네트워크 가로채기 · 응답 조작</li>
-                <li>Sentry · 로그 기반 원인 추적</li>
-                <li>JMeter 기반 성능 검증 및 병목 분석</li>
-                <li>DB · 서버 상태 흐름 이해</li>
-              </ul>
+            <div class="ly">
+              <div class="ly-k">기기 문제는 단말에서 확인합니다</div>
+              <div class="ly-t">ADB · logcat · gfxinfo</div>
+              <p>
+                Android 기기 이슈는 ADB / logcat으로 런타임 상태를 확인하고, 렌더링 문제는 gfxinfo · Janky Frames로
+                계층을 좁힙니다.
+              </p>
             </div>
-            <div class="skill">
-              <h3>Collaboration</h3>
-              <ul>
-                <li>기획 리뷰로 정책 빈틈 발견</li>
-                <li>FE · BE · iOS · Android 이슈 정렬</li>
-                <li>재현 영상 · 스텝 · 원인 흐름 기록</li>
-                <li>테스트 플랜 · 케이스 · 회고 문서화</li>
-              </ul>
+            <div class="ly">
+              <div class="ly-k">반복 검증은 자동화하고 추적 가능하게 남깁니다</div>
+              <div class="ly-t">Playwright · Pytest · GitHub Actions</div>
+              <p>
+                반복 회귀는 자동화하고 CI Gate · Heartbeat · 실패 이력까지 연결해 다시 실행하고 원인을 추적할 수 있게
+                만듭니다.
+              </p>
             </div>
+          </div>
+        </div>
+      </section>
+      <!-- ===== 02. Project Coverage : 담당 범위 ===== -->
+      <section id="coverage">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <h2>Project Coverage</h2>
+              <p>
+                OTT의 계정·결제·플레이어부터 플랫폼 전환과 자동화까지, 제품의 상태와 경계를 넓게 보고 필요한 검증 범위를
+                설계해왔습니다. 프로젝트명을 누르면 해당 Case Study로 이동합니다.
+              </p>
+            </div>
+          </div>
+          <div class="cov-wrap">
+            <table class="cov">
+              <thead>
+                <tr><th>Project</th><th>Period</th><th>Platform</th><th>QA Focus</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="#case-live">Live Channel</a></td>
+                  <td>2025.09–10</td>
+                  <td>Web · iOS · Android</td>
+                  <td>편성 · 인증 · 멤버십 · 동시재생 · PIP · 판권</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-newarch">RN New Architecture</a></td>
+                  <td>2026.02–06</td>
+                  <td>iOS · Android · Pad</td>
+                  <td>계정 · 결제 · 다운로드 · 플레이어 · Offline · Navigation</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-subscription">Apple In-App Purchase</a></td>
+                  <td>2025.11–2026.01</td>
+                  <td>iOS · Web</td>
+                  <td>결제 · 복원 · Billing Retry · On-hold · 구독 권한 정합성</td>
+                </tr>
+                <tr>
+                  <td>Global SNS Login</td>
+                  <td>2025.05</td>
+                  <td>Web · App</td>
+                  <td>Email · Google · Apple 계정 전환 및 인증 예외</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-ncsoft">B2B Partnership</a></td>
+                  <td>2025.07–09</td>
+                  <td>Web · App</td>
+                  <td>제휴 권한 · 동시재생 · 슬롯 제한 · 에러 우선순위</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-subscription">Account System</a></td>
+                  <td>2025.11</td>
+                  <td>Web · App</td>
+                  <td>미완료 · 미인증 · 소셜 로그인 · 본인인증 상태 전이</td>
+                </tr>
+                <tr>
+                  <td><a href="#automation">Web E2E Automation</a></td>
+                  <td>2025.11–2026.08</td>
+                  <td>Web · CI</td>
+                  <td>Playwright · 병렬 실행 · CI Gate · Flaky 격리 · Heartbeat</td>
+                </tr>
+                <tr>
+                  <td>Web Common Migration</td>
+                  <td>2026.06–07</td>
+                  <td>Web</td>
+                  <td>로그인 · 멤버십 · 결제 Callback · Safari · API 회귀</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-membership">Membership Conversion</a></td>
+                  <td>2026.06</td>
+                  <td>Web · App</td>
+                  <td>무료체험 · 권한별 노출 · 혜택 종료 · 전환 퍼널</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-tv">Smart TV Rebuild</a></td>
+                  <td>2025.06–2026.07</td>
+                  <td>Tizen · webOS · Android TV</td>
+                  <td>QR 로그인 · Focus · Remote Control · Player · 동시재생</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
+          <!-- 표가 무엇을 증명하는지 세 축으로 -->
         </div>
       </section>
       <!-- ===== Process : 테스트의 구조화 ===== -->
@@ -2659,9 +2917,6 @@
                   rel="noopener"
                   >Allure 데모 보기 →</a
                 >
-                <a class="dd-btn" href="https://duo2208.github.io/resume/e2e-portfolio/" target="_blank" rel="noopener"
-                  >전체 구조 보기 →</a
-                >
                 <a class="dd-btn" href="https://blog.laftel.net/post/55" target="_blank" rel="noopener">구축 과정 보기 →</a>
               </div>
             </div>
@@ -2717,213 +2972,178 @@
           </div>
         </div>
       </section>
-      <!-- ===== Case Studies : 좌측 TOC + 케이스 목록 ===== -->
+      <!-- ===== Product QA Coverage : 담당 범위 전체를 한 장으로 ===== -->
       <section id="cases">
         <div class="wrap-wide">
           <div class="section-head">
             <div>
-              <h2>리스크가 큰 기능부터 먼저 검증합니다</h2>
+              <h2>변경의 영향 범위부터 정의합니다</h2>
             </div>
           </div>
           <div class="case-layout">
             <aside class="toc">
               <h3>Cases</h3>
               <div class="toc-label first">라프텔</div>
-              <a href="#case-account">01 계정 체계</a>
-              <a href="#case-apple">02 애플 인앱</a>
-              <a href="#case-live">03 Live / Player</a>
-              <a href="#case-tv">04 Smart TV</a>
+              <a href="#case-subscription">01 구독·계정 상태</a>
+              <a href="#case-live">02 Live / Player</a>
 
               <div class="toc-label">More</div>
+              <a href="#case-tv">Smart TV 멀티플랫폼</a>
               <a href="#case-membership">A/B Experiment</a>
               <a href="#case-ncsoft">B2B Partnership</a>
-              <a href="#case-newarch">RN Migration</a>
+              <a href="#case-newarch">RN Architecture</a>
               <a href="#case-technical">Technical Investigation</a>
 
               <div class="toc-label">다우기술</div>
-              <a href="#case-wms">09 WMS 풀필먼트</a>
+              <a href="#case-wms">03 WMS 풀필먼트</a>
               <div class="toc-label">아이브릭스</div>
-              <a href="#case-yongin">10 용인시청 챗봇</a>
+              <a href="#case-yongin">04 용인시청 챗봇</a>
             </aside>
             <div class="case-list">
               
-              <!-- ────────── 01. 계정 체계 개선 ────────── -->
-              <article class="case" id="case-account" style="order: 1">
+              <!-- ────────── 01. Subscription State ────────── -->
+              <span id="case-apple" class="legacy-anchor"></span>
+              <span id="case-account" class="legacy-anchor"></span>
+              <article class="case" id="case-subscription" style="order: 1">
                 <div class="case-title">
                   <div>
-                    <h3>01. 계정 체계 개선</h3>
-                    <div class="meta">Account · Social Login · 상태 조합 검증 · CS 감소</div>
+                    <h3>01. Subscription &amp; Account State</h3>
+                    <div class="meta">Apple IAP × Account × Entitlement · 상태 전이 · 데이터 정합성</div>
                   </div>
-                  <span class="role-badge">Account QA</span>
+                  <span class="role-badge">Payment · Account QA</span>
                 </div>
-
-                <div class="par">
-                  <div class="box problem">
-                    <div class="l">PROBLEM</div>
-                    <p>가입 중 이탈로 필수 정보가 누락된 계정이 남아 로그인·결제·탈퇴에서 반복적인 CS를 만들었습니다.</p>
-                  </div>
-                  <div class="box">
-                    <div class="l">ACTION</div>
-                    <p>계정이 남을 수 있는 상태를 먼저 조합으로 구조화하고, 각 상태에서 가입·로그인·복구·민감 플로우를 검증했습니다.</p>
-                  </div>
-                  <div class="box result">
-                    <div class="l">RESULT</div>
-                    <p>이메일 미인증 계정을 30~37% 줄였고, 더미 계정 관련 고객 문의를 사실상 제거했습니다.</p>
-                  </div>
-                </div>
-
-                <div class="evidence">
-                  <div class="evidence-head">
-                    <strong>계정 상태 조합표</strong>
-                    <span>상태를 먼저 정의하고 흐름을 검증</span>
-                  </div>
-                  <div class="evidence-body">
-                    <div class="doc-board">
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">Account Completeness Matrix</div>
-                            <div class="doc-sub">Email · 본인확인 · 약관 · Social Provider 조합</div>
-                          </div>
-                          <span class="tag">Matrix</span>
-                        </div>
-                        <table class="mini-table">
-                          <thead>
-                            <tr><th>상태</th><th>Email</th><th>본인확인</th><th>약관</th></tr>
-                          </thead>
-                          <tbody>
-                            <tr><td>정상</td><td>Y</td><td>Y</td><td>Y</td></tr>
-                            <tr><td>가입 중 이탈</td><td>N</td><td>선택</td><td>Y</td></tr>
-                            <tr><td>소셜 전환</td><td>provider 의존</td><td>N</td><td>재동의 필요</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">Recovery Flow</div>
-                            <div class="doc-sub">비정상 상태에서 정상 서비스 진입까지</div>
-                          </div>
-                          <span class="tag">Flow</span>
-                        </div>
-                        <div class="flow">
-                          <span class="node">가입 이탈</span><span class="arrow">→</span>
-                          <span class="node">소셜 로그인</span><span class="arrow">→</span>
-                          <span class="node">정보 보정</span><span class="arrow">→</span>
-                          <span class="node">정상 진입</span>
-                        </div>
-                        <ul class="mini-list">
-                          <li><b>확인 기준</b>누락 정보가 있으면 서비스 진입 전 보정 플로우로 유도</li>
-                          <li><b>방어 기준</b>결제·탈퇴·이메일 변경 등 민감 플로우에서 비정상 계정 차단</li>
-                          <li><b>회귀 기준</b>Apple·Google·Kakao별 provider 값과 이메일 소유권 확인</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-
-              <!-- ────────── 02. Apple In-App 결제 ────────── -->
-              <article class="case" id="case-apple" style="order: 2">
-                <div class="case-title">
-                  <div>
-                    <h3>02. Apple In-App 결제</h3>
-                    <div class="meta">Billing · Subscription · 상태 전이 · 데이터 정합성</div>
-                  </div>
-                  <span class="role-badge">Payment QA</span>
-                </div>
-
                 <p class="case-lead">
-                  결제 성공 여부만 보는 대신 <b>StoreKit 상태와 내부 멤버십 권한·UI·API가 같은 상태를 가리키는지</b>를 기준으로 검증했습니다.
+                  결제와 계정은 화면 하나의 정상 여부보다 <b>외부 플랫폼 · 백엔드 · 계정 · 사용자 권한의 상태
+                  정합성</b>이 중요했습니다. 개별 결함보다 사용자가 놓일 수 있는 상태를 먼저 정의하고 검증했습니다.
                 </p>
 
-                <div class="par">
-                  <div class="box problem">
-                    <div class="l">RISK</div>
-                    <p>Pending · On Hold · Restore처럼 비동기로 변하는 결제 상태와 내부 구독 상태가 어긋날 수 있었습니다.</p>
-                  </div>
-                  <div class="box">
-                    <div class="l">STRATEGY</div>
-                    <p>구독 상태를 상태 머신으로 정리하고 Sandbox · Sentry · API · DB를 교차해 상태별 기대값을 확인했습니다.</p>
-                  </div>
-                  <div class="box result">
-                    <div class="l">RESULT</div>
-                    <p>상태 전이 기준으로 회귀 범위를 표준화하고 Billing Retry 등 실제 사용자 이력에서 발생하는 불일치를 추적했습니다.</p>
-                  </div>
+                <div class="blk-head">
+                  <h4 class="blk-h">A. Subscription — 하나의 구독 상태가 여러 시스템에 걸쳐 전파됩니다</h4>
                 </div>
 
-                <div class="evidence">
-                  <div class="evidence-head">
-                    <strong>Subscription State Verification</strong>
-                    <span>권한 · UI · API를 한 상태 기준으로 대조</span>
-                  </div>
-                  <div class="evidence-body">
-                    <div class="doc-board">
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">State Flow</div>
-                            <div class="doc-sub">구독 상태가 언제 이동하는지 먼저 정의</div>
-                          </div>
-                          <span class="tag">State</span>
-                        </div>
-                        <pre class="term">Purchase → Active
-Active ├ 갱신 성공 → Active
-       ├ 갱신 실패 → On Hold → 재시도 성공 → Active
-       │                       └ 기간 종료 → Expired
-       ├ 해지 예약 후 만료 → Expired
-       └ 환불 → Refunded
+                <figure class="flowfig">
+                  <svg viewBox="0 0 760 346" role="img" aria-label="구독 상태가 Purchase에서 Active, Billing Retry, On-hold, Expired로 전이되며 Apple·백엔드·계정·화면 네 계층이 같은 상태를 가리켜야 함을 나타낸 구성도">
+                    <defs>
+                      <marker id="sa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M0 0 L10 5 L0 10 z" fill="#98a2b3" />
+                      </marker>
+                    </defs>
+                    <g font-family="inherit" text-anchor="middle">
+                      <rect x="10" y="18" width="116" height="40" rx="8" fill="#eef1f7" stroke="#c3cdfa" />
+                      <text x="68" y="43" font-size="12.5" font-weight="800" fill="#20347a">Purchase</text>
+                      <line x1="126" y1="38" x2="150" y2="38" stroke="#98a2b3" marker-end="url(#sa)" />
 
-Expired / 권한 미반영 ── Restore → Active</pre>
-                      </div>
+                      <rect x="152" y="18" width="116" height="40" rx="8" fill="#eaf6ef" stroke="#bfe3cb" />
+                      <text x="210" y="43" font-size="12.5" font-weight="800" fill="#0b5c40">Active</text>
+                      <line x1="268" y1="38" x2="292" y2="38" stroke="#98a2b3" marker-end="url(#sa)" />
 
-                      <div class="doc-shot">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">Verification Matrix</div>
-                            <div class="doc-sub">상태별 권한 · UI · API 기대값</div>
-                          </div>
-                          <span class="tag">Matrix</span>
-                        </div>
-                        <table class="mini-table">
-                          <thead>
-                            <tr><th>상태</th><th>권한</th><th>UI 기대값</th><th>API 기대값</th></tr>
-                          </thead>
-                          <tbody>
-                            <tr><td>ACTIVE</td><td>부여</td><td>멤버십 유지</td><td>current=Basic</td></tr>
-                            <tr><td>ON_HOLD</td><td>정책 기준</td><td>결제 재시도 안내</td><td>apple_on_hold=true</td></tr>
-                            <tr><td>EXPIRED</td><td>해제</td><td>구독 만료 노출</td><td>current=null</td></tr>
-                            <tr><td>RESTORE</td><td>복구</td><td>복원 결과 안내</td><td>영수증 검증 반영</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
+                      <rect x="294" y="18" width="116" height="40" rx="8" fill="#fff7e8" stroke="#ead0a8" />
+                      <text x="352" y="36" font-size="12" font-weight="800" fill="#b45f06">Billing Retry</text>
+                      <text x="352" y="50" font-size="10" fill="#8a6a3a">갱신 실패</text>
+                      <line x1="410" y1="38" x2="434" y2="38" stroke="#98a2b3" marker-end="url(#sa)" />
 
-                      <div class="doc-shot wide">
-                        <div class="doc-top">
-                          <div>
-                            <div class="doc-title">실제 사용자 이력까지 검증</div>
-                            <div class="doc-sub">깨끗한 Sandbox 계정 밖의 결제 수단 전환 케이스</div>
-                          </div>
-                          <span class="tag">Environment</span>
-                        </div>
-                        <div class="duo">
-                          <div class="lane"><span class="who">Sandbox</span><span class="chip">깨끗한 계정</span><span class="arrow">→</span><span class="chip pay">Apple 결제</span><span class="arrow">→</span><span class="chip grant">상태 확인</span></div>
-                          <div class="lane"><span class="who">상용 이력</span><span class="chip">기존 결제 이력</span><span class="arrow">→</span><span class="chip pay">Apple 전환</span><span class="arrow">→</span><span class="chip gap">상태 불일치 가능</span></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                      <rect x="436" y="18" width="116" height="40" rx="8" fill="#fff7e8" stroke="#ead0a8" />
+                      <text x="494" y="43" font-size="12.5" font-weight="800" fill="#b45f06">On-hold</text>
+                      <line x1="552" y1="38" x2="576" y2="38" stroke="#98a2b3" marker-end="url(#sa)" />
+
+                      <rect x="578" y="18" width="116" height="40" rx="8" fill="#fff1f0" stroke="#e9a19a" />
+                      <text x="636" y="43" font-size="12.5" font-weight="800" fill="#8f1d14">Expired</text>
+
+                      <path d="M494 60 L494 78 L210 78 L210 62" fill="none" stroke="#0b7a53" stroke-dasharray="4 3" marker-end="url(#sa)" />
+                      <text x="352" y="94" font-size="10.5" fill="#0b7a53">재시도 성공 · 복원 → Active</text>
+
+                      <text x="380" y="132" font-size="11" font-weight="800" fill="#666">각 상태에서 네 계층이 같은 값을 가리켜야 한다</text>
+
+                      <rect x="150" y="150" width="460" height="34" rx="7" fill="#fff" stroke="#d9d9d5" />
+                      <text x="380" y="172" font-size="12" font-weight="700" fill="#1a1a1a">Apple · StoreKit</text>
+                      <line x1="380" y1="184" x2="380" y2="200" stroke="#98a2b3" />
+
+                      <rect x="150" y="202" width="460" height="34" rx="7" fill="#fff" stroke="#d9d9d5" />
+                      <text x="380" y="224" font-size="12" font-weight="700" fill="#1a1a1a">Backend Subscription</text>
+                      <line x1="380" y1="236" x2="380" y2="252" stroke="#98a2b3" />
+
+                      <rect x="150" y="254" width="460" height="34" rx="7" fill="#fff" stroke="#d9d9d5" />
+                      <text x="380" y="276" font-size="12" font-weight="700" fill="#1a1a1a">Account · Profile</text>
+                      <line x1="380" y1="288" x2="380" y2="304" stroke="#98a2b3" />
+
+                      <rect x="150" y="306" width="460" height="34" rx="7" fill="#f5f5f2" stroke="#d9d9d5" />
+                      <text x="380" y="328" font-size="12" font-weight="700" fill="#1a1a1a">Web · App 화면</text>
+                    </g>
+                  </svg>
+                  <figcaption>
+                    Apple에서 시작된 상태 변경이 Backend Subscription → Account/Profile → Web/App으로 비동기 전파되기
+                    때문에, <b>한 계층만 보면 정상으로 보이는 구간</b>이 생겼습니다. Sentry · API · DB 이력을 교차해
+                    각 계층의 상태 정합성을 확인했습니다.
+                  </figcaption>
+                </figure>
+
+                <div class="blk-head">
+                  <h4 class="blk-h">B. Account — 가입 중 이탈도 검증해야 할 계정 상태로 정의했습니다</h4>
+                </div>
+
+                <figure class="flowfig">
+                  <svg viewBox="0 0 760 210" role="img" aria-label="가입 중 이탈·미인증·소셜 전환·중도이탈 상태를 Account State로 판단해 보정 플로우·민감 기능 차단·재동의·본인확인 재요청으로 분기하는 구성도">
+                    <defs>
+                      <marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M0 0 L10 5 L0 10 z" fill="#98a2b3" />
+                      </marker>
+                    </defs>
+                    <g font-family="inherit" text-anchor="middle">
+                      <rect x="8" y="10" width="168" height="34" rx="7" fill="#fff1f0" stroke="#e9a19a" />
+                      <text x="92" y="32" font-size="12" font-weight="700" fill="#8f1d14">가입 중 이탈</text>
+                      <rect x="204" y="10" width="168" height="34" rx="7" fill="#fff1f0" stroke="#e9a19a" />
+                      <text x="288" y="32" font-size="12" font-weight="700" fill="#8f1d14">미인증</text>
+                      <rect x="400" y="10" width="168" height="34" rx="7" fill="#fff1f0" stroke="#e9a19a" />
+                      <text x="484" y="32" font-size="12" font-weight="700" fill="#8f1d14">소셜 전환</text>
+                      <rect x="596" y="10" width="156" height="34" rx="7" fill="#fff1f0" stroke="#e9a19a" />
+                      <text x="674" y="32" font-size="12" font-weight="700" fill="#8f1d14">본인인증 중도이탈</text>
+
+                      <line x1="92" y1="44" x2="92" y2="60" stroke="#98a2b3" />
+                      <line x1="288" y1="44" x2="288" y2="60" stroke="#98a2b3" />
+                      <line x1="484" y1="44" x2="484" y2="60" stroke="#98a2b3" />
+                      <line x1="674" y1="44" x2="674" y2="60" stroke="#98a2b3" />
+                      <line x1="92" y1="60" x2="674" y2="60" stroke="#98a2b3" />
+                      <line x1="380" y1="60" x2="380" y2="76" stroke="#98a2b3" marker-end="url(#aa)" />
+
+                      <rect x="252" y="80" width="256" height="42" rx="8" fill="#2a2a28" />
+                      <text x="380" y="100" font-size="13" font-weight="800" fill="#fff">Account State 판단</text>
+                      <text x="380" y="115" font-size="10.5" fill="#c9c9c2">Email · 본인확인 · 약관 · Provider 조합</text>
+                      <line x1="380" y1="122" x2="380" y2="138" stroke="#98a2b3" />
+
+                      <line x1="92" y1="138" x2="674" y2="138" stroke="#98a2b3" />
+                      <line x1="92" y1="138" x2="92" y2="154" stroke="#98a2b3" marker-end="url(#aa)" />
+                      <line x1="288" y1="138" x2="288" y2="154" stroke="#98a2b3" marker-end="url(#aa)" />
+                      <line x1="484" y1="138" x2="484" y2="154" stroke="#98a2b3" marker-end="url(#aa)" />
+                      <line x1="674" y1="138" x2="674" y2="154" stroke="#98a2b3" marker-end="url(#aa)" />
+
+                      <rect x="8" y="158" width="168" height="34" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
+                      <text x="92" y="180" font-size="12" font-weight="700" fill="#0b5c40">보정 플로우</text>
+                      <rect x="204" y="158" width="168" height="34" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
+                      <text x="288" y="180" font-size="12" font-weight="700" fill="#0b5c40">민감 기능 차단</text>
+                      <rect x="400" y="158" width="168" height="34" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
+                      <text x="484" y="180" font-size="12" font-weight="700" fill="#0b5c40">재동의</text>
+                      <rect x="596" y="158" width="156" height="34" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
+                      <text x="674" y="180" font-size="12" font-weight="700" fill="#0b5c40">본인확인 재요청</text>
+                    </g>
+                  </svg>
+                  <figcaption>
+                    가입 과정에서 이탈한 계정을 단순 예외 데이터로 보지 않고 <b>실제로 존재할 수 있는 계정 상태</b>로
+                    정의했습니다. Email · 본인확인 · 약관 · Provider 상태를 조합해 로그인 · 결제 · 탈퇴 진입 조건을
+                    검증하고, Apple · Google · Kakao별 회귀까지 확인했습니다.
+                  </figcaption>
+                </figure>
+
+                <div class="case-result">
+                  <span class="cr-label">Result</span>
+                  <span>더미 계정 관련 CS 사실상 0건 · 이메일 미인증 계정 30~37% 감소</span>
                 </div>
               </article>
 
-
-              <!-- ────────── 03. Live / Player ────────── -->
-              <article class="case" id="case-live" style="order: 3">
+              <!-- ────────── 02. Live / Player ────────── -->
+              <article class="case" id="case-live" style="order: 2">
                 <div class="case-title">
                   <div>
-                    <h3>03. Live / Player</h3>
+                    <h3>02. Live / Player</h3>
                     <div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
                   </div>
                   <span class="role-badge">Live QA</span>
@@ -2982,60 +3202,45 @@ Expired / 권한 미반영 ── Restore → Active</pre>
               </article>
 
 
-              <!-- ────────── 04. Smart TV 멀티플랫폼 QA ────────── -->
-              <article class="case" id="case-tv" style="order: 4">
-                <div class="case-title">
+              <!-- ────────── Smart TV 멀티플랫폼 ────────── -->
+              <details class="more-case" id="case-tv">
+                <summary>
                   <div>
-                    <h3>04. Smart TV 멀티플랫폼 QA</h3>
-                    <div class="meta">Android TV · Tizen · webOS · Apple TV · Full TC · 리빌드/리팩토링</div>
+                    <h3>Smart TV 멀티플랫폼</h3>
+                    <div class="meta">Android TV · Tizen · webOS · Apple TV · 플랫폼별 Full TC</div>
                   </div>
                   <span class="role-badge">Smart TV QA</span>
-                </div>
+                </summary>
+                <article class="case">
+                  <div class="cond-tags">
+                    <span>Android TV</span><span>Tizen</span><span>webOS</span><span>Apple TV</span>
+                  </div>
+                  <div class="cond-tags" style="margin-top: 7px">
+                    <span>QR Login</span><span>Remote / Media Key</span><span>Focus</span><span>Player</span><span>Concurrent Playback</span>
+                  </div>
+                  <p class="case-lead" style="margin-top: 14px">
+                    같은 OTT 기능도 TV에서는 OS · 입력 방식 · Focus · Player Lifecycle에 따라 동작 조건이 달라지는
+                    환경이었습니다. 따라서
+                    <b>플랫폼 차이 자체를 테스트 조건으로 정의해</b> 검증 범위를 설계했습니다.
+                  </p>
 
-                <p class="case-lead">
-                  같은 OTT 기능도 TV에서는 OS와 입력 방식, 포커스 이동, 재생 환경이 달랐습니다.
-                  <b>플랫폼 차이를 테스트 조건으로 구조화하고 Full TC와 전수검사를 수행했습니다.</b>
-                </p>
+                  <div class="par">
+                    <div class="box problem">
+                      <div class="l">RISK</div>
+                      <p>리빌드·리팩토링 과정에서 공통 기능은 같아도 플랫폼별 입력·포커스·플레이어 동작이 다르게 깨질 수 있었습니다.</p>
+                    </div>
+                    <div class="box">
+                      <div class="l">STRATEGY</div>
+                      <p>Android TV · Tizen · webOS · Apple TV를 플랫폼 축으로 두고 핵심 사용자 흐름과 재생 조건을 매트릭스로 구성했습니다.</p>
+                    </div>
+                    <div class="box result">
+                      <div class="l">RESULT</div>
+                      <p>플랫폼별 Full TC를 구축하고 리빌드·리팩토링 전수검사에 적용해, 이후 TV 회귀 검증의 공통 기준으로 남겼습니다.</p>
+                    </div>
+                  </div>
+                </article>
+              </details>
 
-                <div class="par">
-                  <div class="box problem">
-                    <div class="l">RISK</div>
-                    <p>리빌드·리팩토링 과정에서 공통 기능은 같아도 플랫폼별 입력·포커스·플레이어 동작이 다르게 깨질 수 있었습니다.</p>
-                  </div>
-                  <div class="box">
-                    <div class="l">STRATEGY</div>
-                    <p>Android TV · Tizen · webOS · Apple TV를 플랫폼 축으로 두고 핵심 사용자 흐름과 재생 조건을 매트릭스로 구성했습니다.</p>
-                  </div>
-                  <div class="box result">
-                    <div class="l">RESULT</div>
-                    <p>플랫폼별 Full TC를 기준으로 리빌드/리팩토링 전수검사를 수행하고 TV 회귀 자산을 정리했습니다.</p>
-                  </div>
-                </div>
-
-                <div class="evidence">
-                  <div class="evidence-head">
-                    <strong>Multi-platform Test Matrix</strong>
-                    <span>플랫폼 차이를 별도 테스트 조건으로 관리</span>
-                  </div>
-                  <div class="evidence-body">
-                    <table class="mini-table">
-                      <thead>
-                        <tr><th>검증 축</th><th>Android TV</th><th>Tizen</th><th>webOS</th><th>Apple TV</th></tr>
-                      </thead>
-                      <tbody>
-                        <tr><td>앱 실행 / 진입</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-                        <tr><td>로그인 / 계정</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-                        <tr><td>탐색 / 포커스</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-                        <tr><td>Player / 재생</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
-                        <tr><td>회귀 범위</td><td colspan="4">플랫폼별 Full TC · 핵심 사용자 흐름 전수검사</td></tr>
-                      </tbody>
-                    </table>
-                    <p class="doc-caption">
-                      ※ 실제 포트폴리오에는 공개 가능한 범위에서 실제 검증한 플랫폼·기능 조합만 유지합니다.
-                    </p>
-                  </div>
-                </div>
-              </article>
 
 
               <div class="more-head">
@@ -3055,7 +3260,7 @@ Expired / 권한 미반영 ── Restore → Active</pre>
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>05. 신규 멤버십 전환율 A/B 실험</h3>
+                      <h3>신규 멤버십 전환율 A/B 실험</h3>
                       <div class="meta">Firebase · Experiment · Testability · Shift-Left</div>
                     </div>
                     <span class="role-badge">Experiment QA</span>
@@ -3082,7 +3287,7 @@ Expired / 권한 미반영 ── Restore → Active</pre>
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>06. B2B 제휴 검증</h3>
+                      <h3>B2B 제휴 검증</h3>
                       <div class="meta">외부 서비스 경계 · Reverse Spec · 현장 검수</div>
                     </div>
                     <span class="role-badge">Partnership QA</span>
@@ -3104,25 +3309,62 @@ Expired / 권한 미반영 ── Restore → Active</pre>
               <details class="more-case" id="case-newarch">
                 <summary>
                   <div>
-                    <h3>RN New Architecture Migration</h3>
-                    <div class="meta">반복 회귀 · 잔여 티켓 트리아지 · 핵심 도메인</div>
+                    <h3>React Native New Architecture</h3>
+                    <div class="meta">아키텍처 전환 · Blast Radius 정의 · 전수검사</div>
                   </div>
-                  <span class="role-badge">Migration QA</span>
+                  <span class="role-badge">Architecture QA</span>
                 </summary>
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>07. React Native 신아키텍처 마이그레이션</h3>
-                      <div class="meta">대규모 재플랫폼 · 약 3개월 반복 회귀</div>
+                      <h3>React Native New Architecture</h3>
+                      <div class="meta">2026.04 — 2026.06 · iOS · Android · 1·2차 빌드 전수검사</div>
                     </div>
-                    <span class="role-badge">Migration QA</span>
+                    <span class="role-badge">Architecture QA</span>
+                  </div>
+                  <p class="case-lead">
+                    기능 명세는 그대로인데 렌더링·브릿지 계층이 통째로 바뀌는 전환이었습니다. 바뀐 화면이 없으니
+                    <b>무엇을 다시 봐야 하는지가 요구사항에 적혀 있지 않았고</b>, 검증 범위를 스스로 정의해야 했습니다.
+                  </p>
+
+                  <!-- ① 변경 지점에서 영향 표면을 역으로 그린다 -->
+                  <div class="blast">
+                    <div class="blast-head">
+                      <strong>Architecture Change → Risk Surface</strong>
+                      <span>화면 단위가 아닌 영향 계층으로 범위 설계</span>
+                    </div>
+                    <b class="blast-root">React Native New Architecture</b>
+                    <div class="blast-stem"></div>
+                    <div class="blast-cols">
+                      <div class="bc">
+                        <div class="bc-k">Account</div>
+                        <ul><li>Auth</li><li>약관 동의</li><li>소셜 로그인</li></ul>
+                      </div>
+                      <div class="bc">
+                        <div class="bc-k">Payment</div>
+                        <ul><li>구독 상태</li><li>복원 · 해지</li></ul>
+                      </div>
+                      <div class="bc">
+                        <div class="bc-k">Player</div>
+                        <ul><li>화면 회전</li><li>Offline</li><li>백그라운드</li></ul>
+                      </div>
+                      <div class="bc">
+                        <div class="bc-k">Download</div>
+                        <ul><li>Storage</li><li>DRM 재생</li></ul>
+                      </div>
+                    </div>
+                    <p class="blast-note">
+                      네이티브 계층이 바뀌면 <b>화면이 아니라 상태를 들고 있는 경로</b>가 흔들린다고 보고, 인증·결제·재생·저장처럼
+                      OS와 직접 맞닿는 축을 먼저 잡았습니다. 각 축에서 다시 Navigation · Modal · 회전 · Offline 등 lifecycle이
+                      개입하는 지점을 하위 표면으로 펼쳐 전수검사 범위를 만들었습니다.
+                    </p>
                   </div>
 
-                  <div class="par">
-                    <div class="box problem"><div class="l">RISK</div><p>기능은 같아야 하지만 내부 구조가 크게 바뀌며 빌드마다 신규 회귀가 유입될 수 있었습니다.</p></div>
-                    <div class="box"><div class="l">ACTION</div><p>결제·계정·재생 등 핵심 도메인을 반복 통합 검수하고 잔여 티켓을 상태별로 트리아지해 릴리즈 범위를 정리했습니다.</p></div>
-                    <div class="box result"><div class="l">RESULT</div><p>약 3개월의 마이그레이션을 프로덕션에 배포하고, 공통 원인의 중복 이슈를 묶어 개발·검수 공수를 줄였습니다.</p></div>
-                  </div>
+                  <p class="blast-result">
+                    <b>Result</b>
+                    계정·결제·재생·다운로드를 중심으로 iOS / Android / Pad 전반의 회귀 범위를 재설계하고,
+                    정상 사용자 경로뿐 아니라 중단 상태 · OS lifecycle · 앱 간 연동에서 발생하는 Side Effect까지 검증했습니다.
+                  </p>
                 </article>
               </details>
 
@@ -3140,7 +3382,7 @@ Expired / 권한 미반영 ── Restore → Active</pre>
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>08. 기술적 원인 분석과 성능 검증</h3>
+                      <h3>기술적 원인 분석과 성능 검증</h3>
                       <div class="meta">기기 파편화 RCA + 재배포 안전성 부하 검증</div>
                     </div>
                     <span class="role-badge">Technical QA</span>
@@ -3169,7 +3411,7 @@ Expired / 권한 미반영 ── Restore → Active</pre>
               <details class="more-case" id="case-wms">
                 <summary>
                   <div>
-                    <h3>09. WMS 풀필먼트 리뉴얼 QC</h3>
+                    <h3>03. WMS 풀필먼트 리뉴얼 QC</h3>
                     <div class="meta">다우기술 · PHP → Java/Vue 전환 </div>
                   </div>
                   <span class="role-badge">Fulfillment QA</span>
@@ -3177,7 +3419,7 @@ Expired / 권한 미반영 ── Restore → Active</pre>
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>09. WMS 풀필먼트 리뉴얼 QC</h3>
+                      <h3>03. WMS 풀필먼트 리뉴얼 QC</h3>
                       <div class="meta">다우기술 · 2024.10–2025.01 · PHP → Java/Vue 리뉴얼 · 3PL/1PL 물류 · 7개 업무 시나리오</div>
                     </div>
                     <span class="role-badge">Fulfillment QA</span>
@@ -3272,11 +3514,11 @@ Expired / 권한 미반영 ── Restore → Active</pre>
                 </article>
               </details>
 
-              <!-- ────────── 10. 용인시청 민원상담 챗봇 (개발자 시절 · 품질 검증의 출발점) ────────── -->
+              <!-- ────────── 04. 용인시청 민원상담 챗봇 (개발자 시절 · 품질 검증의 출발점) ────────── -->
               <details class="more-case" id="case-yongin">
                 <summary>
                   <div>
-                    <h3>10. 용인시청 민원상담 챗봇</h3>
+                    <h3>04. 용인시청 민원상담 챗봇</h3>
                     <div class="meta">아이브릭스 · 성능 테스트 · 통합테스트</div>
                   </div>
                   <span class="role-badge">Dev + Test</span>
@@ -3284,7 +3526,7 @@ Expired / 권한 미반영 ── Restore → Active</pre>
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>10. 용인시청 민원상담 챗봇</h3>
+                      <h3>04. 용인시청 민원상담 챗봇</h3>
                       <div class="meta">아이브릭스 · 2023.06–2023.10 · 성능 테스트 250,000건 · 통합테스트 직접 설계</div>
                     </div>
                     <span class="role-badge">Dev + Test</span>
