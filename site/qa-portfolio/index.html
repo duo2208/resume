@@ -2924,7 +2924,7 @@
               <div class="dd-why-title">왜 이렇게 설계했나</div>
               <ul>
                 <li><b>4-Layer 구조</b>화면 변경의 영향을 Locator 계층에 격리하도록 역할을 분리했습니다</li>
-                <li><b>Storage State</b>로그인 과정을 재사용해 테스트 준비 시간을 15초 → 0.5초로 단축했습니다</li>
+                <li><b>Storage State</b>로그인 상태를 재사용해 반복 테스트의 준비 비용을 크게 줄였습니다</li>
                 <li><b>Self-hosted Runner</b>사내 네트워크와 DRM·실결제 등 실제 서비스 조건에서도 정기 회귀를 수행할 수 있도록 구성했습니다</li>
                 <li><b>실패 원인 분류</b>Product · Environment · Flaky를 구분해 자동화 실패를 곧바로 제품 결함으로 판단하지 않도록 했습니다</li>
               </ul>
@@ -2966,8 +2966,8 @@
 
             <div class="dd-metrics">
               <div><b>120개</b><span>자동화 TC · 실결제 · DRM 포함</span></div>
-              <div><b>156회</b><span>최근 10일 정기 회귀 실행 · 무중단</span></div>
-              <div><b>30m → 8m</b><span>Sanity 리드타임</span></div>
+              <div><b>상시 운영</b><span>정기 회귀 · Smoke · 실행 상태 감시</span></div>
+              <div><b>약 70%↓</b><span>Sanity 리드타임 단축</span></div>
             </div>
           </div>
         </div>
@@ -3018,7 +3018,7 @@
                 </p>
 
                 <div class="blk-head">
-                  <h4 class="blk-h">A. Subscription — 하나의 구독 상태가 여러 시스템에 걸쳐 전파됩니다</h4>
+                  <h4 class="blk-h">A. Subscription</h4>
                 </div>
 
                 <figure class="flowfig">
@@ -3078,60 +3078,54 @@
                 </figure>
 
                 <div class="blk-head">
-                  <h4 class="blk-h">B. Account — 가입 중 이탈도 검증해야 할 계정 상태로 정의했습니다</h4>
+                  <h4 class="blk-h">B. Account — 계정 완성도 조합을 독립적인 테스트 상태로 모델링했습니다</h4>
                 </div>
 
                 <figure class="flowfig">
-                  <svg viewBox="0 0 760 210" role="img" aria-label="가입 중 이탈·미인증·소셜 전환·중도이탈 상태를 Account State로 판단해 보정 플로우·민감 기능 차단·재동의·본인확인 재요청으로 분기하는 구성도">
+                  <svg viewBox="0 0 760 220" role="img" aria-label="가입 완료 여부·인증 정보·로그인 방식을 조합해 회원가입·로그인·계정관리 흐름을 검증하는 Account State Matrix">
                     <defs>
                       <marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                         <path d="M0 0 L10 5 L0 10 z" fill="#98a2b3" />
                       </marker>
                     </defs>
                     <g font-family="inherit" text-anchor="middle">
-                      <rect x="8" y="10" width="168" height="34" rx="7" fill="#fff1f0" stroke="#e9a19a" />
-                      <text x="92" y="32" font-size="12" font-weight="700" fill="#8f1d14">가입 중 이탈</text>
-                      <rect x="204" y="10" width="168" height="34" rx="7" fill="#fff1f0" stroke="#e9a19a" />
-                      <text x="288" y="32" font-size="12" font-weight="700" fill="#8f1d14">미인증</text>
-                      <rect x="400" y="10" width="168" height="34" rx="7" fill="#fff1f0" stroke="#e9a19a" />
-                      <text x="484" y="32" font-size="12" font-weight="700" fill="#8f1d14">소셜 전환</text>
-                      <rect x="596" y="10" width="156" height="34" rx="7" fill="#fff1f0" stroke="#e9a19a" />
-                      <text x="674" y="32" font-size="12" font-weight="700" fill="#8f1d14">본인인증 중도이탈</text>
+                      <rect x="8" y="10" width="220" height="36" rx="7" fill="#fff1f0" stroke="#e9a19a" />
+                      <text x="118" y="33" font-size="12" font-weight="700" fill="#8f1d14">가입 완료 여부</text>
 
-                      <line x1="92" y1="44" x2="92" y2="60" stroke="#98a2b3" />
-                      <line x1="288" y1="44" x2="288" y2="60" stroke="#98a2b3" />
-                      <line x1="484" y1="44" x2="484" y2="60" stroke="#98a2b3" />
-                      <line x1="674" y1="44" x2="674" y2="60" stroke="#98a2b3" />
-                      <line x1="92" y1="60" x2="674" y2="60" stroke="#98a2b3" />
-                      <line x1="380" y1="60" x2="380" y2="76" stroke="#98a2b3" marker-end="url(#aa)" />
+                      <rect x="270" y="10" width="220" height="36" rx="7" fill="#fff1f0" stroke="#e9a19a" />
+                      <text x="380" y="33" font-size="12" font-weight="700" fill="#8f1d14">인증 정보</text>
 
-                      <rect x="252" y="80" width="256" height="42" rx="8" fill="#2a2a28" />
-                      <text x="380" y="100" font-size="13" font-weight="800" fill="#fff">Account State 판단</text>
-                      <text x="380" y="115" font-size="10.5" fill="#c9c9c2">Email · 본인확인 · 약관 · Provider 조합</text>
-                      <line x1="380" y1="122" x2="380" y2="138" stroke="#98a2b3" />
+                      <rect x="532" y="10" width="220" height="36" rx="7" fill="#fff1f0" stroke="#e9a19a" />
+                      <text x="642" y="33" font-size="12" font-weight="700" fill="#8f1d14">로그인 방식</text>
 
-                      <line x1="92" y1="138" x2="674" y2="138" stroke="#98a2b3" />
-                      <line x1="92" y1="138" x2="92" y2="154" stroke="#98a2b3" marker-end="url(#aa)" />
-                      <line x1="288" y1="138" x2="288" y2="154" stroke="#98a2b3" marker-end="url(#aa)" />
-                      <line x1="484" y1="138" x2="484" y2="154" stroke="#98a2b3" marker-end="url(#aa)" />
-                      <line x1="674" y1="138" x2="674" y2="154" stroke="#98a2b3" marker-end="url(#aa)" />
+                      <line x1="118" y1="46" x2="118" y2="68" stroke="#98a2b3" />
+                      <line x1="380" y1="46" x2="380" y2="68" stroke="#98a2b3" />
+                      <line x1="642" y1="46" x2="642" y2="68" stroke="#98a2b3" />
 
-                      <rect x="8" y="158" width="168" height="34" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
-                      <text x="92" y="180" font-size="12" font-weight="700" fill="#0b5c40">보정 플로우</text>
-                      <rect x="204" y="158" width="168" height="34" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
-                      <text x="288" y="180" font-size="12" font-weight="700" fill="#0b5c40">민감 기능 차단</text>
-                      <rect x="400" y="158" width="168" height="34" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
-                      <text x="484" y="180" font-size="12" font-weight="700" fill="#0b5c40">재동의</text>
-                      <rect x="596" y="158" width="156" height="34" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
-                      <text x="674" y="180" font-size="12" font-weight="700" fill="#0b5c40">본인확인 재요청</text>
+                      <rect x="220" y="70" width="320" height="42" rx="8" fill="#eef1f7" stroke="#c3cdfa" />
+                      <text x="380" y="96" font-size="12.5" font-weight="800" fill="#20347a">Account State Matrix</text>
+
+                      <line x1="380" y1="112" x2="380" y2="138" stroke="#98a2b3" marker-end="url(#aa)" />
+
+                      <rect x="28" y="148" width="210" height="40" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
+                      <text x="133" y="173" font-size="12" font-weight="700" fill="#0b5c40">회원가입 흐름</text>
+
+                      <rect x="275" y="148" width="210" height="40" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
+                      <text x="380" y="173" font-size="12" font-weight="700" fill="#0b5c40">로그인 흐름</text>
+
+                      <rect x="522" y="148" width="210" height="40" rx="7" fill="#eaf6ef" stroke="#bfe3cb" />
+                      <text x="627" y="173" font-size="12" font-weight="700" fill="#0b5c40">계정관리 흐름</text>
                     </g>
                   </svg>
                   <figcaption>
-                    가입 과정에서 이탈한 계정을 단순 예외 데이터로 보지 않고 <b>실제로 존재할 수 있는 계정 상태</b>로
-                    정의했습니다. Email · 본인확인 · 약관 · Provider 상태를 조합해 로그인 · 결제 · 탈퇴 진입 조건을
-                    검증하고, Apple · Google · Kakao별 회귀까지 확인했습니다.
+                    가입 과정에서 일부 정보가 누락되거나 중단된 계정을 단순 예외 데이터로 제외하지 않고
+                    <b>독립적인 Account State로 모델링</b>했습니다.
+                    가입 완료 여부 · 인증 정보 · 로그인 방식을 조합해 회원가입 · 로그인 · 계정관리의 주요 흐름에서
+                    상태별 기대 결과가 일관되는지 검증했습니다. <br>
+                    계정 완성도를 구성하는 5개의 상태 축만으로 최대 32개 조합이 발생할 수 있었고, 로그인 방식과 사용자 흐름이 더해지며 검증 범위는 더 확장되었습니다. 모든 조합을 기계적으로 전수하기보다 상태별 영향과 사용자 진입 경로를 기준으로 유효 조합을 선별해 검증했습니다.
                   </figcaption>
                 </figure>
+
 
                 <div class="case-result">
                   <span class="cr-label">Result</span>
