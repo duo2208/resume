@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>이지민 | QA Engineer</title>
+  <style>
+    :root {
+      --text:#1f2328;
+      --muted:#667085;
+      --line:#e5e7eb;
+      --line-strong:#98a2b3;
+      --soft:#f8fafc;
+      --accent:#111827;
+      --chip:#f1f5f9;
+      --dot:#2f4a7a;
+      --navy:#141d33;
+      --navy-line:#26314d;
+      --max:980px;
+      --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;
+      --font-serif:Georgia,"Times New Roman",serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:#fff;
+      color:var(--text);
+      font-family:var(--font-sans);
+      line-height:1.72;
+      letter-spacing:-0.01em;
+    }
+    a{color:inherit;text-decoration:none}
+    .page{max-width:var(--max);margin:0 auto;padding:56px 28px 96px}
+    .hero{padding-bottom:64px}
+    .eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+    h1{font-size:42px;line-height:1.2;margin:0 0 10px;font-weight:800;letter-spacing:-.04em}
+    /* 이름·섹션 제목 끝에 찍는 액센트 점 — 서체에 따라 위치가 튀지 않도록 도형으로 그린다 */
+    h1::after{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;
+      background:var(--dot);margin-left:6px;vertical-align:baseline}
+    .role{font-size:20px;font-weight:700;margin-bottom:18px}
+    .intro{max-width:760px;font-size:17px;color:#374151;margin:0}
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+    .chip{font-size:13px;padding:6px 10px;background:var(--chip);border-radius:999px;color:#334155;font-weight:600}
+    /* 상단 고정 내비게이션 — 스크롤 시 본문이 뒤로 흐리게 비친다 (qa-portfolio와 동일) */
+    .sitebar{position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.85);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line)}
+    .sitebar-inner{max-width:var(--max);margin:0 auto;padding:0 28px;height:64px;
+      display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .sitebar-name{font-size:15px;font-weight:800;letter-spacing:-.03em;white-space:nowrap}
+    .sitebar-name span{font-weight:600;color:var(--muted);margin-left:7px}
+    .topnav{display:flex;flex-wrap:wrap;gap:22px;font-size:14px;font-weight:600;
+      color:#555}
+    .topnav a{transition:color .15s}
+    .topnav a:hover,.topnav a:focus-visible{color:var(--dot)}
+    /* 고정 바에 가리지 않도록 앵커 도착 지점을 내림 */
+    section{scroll-margin-top:72px}
+    #top{scroll-margin-top:72px}
+    .skip-link{position:absolute;left:-9999px;top:0;z-index:60;background:var(--text);color:#fff;
+      padding:10px 16px;font-size:14px;font-weight:700}
+    .skip-link:focus{left:0}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    section{padding-top:56px;background:#fff}
+    /* 섹션 제목만 세리프로 — 신문 섹션 헤더처럼 본문(산세리프)과 질감을 대비시킨다.
+       Georgia는 Windows·macOS 기본 탑재라 웹폰트 없이 안전하게 적용된다. */
+    .section-title{font-family:var(--font-serif);
+      font-size:17px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted);font-weight:700;margin-bottom:30px}
+    .section-title::after{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+      background:var(--dot);margin-left:5px;vertical-align:baseline}
+    /* hero 아래 여백 = .hero(64) + section padding-top(56) = 120px. margin은 더하지 않는다 */
+    #experience{padding-top:20px;margin-top:0}
+    #experience .section-title{font-size:32px;letter-spacing:-.01em;text-transform:none;
+      color:var(--text);margin-bottom:8px}
+    /* 제목이 큰 만큼 점도 키운다 */
+    #experience .section-title::after{width:8px;height:8px;margin-left:7px}
+    .section-rule{border-bottom:1px solid var(--line);margin-bottom:36px}
+    .company{display:grid;grid-template-columns:180px 1fr;gap:36px;padding:48px 0;border-top:2px solid var(--line-strong)}
+    .company:first-of-type{border-top:none;padding-top:0}
+    .company-meta{position:sticky;top:88px;align-self:start}
+    .company-name{font-size:19px;font-weight:800;margin-bottom:4px}
+    .company-role{font-size:14px;font-weight:700;color:#475467;line-height:1.45}
+    .company-role .sep{white-space:nowrap}
+    .company-period{font-size:13px;color:var(--muted);margin-top:5px}
+    /* 회사 단위 도메인 메시지 — 개별 프로젝트가 어떤 영역의 일이었는지 먼저 규정한다 */
+    .company-domain{margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.02em;
+      color:#2f4a7a;border-top:1px solid var(--line);padding-top:9px}
+    .project{padding:0 0 34px;margin-bottom:34px;border-bottom:1px solid var(--line)}
+    .project:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .project h3{font-size:22px;line-height:1.35;margin:0 0 7px;letter-spacing:-.025em}
+    /* 한 회사 안에서 프로젝트가 나란히 설 때 번호로 대등하게 묶는다 */
+    .pnum{display:inline-block;margin-right:10px;font-size:14px;font-weight:800;
+      color:#2f4a7a;vertical-align:2px;letter-spacing:0}
+    .project .subtitle{font-size:14px;color:var(--muted);font-weight:700;margin-bottom:13px}
+    .description{font-size:15px;color:#344054;margin:0 0 16px}
+    .label{font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px}
+    ul{margin:0;padding-left:20px}
+    li{margin:5px 0}
+    .result{margin-top:14px;padding:12px 14px;background:var(--soft);border-left:3px solid #d0d5dd;font-size:14px;font-weight:700;color:#344054}
+    /* 회사 단위 도입문 — 개별 프로젝트를 읽기 전 도메인 전체를 한 문단으로 규정한다 */
+    .company-lede{font-size:15px;color:#344054;margin:0 0 18px}
+    /* 담당 규모 — 문장으로 풀지 않고 숫자만 남긴다 */
+    .scale{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px 26px;margin:0 0 30px;
+      font-size:13.5px;color:var(--muted)}
+    .scale b{color:var(--text);font-weight:800;margin-right:5px}
+    /* 역량 묶음 — 한 프로젝트 안에서 검증 영역별로 나눠 스캔되게 한다 */
+    .cap{margin-top:16px}
+    .cap-k{font-size:14px;font-weight:800;color:#2f4a7a;letter-spacing:-.01em;margin-bottom:5px}
+    .cap ul{padding-left:18px}
+    .cap li{font-size:14.5px;color:#344054}
+    /* 역량 블록 안에 놓인 링크는 해당 항목의 근거이므로 간격을 좁혀 붙인다 */
+    .cap .linkrow{margin-top:8px}
+    .stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+    /* 제목 바로 아래에 놓인 태그 줄은 위 여백을 좁힌다 */
+    .subtitle + .stack{margin-top:0;margin-bottom:16px}
+    .stack span{font-size:12px;border:1px solid var(--line);border-radius:6px;padding:4px 8px;color:#475467;background:#fff}
+    /* 본문 맨 아래 오른쪽에 붙여 케이스 상세로 연결 */
+    .linkrow{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 20px;margin-top:16px}
+    .case-link{font-size:12.5px;font-weight:600;color:#2f4a7a;
+      text-decoration:none;border-bottom:1px solid #c3cede;white-space:nowrap}
+    .case-link:hover{border-color:#2f4a7a}
+    @media (max-width:640px){
+      .linkrow{justify-content:flex-start}
+      .case-link{white-space:normal}
+    }
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    /* Skills 카드는 짙은 네이비 면 + 투명 칩(테두리만) — 밝은 덩어리가 반복돼 눈이 피로해지는 것을 피한다 */
+    .card{background:var(--navy);border:1px solid var(--navy-line);border-radius:14px;padding:22px 24px}
+    .card h4{margin:0 0 14px;font-size:15px;color:#fff;letter-spacing:-.01em}
+    .card p{margin:0;color:#94a3c4;font-size:14px}
+    .techs{display:flex;flex-wrap:wrap;gap:8px}
+    .tech{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:#e8edf7;
+      border:1px solid #2f3d5c;border-radius:8px;padding:5px 10px 5px 8px;background:transparent}
+    .tech svg{width:16px;height:16px;flex:0 0 16px;display:block}
+    /* 단색 검정 로고(GitHub·Express.js)는 어두운 면에서 묻히므로 밝게 바꾼다 */
+    .tech.invert svg path{fill:#e8edf7}
+    /* Linux는 검정 몸통 + 흰 눈 + 노란 부리 — 몸통(첫 path)만 밝게, 나머지 색은 보존 */
+    .tech.invert-mono svg path:first-of-type{fill:#cfd8ea}
+    .certs{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
+    .cert{padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+    .cert b{display:block;font-size:15px}
+    /* About — 라벨 | 값 을 한 줄에 두는 정의형 목록. 항목 경계선 없이 세로 구분선만 둔다 */
+    /* 라벨 열을 고정 폭으로 잡아야 항목마다 세로 구분선이 같은 x 위치에 선다 */
+    .contact{display:grid;grid-template-columns:84px 1fr;gap:9px 0;width:fit-content}
+    .contact-item{display:contents;text-decoration:none}
+    .ci-label{font-size:12px;font-weight:800;letter-spacing:.07em;
+      text-transform:uppercase;color:var(--muted);line-height:1.9;
+      border-right:1px solid var(--line);padding-right:14px;
+      text-align:right}
+    .ci-value{font-size:15px;color:#2f4a7a;font-weight:600;line-height:1.9;
+      padding-left:14px;transition:color .15s}
+    .contact-item:hover .ci-value{color:#1e3358}
+    .ci-ext{color:var(--muted);font-weight:400}
+    footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+    @media (max-width:760px){
+      .page{padding:44px 20px 72px}
+      h1{font-size:34px}
+      .company{grid-template-columns:1fr;gap:16px}
+      .company-meta{position:static}
+      .grid2,.certs{grid-template-columns:1fr}
+      #experience .section-title{font-size:24px}
+      .sitebar-inner{padding:0 20px;height:56px;gap:12px}
+      .sitebar-name span{display:none}
+      .topnav{gap:14px;font-size:13px}
+    }
+    /* ── A4 인쇄 / PDF 저장 ──
+       화면용 여백·글자 크기를 그대로 두면 A4에서 공백만 커지고 줄이 뜬다.
+       인쇄에서는 밀도를 올리고 페이지 경계를 명시한다. */
+    @media print{
+      @page{size:A4;margin:15mm}
+      html,body{background:#fff}
+      body{font-size:10.5pt;line-height:1.5;letter-spacing:0}
+      .page{max-width:none;padding:0}
+      .sitebar,.skip-link,.topnav{display:none}
+      a{text-decoration:none;color:inherit}
+
+      /* ── 헤더 : 이름·직무·소개를 한 덩어리로 압축 ── */
+      .hero{padding:0 0 22px;margin-bottom:38px;border-bottom:1.5px solid var(--line-strong);
+        break-after:avoid}
+      h1{font-size:22pt;margin:0 0 2px}
+      h1::after{width:6px;height:6px;margin-left:5px}
+      .role{font-size:11pt;margin-bottom:8px}
+      .intro{font-size:9.5pt;line-height:1.6;max-width:none}
+      .skills{gap:4px;margin-top:10px}
+      .chip{font-size:8pt;padding:2px 7px;background:#f1f5f9;
+        -webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+      /* ── 섹션 ── */
+      /* 섹션 사이는 확실히 벌린다 — 인쇄에서 블록 경계가 흐려지면 읽기 어렵다 */
+      section{padding-top:38px;break-inside:auto}
+      #engineering,#certifications,#about{margin-top:10px}
+      .section-title{font-size:11pt;letter-spacing:.08em;margin-bottom:12px;break-after:avoid}
+      #experience{padding-top:0;margin-top:0}
+      #experience .section-title{font-size:15pt;margin-bottom:4px}
+      .section-rule{margin-bottom:14px}
+      h1::after,.section-title::after{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+      /* ── 회사 : 좌측 메타 열을 좁히고 상단 구분선은 유지 ── */
+      .company{grid-template-columns:150px 1fr;gap:20px;padding:26px 0;
+        border-top-width:1.5px;break-inside:auto}
+      .company:first-of-type{padding-top:0}
+      /* 회사가 페이지 중간에서 시작하면 이력이 끊겨 보인다 — 두 번째 회사부터 새 페이지 */
+      .company + .company{break-before:page;border-top:none;padding-top:2mm}
+      .company-meta{position:static;break-inside:avoid}
+      .company-name{font-size:12pt;margin-bottom:2px}
+      .company-role,.company-period{font-size:8.5pt}
+      .company-domain{font-size:8pt;margin-top:6px;padding-top:5px}
+      .company-lede{font-size:9.5pt;margin-bottom:10px}
+      .scale{font-size:9pt;margin-bottom:14px;gap:6px 18px}
+
+      /* ── 프로젝트 : 한 프로젝트가 페이지 중간에 잘리지 않게 ── */
+      .project{padding-bottom:20px;margin-bottom:20px;break-inside:avoid}
+      .project h3{font-size:12pt;margin-bottom:3px;break-after:avoid}
+      .pnum{font-size:9.5pt;margin-right:7px}
+      .project .subtitle{font-size:8.5pt;margin-bottom:7px}
+      .description{font-size:9.5pt;margin-bottom:8px}
+      ul{padding-left:15px}
+      li{margin:2px 0;font-size:9.5pt;line-height:1.55}
+      .cap{margin-top:9px;break-inside:avoid}
+      .cap-k{font-size:9.5pt;margin-bottom:2px}
+      .cap li{font-size:9.5pt}
+      .stack{gap:4px;margin-top:8px}
+      .stack span{font-size:8pt;padding:2px 6px}
+      .subtitle + .stack{margin-bottom:8px}
+      .result{font-size:9pt;padding:7px 10px;margin-top:9px;
+        background:#f8fafc;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .split{gap:8px;margin-top:9px}
+      .sp{padding:8px 10px;background:#f8fafc;
+        -webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .sp-k{font-size:8.5pt}
+      .sp p{font-size:9pt}
+      .note-line{font-size:9pt;margin-top:8px}
+
+      /* 인쇄본은 클릭이 안 되므로 케이스 링크 주소를 함께 노출 */
+      .linkrow{margin-top:8px;gap:4px 14px}
+      .case-link{font-size:8pt;border-bottom:none}
+      .case-link::after{content:" (" attr(href) ")";font-weight:400;color:#667085}
+
+      /* ── Skills : 어두운 카드는 배경이 빠지면 글씨가 사라진다 ──
+         A4 인쇄 폭(약 688px)이 760px 미만이라 모바일 규칙(1열)이 걸린다. 2열로 되돌린다 */
+      .grid2,.certs{grid-template-columns:1fr 1fr}
+      .grid2{gap:10px}
+      .card{background:#fff;border-color:var(--line);padding:12px 14px;break-inside:avoid}
+      .card h4{color:var(--text);font-size:10pt;margin-bottom:8px}
+      .card p{color:#475467;font-size:9pt}
+      .techs{gap:5px}
+      .tech{color:#344054;border-color:var(--line);font-size:8.5pt;padding:3px 7px 3px 6px}
+      .tech svg{width:12px;height:12px;flex:0 0 12px}
+      .tech.invert svg path{fill:#181717}
+      .tech.invert-mono svg path:first-of-type{fill:#000}
+
+      /* ── 자격증 · About ── */
+      .certs{gap:2px 20px}
+      .cert{font-size:9pt;padding:6px 0;break-inside:avoid}
+      .cert b{font-size:9.5pt}
+      #about{break-inside:avoid}
+      .contact{grid-template-columns:72px 1fr;gap:4px 0}
+      .ci-label{font-size:8pt;line-height:1.7;padding-right:10px}
+      .ci-value{font-size:9.5pt;line-height:1.7;color:var(--text);padding-left:10px}
+      .ci-ext{display:none}
+
+      footer{display:none}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#experience">본문으로 건너뛰기</a>
+
+  <header class="sitebar">
+    <div class="sitebar-inner">
+      <a class="sitebar-name" href="#top">이지민 <span>QA Engineer</span></a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section id="experience">
+      <div class="section-title">Experience</div>
+
+      <article class="company">
+        <aside class="company-meta">
+          <div class="company-name">라프텔 (Laftel)</div>
+          <div class="company-role"><span class="sep">프로덕트팀 ·</span> <span class="sep">QA Engineer</span></div>
+          <div class="company-period">2025.04 — 현재</div>
+          <div class="company-domain">OTT · Quality Engineering</div>
+        </aside>
+        <div>
+          <p class="company-lede">
+            B2C OTT 서비스의 iOS · Android · Web · Smart TV 품질을 담당합니다. 프로젝트 초기부터 QA POC로 참여해 요구사항
+            분석부터 테스트 설계·E2E 검증·릴리즈까지 수행하고, 자동화와 AI를 활용해 반복 검증을 구조화하고 있습니다.
+          </p>
+          <div class="scale">
+            <span><b>30+</b> Projects / Squads</span>
+            <span><b>30+</b> Regular Releases</span>
+          </div>
+
+          <div class="project">
+            <h3><span class="pnum">01</span>Product Quality</h3>
+            <div class="subtitle">멀티플랫폼 OTT 서비스 품질 검증</div>
+            <div class="stack"><span>iOS</span><span>Android</span><span>Web</span><span>Android TV</span><span>Tizen</span><span>webOS</span></div>
+
+            <div class="cap">
+              <div class="cap-k">Account / Authentication</div>
+              <ul>
+                <li>Apple · Google · Kakao 소셜 로그인과 계정 상태 조합의 가입·인증 검증.</li>
+                <li>비정상 계정 상태를 구조화하고 정책 개선 후 관련 CS 사실상 0건, 이메일 미인증 계정 30~37% 감소.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Billing / Subscription</div>
+              <ul>
+                <li>Apple IAP 전환과 결제 → 구독 → 복원 → 해지의 멤버십 상태 전이 검증.</li>
+                <li>Sandbox · Sentry · API · DB를 교차 분석해 외부 결제 상태와 내부 구독 데이터 정합성 검증.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Player / Live</div>
+              <ul>
+                <li>VOD · Live의 진입부터 재생 종료까지 유저 플로우와 EPG · Chromecast · Media Session · DRM 등 재생 환경 검증.</li>
+                <li>Live 리팩토링과 React Native New Architecture 전환의 핵심 회귀 검증.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Smart TV / Device</div>
+              <ul>
+                <li>Android TV · Tizen · webOS 리빌드·리팩토링에서 플랫폼별 Full TC 설계 및 전수검사.</li>
+                <li>OS · 입력 방식 · 재생 환경 차이를 테스트 매트릭스로 구성해 핵심 사용자 흐름과 Player 동작 검증.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Commerce / Partnership · Experiment</div>
+              <ul>
+                <li>Store의 상품 탐색 → 주문 → 결제와 외부 제휴의 이용권·권한·동시재생 상태 정합성 검증.</li>
+                <li>Firebase A/B Test의 실험군 분기·이벤트 로깅·플랫폼별 정책 및 명세 밖 경계 조건 검증.</li>
+              </ul>
+            </div>
+            <div class="linkrow">
+              <a class="case-link" href="https://duo2208.github.io/resume/qa-portfolio/nhn.html#cases" target="_blank" rel="noopener">검증 케이스 스터디 ↗</a>
+            </div>
+          </div>
+
+          <div class="project">
+            <h3><span class="pnum">02</span>Quality Engineering</h3>
+            <div class="subtitle">테스트 설계와 반복 검증을 재현 가능한 시스템으로 전환</div>
+            <div class="stack"><span>Python</span><span>Pytest</span><span>Playwright</span><span>GitHub Actions</span><span>Allure</span><span>AI Workflow</span></div>
+
+            <div class="cap">
+              <div class="cap-k">E2E Automation</div>
+              <ul>
+                <li>Playwright 기반 4-Layer E2E 프레임워크를 제로베이스에서 설계하고 GitHub Actions 기반 정기 회귀 · PR Gate 운영.</li>
+                <li>Storage State 및 병렬 실행 환경을 구축해 Sanity Check 30분 → 5분(83%↓).</li>
+                <li>DRM · 실결제 · 다중 멤버십/권한을 포함한 실제 OTT 사용자 흐름까지 자동화 범위 확장.</li>
+              </ul>
+              <div class="linkrow">
+                <a class="case-link" href="https://duo2208.github.io/resume/qa-portfolio/nhn.html#automation" target="_blank" rel="noopener">아키텍처 · 문제 해결 상세 ↗</a>
+                <a class="case-link" href="https://duo2208.github.io/resume/allure/overview.html" target="_blank" rel="noopener">실행 결과 · flaky 추이 ↗</a>
+              </div>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Test Reliability</div>
+              <ul>
+                <li>렌더링 Race · 비동기 반영 지연 등 Flaky 원인을 분류하고 격리·복구 전략 적용.</li>
+                <li>제품 변경이 Locator · POM · Route에 미치는 영향을 사전에 감지하는 Drift Watch 구축.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">AI-assisted Test Design</div>
+              <ul>
+                <li>Figma · SDD · Jira · Slack을 참조해 TC를 생성·최신화하는 팀 공용 CLI를 만들고 5개 서비스에 적용.</li>
+                <li>실제 Smart TV Full TC 작성에 활용하고 생성 정확도 측정과 부정확 결과 격리 구조를 고도화.</li>
+              </ul>
+              <div class="linkrow">
+                <a class="case-link" href="https://duo2208.github.io/resume/qa-portfolio/nhn.html#process" target="_blank" rel="noopener">AI TC 워크플로우 상세 ↗</a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="project">
+            <h3><span class="pnum">03</span>QA Ownership</h3>
+            <div class="subtitle">QA POC · 요구사항 분석부터 릴리즈까지</div>
+            <div class="stack"><span>Shift-Left</span><span>RCA</span><span>Testability</span><span>Risk</span></div>
+            <ul>
+              <li>프로젝트 초기부터 QA POC로 참여해 요구사항의 모순·정책 누락·경계 조건을 분석하고 테스트 전략 수립.</li>
+              <li>동적 상태 등 검증이 어려운 영역은 개발 단계에서 테스트 기능을 요구하여 Testability 확보.</li>
+              <li>adb logcat · Sentry · API · DB를 활용해 Client / Server / Network / Data 계층으로 결함 원인 분리.</li>
+              <li>결함 심각도·Side Effect·잔여 리스크를 기반으로 검수 Hold/릴리즈 판단에 참여하고, VOC·운영 이슈를 후속 회귀 범위에 반영.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="company">
+        <aside class="company-meta">
+          <div class="company-name">다우기술</div>
+          <div class="company-role"><span class="sep">품질관리팀 ·</span> <span class="sep">QC 인턴</span></div>
+          <div class="company-period">2024.10 — 2025.03</div>
+          <div class="company-domain">Commerce · Fulfillment QC</div>
+        </aside>
+        <div>
+          <p class="company-lede">
+            사방넷의 Commerce API 연동과 풀필먼트 전 과정을 검증했습니다.
+            상품·주문부터 입고·재고·출고·배송 및 취소·교환·반품까지, 데이터와 상태가 여러 시스템을 거쳐
+            일관되게 유지되는지를 중심으로 테스트했습니다.
+          </p>
+
+          <div class="project">
+            <h3><span class="pnum">01</span>WMS 풀필먼트 시스템 리뉴얼 QC</h3>
+            <div class="subtitle">2024.10 — 2025.01 · PHP → Java/Vue.js 리뉴얼</div>
+            <div class="stack"><span>Commerce</span><span>WMS</span><span>Fulfillment</span><span>Regression</span></div>
+            <ul>
+              <li>상품·입고·재고·발주·출고·택배 등 풀필먼트 전 과정의 E2E 검증.</li>
+              <li>판매상품 ↔ 출고상품 매핑부터 발주 → 출고요청 → 송장등록 → 출고완료까지 주문·출고 상태 전이 검증.</li>
+              <li>3PL/1PL 및 사용자 권한을 조합한 업무 시나리오 기반 테스트 설계.</li>
+              <li>유통기한·가용재고·합포장·출고분리·운송장 등 재고·배송 정책의 데이터 정합성 검증.</li>
+              <li>레거시 정책과 신규 시스템 간 동작 차이 및 결함을 분석하고 상태 체계 개선 제안.</li>
+            </ul>
+            <div class="linkrow">
+              <a class="case-link" href="https://duo2208.github.io/resume/qa-portfolio/nhn.html#case-wms" target="_blank" rel="noopener">WMS 풀필먼트 검증 상세 ↗</a>
+            </div>
+          </div>
+
+          <div class="project">
+            <h3><span class="pnum">02</span>사방넷 신규 쇼핑몰 API 연동 QC</h3>
+            <div class="subtitle">2025.02 — 2025.03 · External API Integration</div>
+            <div class="stack"><span>Commerce</span><span>API</span><span>SCM</span><span>Order</span><span>Claim</span><span>Data Integrity</span></div>
+            <ul>
+              <li>shop by 기반 쇼핑몰을 포함한 신규 쇼핑몰의 상품·주문·클레임·송장 API 연동 검증.</li>
+              <li>상품 등록/수정 → 주문 수집 → 취소·교환·반품 → 송장 송신까지 커머스 주문 생명주기 E2E 검증.</li>
+              <li>단품·다수량·다옵션·합포 등 실제 주문 조건을 구성해 주문/클레임 시나리오 검증.</li>
+              <li>쇼핑몰 SCM과 사방넷 API 데이터를 교차 확인하여 상태 및 데이터 정합성 검증.</li>
+              <li>shop by 파트너센터의 인증키·Access Token 및 연동 설정 검증.</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="company">
+        <aside class="company-meta">
+          <div class="company-name">아이브릭스</div>
+          <div class="company-role"><span class="sep">지능정보개발팀 ·</span> <span class="sep">Software Engineer</span></div>
+          <div class="company-period">2022.12 — 2024.06</div>
+          <div class="company-domain">Web · API · Search · Data Pipeline</div>
+        </aside>
+        <div>
+          <p class="company-lede">
+            공공·금융 SI 프로젝트에서 개발자로 서비스를 직접 구현했습니다.
+            개발 기능의 통합 테스트와 성능 테스트를 함께 수행하며,
+            운영 환경과 클라이언트 환경의 차이에서 발생하는 결함을 다뤘습니다.
+          </p>
+
+          <div class="project">
+            <h3><span class="pnum">01</span>용인시청 민원상담 챗봇 시스템 개선</h3>
+            <div class="subtitle">2023.06 — 2023.10</div>
+            <div class="stack"><span>React</span><span>Node.js</span><span>Express</span><span>Elasticsearch</span><span>Apache NiFi</span><span>JMeter</span></div>
+            <p class="description">React · Node.js · Elasticsearch 기반 민원상담 챗봇의 기능 개발과 통합 테스트를 수행했습니다. 개발한 기능뿐 아니라 실제 운영 환경과 클라이언트 환경의 차이에서 발생하는 결함까지 검증했습니다.</p>
+            <ul>
+              <li>React 기반 챗봇 서비스 화면 및 Node.js/Express API 개발.</li>
+              <li>Word2Vec · 코사인 유사도 기반 검색어 API 구현 및 NiFi → Elasticsearch 데이터 파이프라인 연계.</li>
+              <li>개발 기능의 통합 테스트 시나리오 직접 설계·수행.</li>
+              <li>JMeter 기반 250,000건 대량 요청 성능 테스트 수행.</li>
+            </ul>
+            <div class="linkrow">
+              <a class="case-link" href="https://duo2208.github.io/resume/qa-portfolio/nhn.html#case-yongin" target="_blank" rel="noopener">성능 테스트 · 통합테스트 상세 ↗</a>
+            </div>
+          </div>
+
+          <div class="project">
+            <h3><span class="pnum">02</span>경남은행 KMS 재구축</h3>
+            <div class="subtitle">2023.11 — 2023.12 · STT / TA 상담 어시스트</div>
+            <div class="stack"><span>API</span><span>STT</span><span>TA</span></div>
+            <p class="description">STT/TA 기반 상담 어시스트 시스템 API 개발.</p>
+          </div>
+
+          <div class="project">
+            <h3><span class="pnum">03</span>대법원 차세대 전자소송 시스템</h3>
+            <div class="subtitle">2024.01 — 2024.02 · Web Accessibility</div>
+            <div class="stack"><span>Web Accessibility</span><span>WCAG</span><span>UI</span></div>
+            <p class="description">웹 접근성 심사 기준에 부합하도록 코딩 표준을 수정하고 고령자·장애인 친화 UI를 구현.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="engineering">
+      <div class="section-title">Skills</div>
+      <div class="grid2">
+        <div class="card">
+          <h4>Test Automation</h4>
+          <div class="techs">
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3776AB" d="M11.9 1.5c-1.7 0-3.1.2-4.2.6-1 .3-1.5 1-1.5 2v2.6h5.9v.7H4.3c-1.1 0-2 .6-2.4 1.8-.5 1.3-.5 2.1 0 3.5.4 1.1 1 1.9 2.1 1.9h1.9v-2.2c0-1.2 1.1-2.3 2.4-2.3h4.6c1.1 0 1.9-.9 1.9-1.9V4.1c0-1-.9-1.8-1.9-2-.7-.1-1.4-.2-2-.2Zm-2.4 1.4c.4 0 .7.3.7.8s-.3.8-.7.8-.7-.4-.7-.8.3-.8.7-.8Z"/><path fill="#FFD43B" d="M12.1 22.5c1.7 0 3.1-.2 4.2-.6 1-.3 1.5-1 1.5-2v-2.6h-5.9v-.7h7.8c1.1 0 2-.6 2.4-1.8.5-1.3.5-2.1 0-3.5-.4-1.1-1-1.9-2.1-1.9h-1.9v2.2c0 1.2-1.1 2.3-2.4 2.3H11c-1.1 0-1.9.9-1.9 1.9v3.1c0 1 .9 1.8 1.9 2 .7.1 1.4.2 2 .2Zm2.4-1.4c-.4 0-.7-.3-.7-.8s.3-.8.7-.8.7.4.7.8-.3.8-.7.8Z"/></svg>Python</span>
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2EAD33" d="M12 2 3.5 6v6.1c0 5 3.6 9.2 8.5 10 4.9-.8 8.5-5 8.5-10V6L12 2Zm0 2.2 6.5 3.1v4.8c0 4-2.8 7.4-6.5 8.2-3.7-.8-6.5-4.2-6.5-8.2V7.3L12 4.2Z"/><path fill="#2EAD33" d="M8 11.4l1.2-1.2 1.9 1.9 3.7-3.7L16 9.6l-4.9 4.9L8 11.4Z"/></svg>Playwright</span>
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#43B02A" d="M12 2c-1.9 0-3.6.8-4.6 2.1-.6-.2-1.3-.3-1.9-.2-1.4.2-2.4 1.2-2.6 2.5-.2 1.4.6 2.7 1.9 3.3-.1.5-.1 1 0 1.5-1.2.6-2 1.9-1.8 3.3.2 1.3 1.2 2.3 2.6 2.5.6.1 1.3 0 1.9-.2 1 1.3 2.7 2.1 4.6 2.1s3.6-.8 4.6-2.1c.6.2 1.3.3 1.9.2 1.4-.2 2.4-1.2 2.6-2.5.2-1.4-.6-2.7-1.8-3.3.1-.5.1-1 0-1.5 1.3-.6 2.1-1.9 1.9-3.3-.2-1.3-1.2-2.3-2.6-2.5-.6-.1-1.3 0-1.9.2C15.6 2.8 13.9 2 12 2Zm0 4.6c2.4 0 4.3 1.5 4.3 3.3 0 1.2-.8 2.2-2 2.8l-2.9 1.3c-.5.2-.8.5-.8.9 0 .5.5.9 1.2.9.8 0 1.3-.4 1.5-1h2.9c-.2 1.9-2 3.2-4.4 3.2s-4.2-1.4-4.2-3.2c0-1.2.7-2.1 2-2.7l2.9-1.3c.5-.3.8-.5.8-.9 0-.5-.5-.9-1.3-.9-.8 0-1.4.4-1.5 1.1H7.6c.1-2 1.9-3.5 4.4-3.5Z"/></svg>Selenium</span>
+            <span class="tech invert"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#181717" d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5Z"/></svg>GitHub Actions</span>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Development</h4>
+          <div class="techs">
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.1" fill="#61DAFB"/><g fill="none" stroke="#61DAFB" stroke-width="1.1"><ellipse cx="12" cy="12" rx="10" ry="3.9"/><ellipse cx="12" cy="12" rx="10" ry="3.9" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="3.9" transform="rotate(120 12 12)"/></g></svg>React</span>
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#5FA04E" d="M12 1.6 2.6 7v10L12 22.4 21.4 17V7L12 1.6Zm0 2.1 7.6 4.4v8.8L12 20.3l-7.6-4.4V8.1L12 3.7Z"/><path fill="#5FA04E" d="M12.6 15.9c-2 0-2.6-.9-2.6-2.1h1.4c0 .6.2.9 1.2.9.9 0 1.2-.3 1.2-.7 0-.5-.2-.6-1.5-.8-1.5-.2-2.3-.6-2.3-1.9 0-1.1.9-1.8 2.4-1.8 1.6 0 2.4.6 2.5 2h-1.4c-.1-.6-.4-.8-1.1-.8-.8 0-1 .3-1 .6 0 .4.2.5 1.4.7 1.6.2 2.4.6 2.4 1.9 0 1.2-1 2-2.6 2Z"/></svg>Node.js</span>
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#092E20" d="M9.9 2h2.9v13.4c-1.5.3-2.6.4-3.8.4-3.6 0-5.4-1.6-5.4-4.7 0-3 1.9-4.9 4.9-4.9.5 0 .8 0 1.4.2V2Zm0 8.8c-.4-.1-.7-.2-1.1-.2-1.4 0-2.3.9-2.3 2.4 0 1.5.8 2.3 2.2 2.3.4 0 .7 0 1.2-.1v-4.4Z"/><path fill="#092E20" d="M17.4 6.5v6.7c0 2.3-.2 3.4-.7 4.4-.5.9-1.1 1.5-2.4 2.1l-2.7-1.3c1.3-.6 1.9-1.1 2.3-1.9.4-.8.5-1.7.5-4.1V6.5h3Zm-3-4.5h3v3h-3V2Z"/></svg>Django</span>
+            <span class="tech invert"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000" d="M23 17.3c-1 .2-1.6-.2-2.2-1L17 11.1l-.5-.7-4.4 5.9c-.5.8-1.1 1.1-2.1 1l5.6-7.5-5.2-6.8c1 -.2 1.6-.1 2.2.8l3.9 5.2 3.9-5.2c.5-.8 1.1-1.1 2.1-.8l-2.7 3.6-1.5 2c-.3.4-.3.6 0 1L23 17.3ZM1 11.6l.3-1.6C2.4 6 6.7 4.4 9.6 7c1.7 1.5 2.1 3.6 2 5.8H2.3c-.2 3.9 2.6 6.3 6.2 5.1 1.3-.4 2-1.4 2.4-2.6.2-.6.5-.7 1.1-.5-.3 1.6-1 3-2.5 3.8-2.2 1.3-5.3.9-6.9-.9C1.6 16.6 1.3 15.3 1.1 14c0-.2-.1-.4-.1-.6v-1.8Zm1.3-.1h8.2c0-2.6-1.6-4.5-3.9-4.5-2.4 0-4.2 1.8-4.3 4.5Z"/></svg>Express.js</span>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Data / Infra</h4>
+          <div class="techs">
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#FED10A" d="M2.4 8.6A10 10 0 0 1 12 2c3.9 0 7.3 2.2 8.9 5.5H4.2c-.7 0-1.3.4-1.8 1.1Z"/><path fill="#00BFB3" d="M2 12c0-1.2.2-2.3.5-3.4h11.7c1.9 0 3.4 1.5 3.4 3.4s-1.5 3.4-3.4 3.4H2.5C2.2 14.3 2 13.2 2 12Z"/><path fill="#019B8F" d="M4.2 16.5h16.7A10 10 0 0 1 12 22a10 10 0 0 1-9.6-6.6c.5.7 1.1 1.1 1.8 1.1Z"/></svg>Elasticsearch</span>
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="3.5" fill="#00618A"/><path fill="#00618A" d="M4 8.6v3.3c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5V8.6c-1.7 1.5-4.7 2.4-8 2.4S5.7 10.1 4 8.6Z"/><path fill="#00618A" d="M4 14.9v3.6c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5v-3.6c-1.7 1.5-4.7 2.4-8 2.4s-6.3-.9-8-2.4Z"/></svg>SQL</span>
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#728E9B" d="M12 2c-2.6 3.5-4.5 6.4-4.5 9.2 0 3.2 2 5.3 4.5 5.3s4.5-2.1 4.5-5.3C16.5 8.4 14.6 5.5 12 2Z"/><path fill="#728E9B" d="M8 18.4h8v1.5H8zM9.5 21h5v1h-5z"/></svg>Apache NiFi</span>
+            <span class="tech invert-mono"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000" d="M12 2c-2.2 0-3.3 1.7-3.3 3.9 0 1 .1 1.8-.3 2.6-.6 1.2-2 2.6-2.6 4.6-.3 1-.2 1.9.1 2.5-.6.6-1.1 1.4-1.6 1.7-.7.4-.9 1-.5 1.5.4.4 1.3.4 2.2.6.9.2 1.6.7 2.4.9.9.2 2 .1 3.1 0 1.1.1 2.2.2 3.1 0 .8-.2 1.5-.7 2.4-.9.9-.2 1.8-.2 2.2-.6.4-.5.2-1.1-.5-1.5-.5-.3-1-1.1-1.6-1.7.3-.6.4-1.5.1-2.5-.6-2-2-3.4-2.6-4.6-.4-.8-.3-1.6-.3-2.6C15.3 3.7 14.2 2 12 2Z"/><ellipse cx="10.3" cy="6.6" rx="1" ry="1.3" fill="#fff"/><ellipse cx="13.7" cy="6.6" rx="1" ry="1.3" fill="#fff"/><path fill="#F5BF23" d="M12 8.2c.9 0 1.9.6 1.9 1.1 0 .4-1 1.1-1.9 1.1s-1.9-.7-1.9-1.1c0-.5 1-1.1 1.9-1.1Z"/></svg>Linux</span>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Quality Tooling</h4>
+          <div class="techs">
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2684FF" d="M11.6 2 3 10.6c-.3.3-.3.8 0 1.1l4.3 4.3 4.3-4.3c.3-.3.3-.8 0-1.1L11.6 2Z"/><path fill="#2684FF" d="M12.4 22 21 13.4c.3-.3.3-.8 0-1.1l-4.3-4.3-4.3 4.3c-.3.3-.3.8 0 1.1l.0 8.6Z" opacity=".75"/></svg>Jira</span>
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#8B6BB7" d="M12 2 3 6.5v5.2c0 4.6 3.8 8.9 9 10.3 5.2-1.4 9-5.7 9-10.3V6.5L12 2Z"/><path fill="#fff" d="M12 6.4c1.7 0 3 1.1 3 2.6 0 1-.5 1.7-1.6 2.3l-1.9.9c-.3.2-.5.3-.5.6h4v1.9H8.9c0-1.5.5-2.4 1.8-3.1l1.6-.8c.6-.3.8-.5.8-.9 0-.4-.4-.8-1.1-.8-.7 0-1.2.4-1.2 1.1H8.9c0-1.6 1.3-2.8 3.1-2.8Z"/></svg>Charles Proxy</span>
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#362D59" d="M12 2.8c-.6 0-1.1.3-1.4.8L3.1 17.1c-.6 1 .1 2.3 1.3 2.3h2.5c-.1-.6-.2-1.2-.2-1.7l-1.9.0L12 4.8l7.2 12.9h-2.6c.1.6.1 1.1.1 1.7h3.1c1.2 0 1.9-1.3 1.3-2.3L13.4 3.6c-.3-.5-.8-.8-1.4-.8Z"/><path fill="#362D59" d="M12 8.9 8.5 15h2c.9 0 1.6.6 1.8 1.4l.5 2.6h2l-.7-3.4c-.3-1.4-1.3-2.4-2.7-2.6l1.3-2.3 3.1 5.5h.2L12 8.9Z"/></svg>Sentry</span>
+            <span class="tech"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#3DDC84" d="M7.5 9h9v7.5c0 .8-.7 1.5-1.5 1.5h-6c-.8 0-1.5-.7-1.5-1.5V9Z"/><path fill="#3DDC84" d="M5.6 9.4c.7 0 1.2.5 1.2 1.2v4c0 .7-.5 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-4c0-.7.5-1.2 1.2-1.2Zm12.8 0c.7 0 1.2.5 1.2 1.2v4c0 .7-.5 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-4c0-.7.5-1.2 1.2-1.2ZM9.2 18.5h1.9v2.3c0 .7-.5 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-2.3h.5Zm3.7 0h1.9v2.3c0 .7-.5 1.2-1.2 1.2s-1.2-.5-1.2-1.2v-2.3h.5Z"/><path fill="#3DDC84" d="M7.6 8.2C7.8 5.9 9.7 4.1 12 4.1s4.2 1.8 4.4 4.1H7.6Zm2.2-2.4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Zm4.4 0a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Z"/><path fill="#3DDC84" d="m8.4 2.6.9 1.6-.5.3-.9-1.6.5-.3Zm7.2 0 .5.3-.9 1.6-.5-.3.9-1.6Z"/></svg>adb logcat</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="section-title">Certifications & Education</div>
+      <div class="certs">
+        <div class="cert"><b>ISTQB Foundation Level (CTFL)</b>ISTQB · 2024.12</div>
+        <div class="cert"><b>SQLD</b>한국데이터산업진흥원 · 2021.12</div>
+        <div class="cert"><b>JLPT N1</b>국제교류기금 · 2019.08</div>
+        <div class="cert"><b>TOEIC 730</b>한국TOEIC위원회 · 2022.02</div>
+        <div class="cert"><b>MOS Master</b>Microsoft · 2016.11</div>
+        <div class="cert"><b>서울여자대학교</b>소프트웨어융합학과 · 복수전공: 일어일문과 · 2016.03 — 2021.08 · 3.78 / 4.5</div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title">About</div>
+      <div class="contact">
+        <a class="contact-item" href="mailto:duo2208@gmail.com">
+          <span class="ci-label">Email</span>
+          <span class="ci-value">duo2208@gmail.com</span>
+        </a>
+        <a class="contact-item" href="https://duo2208.github.io/resume/qa-portfolio/nhn.html" target="_blank" rel="noopener">
+          <span class="ci-label">Portfolio</span>
+          <span class="ci-value">duo2208.github.io/resume/qa-portfolio/nhn.html<span class="ci-ext"> ↗</span></span>
+        </a>
+        <a class="contact-item" href="https://duo2208.github.io/resume/resume/nhn.html" target="_blank" rel="noopener">
+          <span class="ci-label">Resume</span>
+          <span class="ci-value">duo2208.github.io/resume/resume/nhn.html<span class="ci-ext"> ↗</span></span>
+        </a>
+        <a class="contact-item" href="https://velog.io/@duo22088/posts" target="_blank" rel="noopener">
+          <span class="ci-label">Blog</span>
+          <span class="ci-value">velog.io/@duo22088<span class="ci-ext"> ↗</span></span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
