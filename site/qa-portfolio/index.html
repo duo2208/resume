@@ -386,14 +386,6 @@
         display: grid;
         gap: 18px;
       }
-      /* 대표 케이스는 style="order:N"으로 표시순서 재배치.
-         More 그룹(라벨 + 접힌 케이스)은 항상 그 뒤에 오도록 큰 order 부여 */
-      .case-list > .more-head {
-        order: 90;
-      }
-      .case-list > .more-case {
-        order: 91;
-      }
       .case {
         background: var(--paper);
         border: 1px solid var(--line);
@@ -2665,32 +2657,32 @@
           <div class="section-head">
             <div>
               <h2>어떤 QA인가</h2>
-              <div class="domains">OTT · Payment · Account · Player · DRM · Smart TV · Web/App</div>
+              <div class="domains">제품의 맥락을 이해하고, 팀이 믿고 배포할 수 있는 검증을 만듭니다.</div>
             </div>
           </div>
           <div class="layers">
             <div class="ly">
-              <div class="ly-k">UI에서 끝내지 않습니다</div>
-              <div class="ly-t">DevTools · Network · API · Sentry</div>
+              <div class="ly-k">먼저 확인해야 할 위험을 정합니다</div>
+              <div class="ly-t">요구사항 · 사용자 흐름 · 변경 영향도</div>
               <p>
-                화면과 API 응답이 다르면 Network와 실제 응답을 확인하고, 상태 불일치는 Sentry · API · DB 이력을 함께
-                대조합니다.
+                기획 단계부터 정책과 사용자 흐름을 살펴보고, API·스키마의 연결 관계까지 확인해 검증 범위를 정합니다.
+                고객 영향과 잔여 리스크를 근거로 검수 우선순위와 릴리즈 판단을 팀과 논의합니다.
               </p>
             </div>
             <div class="ly">
-              <div class="ly-k">기기 문제는 단말에서 확인합니다</div>
-              <div class="ly-t">ADB · logcat · gfxinfo</div>
+              <div class="ly-k">실제 동작을 근거로 원인을 좁힙니다</div>
+              <div class="ly-t">화면 · API · 데이터 · 기기 환경</div>
               <p>
-                Android 기기 이슈는 ADB / logcat으로 런타임 상태를 확인하고, 렌더링 문제는 gfxinfo · Janky Frames로
-                계층을 좁힙니다.
+                화면의 결과를 API 응답·DB 이력·기기 로그와 대조해 문제의 발생 지점을 좁힙니다.
+                검수 환경의 제약도 함께 살피고, 필요한 흐름을 확인할 수 있도록 제품과 환경의 개선을 제안합니다.
               </p>
             </div>
             <div class="ly">
-              <div class="ly-k">반복 검증은 자동화하고 추적 가능하게 남깁니다</div>
-              <div class="ly-t">Playwright · Pytest · GitHub Actions</div>
+              <div class="ly-k">검증 경험을 팀의 자산으로 남깁니다</div>
+              <div class="ly-t">회귀 자동화 · 케이스 동기화 · 검수 가이드</div>
               <p>
-                반복 회귀는 자동화하고 CI Gate · Heartbeat · 실패 이력까지 연결해 다시 실행하고 원인을 추적할 수 있게
-                만듭니다.
+                반복 회귀를 자동화하고, 테스트 코드와 케이스 문서를 동기화합니다.
+                검수 절차와 실패 대응 기준을 공유해 담당자가 바뀌어도 같은 기준으로 검증할 수 있게 만듭니다.
               </p>
             </div>
           </div>
@@ -2703,7 +2695,7 @@
             <div>
               <h2>Project Coverage</h2>
               <p>
-                OTT의 계정·결제·플레이어부터 플랫폼 전환과 자동화까지, 제품의 상태와 경계를 넓게 보고 필요한 검증 범위를
+                OTT의 계정·결제·플레이어부터 커뮤니티·커머스·외부 제휴와 자동화까지, 제품의 상태와 경계를 넓게 보고 필요한 검증 범위를
                 설계해왔습니다. 프로젝트명을 누르면 해당 Case Study로 이동합니다.
               </p>
             </div>
@@ -2715,46 +2707,28 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><a href="#case-live">Live Channel</a></td>
-                  <td>2025.09–10</td>
-                  <td>Web · iOS · Android</td>
-                  <td>편성 · 인증 · 멤버십 · 동시재생 · PIP · 판권</td>
+                  <td>AI Native 방식의 신규 서비스 프로젝트</td>
+                  <td>참여 예정</td>
+                  <td>—</td>
+                  <td>QA 담당 예정 · 테스트 전략과 검증 체계 설계</td>
                 </tr>
                 <tr>
-                  <td><a href="#case-newarch">RN New Architecture</a></td>
-                  <td>2026.02–06</td>
-                  <td>iOS · Android · Pad</td>
-                  <td>계정 · 결제 · 다운로드 · 플레이어 · Offline · Navigation</td>
+                  <td>신작 커뮤니티</td>
+                  <td>2026.09–현재</td>
+                  <td>iOS · Android</td>
+                  <td>게시글·플레이어 연계 · 콘텐츠 노출 정책 · 조회 집계 반영 · 검수 범위 공유</td>
                 </tr>
                 <tr>
-                  <td><a href="#case-subscription">Apple In-App Purchase</a></td>
-                  <td>2025.11–2026.01</td>
-                  <td>iOS · Web</td>
-                  <td>결제 · 복원 · Billing Retry · On-hold · 구독 권한 정합성</td>
-                </tr>
-                <tr>
-                  <td>Global SNS Login</td>
-                  <td>2025.05</td>
+                  <td>기프티콘 연동</td>
+                  <td>2026.07–10</td>
                   <td>Web · App</td>
-                  <td>Email · Google · Apple 계정 전환 및 인증 예외</td>
+                  <td>기프티콘 사용·승인 취소 · 테스트 데이터 운영 · 카카오 웹뷰 로그인</td>
                 </tr>
                 <tr>
-                  <td><a href="#case-ncsoft">B2B Partnership</a></td>
-                  <td>2025.07–09</td>
+                  <td>커머스 정기구독</td>
+                  <td>2026.07–09</td>
                   <td>Web · App</td>
-                  <td>제휴 권한 · 동시재생 · 슬롯 제한 · 에러 우선순위</td>
-                </tr>
-                <tr>
-                  <td><a href="#case-subscription">Account System</a></td>
-                  <td>2025.11</td>
-                  <td>Web · App</td>
-                  <td>미완료 · 미인증 · 소셜 로그인 · 본인인증 상태 전이</td>
-                </tr>
-                <tr>
-                  <td><a href="#automation">Web E2E Automation</a></td>
-                  <td>2025.11–2026.08</td>
-                  <td>Web · CI</td>
-                  <td>Playwright · 병렬 실행 · CI Gate · Flaky 격리 · Heartbeat</td>
+                  <td>회차별 결제 · 환불·해지 상태 · 재청구 위험 · 잔여 이슈 공유</td>
                 </tr>
                 <tr>
                   <td>Web Common Migration</td>
@@ -2769,10 +2743,52 @@
                   <td>무료체험 · 권한별 노출 · 혜택 종료 · 전환 퍼널</td>
                 </tr>
                 <tr>
+                  <td><a href="#case-newarch">RN New Architecture</a></td>
+                  <td>2026.02–06</td>
+                  <td>iOS · Android · Pad</td>
+                  <td>계정 · 결제 · 다운로드 · 플레이어 · Offline · Navigation</td>
+                </tr>
+                <tr>
+                  <td><a href="#automation">Web E2E Automation</a></td>
+                  <td>2025.11–2026.08</td>
+                  <td>Web · CI</td>
+                  <td>Playwright · 병렬 실행 · CI Gate · Flaky 격리 · Heartbeat</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-subscription">Apple In-App Purchase</a></td>
+                  <td>2025.11–2026.01</td>
+                  <td>iOS · Web</td>
+                  <td>결제 · 복원 · Billing Retry · On-hold · 구독 권한 정합성</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-subscription">Account System</a></td>
+                  <td>2025.11</td>
+                  <td>Web · App</td>
+                  <td>미완료 · 미인증 · 소셜 로그인 · 본인인증 상태 전이</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-live">Live Channel</a></td>
+                  <td>2025.09–10</td>
+                  <td>Web · iOS · Android</td>
+                  <td>편성 · 인증 · 멤버십 · 동시재생 · PIP · 판권</td>
+                </tr>
+                <tr>
+                  <td><a href="#case-ncsoft">B2B Partnership</a></td>
+                  <td>2025.07–09</td>
+                  <td>Web · App</td>
+                  <td>제휴 권한 · 동시재생 · 슬롯 제한 · 에러 우선순위</td>
+                </tr>
+                <tr>
                   <td><a href="#case-tv">Smart TV Rebuild</a></td>
                   <td>2025.06–2026.07</td>
                   <td>Tizen · webOS · Android TV</td>
                   <td>QR 로그인 · Focus · Remote Control · Player · 동시재생</td>
+                </tr>
+                <tr>
+                  <td>Global SNS Login</td>
+                  <td>2025.05</td>
+                  <td>Web · App</td>
+                  <td>Email · Google · Apple 계정 전환 및 인증 예외</td>
                 </tr>
               </tbody>
             </table>
@@ -2805,6 +2821,11 @@
                 MCP로 끌어와 스쿼드 설정이 끝나고, <b>스프레드시트에서 테스트 케이스가</b> 작성됩니다. Figma로 유저플로우·화면
                 골격을 잡고 SDD 스펙으로 정책·백엔드 판정 깊이를 채우는 순서를 규칙으로 고정했습니다.
               </p>
+              <p class="pipe-desc">
+                초안 이후의 수정 부담을 줄이기 위해 실제 스쿼드 기획서에 적용하며 <b>용어집·공통 프롬프트·출력 규칙을 지속적으로 정비</b>하고 있습니다.
+                TC 제목·사전 조건·절차·기대 결과의 형식을 맞추고, 이벤트 순서·상태 전이·동시성 시나리오의 핵심 조건 누락을 평가하는 기준도 고도화하고 있습니다.
+              </p>
+              <div class="pipe-stat">고도화 목표 · 형식 준수율 90% 이상 · 수동 초안 대비 최초 TC 작성 시간 30% 이상 단축</div>
 
 
               <figure class="flowfig">
@@ -2927,6 +2948,7 @@
                 <li><b>Storage State</b>로그인 상태를 재사용해 반복 테스트의 준비 비용을 크게 줄였습니다</li>
                 <li><b>Self-hosted Runner</b>사내 네트워크와 DRM·실결제 등 실제 서비스 조건에서도 정기 회귀를 수행할 수 있도록 구성했습니다</li>
                 <li><b>실패 원인 분류</b>Product · Environment · Flaky를 구분해 자동화 실패를 곧바로 제품 결함으로 판단하지 않도록 했습니다</li>
+                <li><b>테스트 케이스 동기화</b>테스트 코드 수정 후 동기화 도구로 케이스 문서를 갱신해, 코드와 문서를 따로 수정하는 부담과 불일치를 줄였습니다</li>
               </ul>
             </div>
 
@@ -2984,30 +3006,25 @@
             <aside class="toc">
               <h3>Cases</h3>
               <div class="toc-label first">라프텔</div>
-              <a href="#case-subscription">01 구독·계정 상태</a>
-              <a href="#case-live">02 Live / Player</a>
-
-              <div class="toc-label">More</div>
-              <a href="#case-tv">Smart TV 멀티플랫폼</a>
-              <a href="#case-membership">A/B Experiment</a>
-              <a href="#case-ncsoft">B2B Partnership</a>
+              <a href="#case-subscription">구독·계정 상태</a>
               <a href="#case-newarch">RN Architecture</a>
+              <a href="#case-membership">A/B Experiment</a>
               <a href="#case-technical">Technical Investigation</a>
-
+              <a href="#case-ncsoft">B2B Partnership</a>
+              <a href="#case-live">Live / Player</a>
+              <a href="#case-tv">Smart TV 멀티플랫폼</a>
               <div class="toc-label">다우기술</div>
-              <a href="#case-wms">03 WMS 풀필먼트</a>
+              <a href="#case-wms">WMS 풀필먼트</a>
               <div class="toc-label">아이브릭스</div>
-              <a href="#case-yongin">04 용인시청 챗봇</a>
+              <a href="#case-yongin">용인시청 챗봇</a>
             </aside>
             <div class="case-list">
               
-              <!-- ────────── 01. Subscription State ────────── -->
-              <span id="case-apple" class="legacy-anchor"></span>
-              <span id="case-account" class="legacy-anchor"></span>
-              <article class="case" id="case-subscription" style="order: 1">
+              <span id="case-apple" class="legacy-anchor"></span><span id="case-account" class="legacy-anchor"></span>
+              <article class="case" id="case-subscription">
                 <div class="case-title">
                   <div>
-                    <h3>01. Subscription &amp; Account State</h3>
+                    <h3>Subscription &amp; Account State</h3>
                     <div class="meta">Apple IAP × Account × Entitlement · 상태 전이 · 데이터 정합성</div>
                   </div>
                   <span class="role-badge">Payment · Account QA</span>
@@ -3133,174 +3150,7 @@
                 </div>
               </article>
 
-              <!-- ────────── 02. Live / Player ────────── -->
-              <article class="case" id="case-live" style="order: 2">
-                <div class="case-title">
-                  <div>
-                    <h3>02. Live / Player</h3>
-                    <div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
-                  </div>
-                  <span class="role-badge">Live QA</span>
-                </div>
-
-                <div class="par">
-                  <div class="box problem">
-                    <div class="l">RISK</div>
-                    <p>편성표·플레이어·시간 경계가 동시에 바뀌어 기능 단위 테스트만으로는 상태 전이를 놓치기 쉬웠습니다.</p>
-                  </div>
-                  <div class="box">
-                    <div class="l">STRATEGY</div>
-                    <p>프로그램 전환 시점을 기준으로 EPG · 재생 · 연령 등급 · 프로그레스가 함께 갱신되는 E2E 흐름을 설계했습니다.</p>
-                  </div>
-                  <div class="box result">
-                    <div class="l">RESULT</div>
-                    <p>Live 검증을 시간 경계 중심의 공통 시나리오로 정리해 반복 회귀 기준으로 사용했습니다.</p>
-                  </div>
-                </div>
-
-                <div class="evidence">
-                  <div class="evidence-head">
-                    <strong>시간 경계 E2E 시나리오</strong>
-                    <span>프로그램 전환 순간에 함께 바뀌어야 하는 상태</span>
-                  </div>
-                  <div class="evidence-body">
-                    <div class="live-mock">
-                      <div class="player-slim">
-                        <b>LIVE</b><span class="ps-time">23:59</span><span class="ps-track"></span><span>ANIPLUS</span>
-                      </div>
-
-                      <div class="epg2">
-                        <div class="epg2-col a">
-                          <div class="t">23:58 — 23:59</div>
-                          <b>프로그램 A</b>
-                          <span>15세</span>
-                        </div>
-                        <div class="epg2-bound" data-label="00:00"></div>
-                        <div class="epg2-col">
-                          <div class="t">00:00 —</div>
-                          <b>프로그램 B</b>
-                          <span>19세</span>
-                        </div>
-                      </div>
-
-                      <ul class="bound-list">
-                        <li>제목 변경</li>
-                        <li>EPG 갱신</li>
-                        <li>연령 등급 재체크</li>
-                        <li>프로그레스 유지</li>
-                        <li>플레이어 끊김 없음</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-
-              <!-- ────────── Smart TV 멀티플랫폼 ────────── -->
-              <details class="more-case" id="case-tv">
-                <summary>
-                  <div>
-                    <h3>Smart TV 멀티플랫폼</h3>
-                    <div class="meta">Android TV · Tizen · webOS · 플랫폼별 Full TC</div>
-                  </div>
-                  <span class="role-badge">Smart TV QA</span>
-                </summary>
-                <article class="case">
-                  <div class="cond-tags">
-                    <span>Android TV</span><span>Tizen</span><span>webOS</span>
-                  </div>
-                  <div class="cond-tags" style="margin-top: 7px">
-                    <span>QR Login</span><span>Remote / Media Key</span><span>Focus</span><span>Player</span><span>Concurrent Playback</span>
-                  </div>
-                  <p class="case-lead" style="margin-top: 14px">
-                    같은 OTT 기능도 TV에서는 OS · 입력 방식 · Focus · Player Lifecycle에 따라 동작 조건이 달라지는
-                    환경이었습니다. 따라서
-                    <b>플랫폼 차이 자체를 테스트 조건으로 정의해</b> 검증 범위를 설계했습니다.
-                  </p>
-
-                  <div class="par">
-                    <div class="box problem">
-                      <div class="l">RISK</div>
-                      <p>리빌드·리팩토링 과정에서 공통 기능은 같아도 플랫폼별 입력·포커스·플레이어 동작이 다르게 깨질 수 있었습니다.</p>
-                    </div>
-                    <div class="box">
-                      <div class="l">STRATEGY</div>
-                      <p>Android TV · Tizen · webOS를 플랫폼 축으로 두고 핵심 사용자 흐름과 재생 조건을 매트릭스로 구성했습니다.</p>
-                    </div>
-                    <div class="box result">
-                      <div class="l">RESULT</div>
-                      <p>플랫폼별 Full TC를 구축하고 리빌드·리팩토링 전수검사에 적용해, 이후 TV 회귀 검증의 공통 기준으로 남겼습니다.</p>
-                    </div>
-                  </div>
-                </article>
-              </details>
-
-
-
-              <div class="more-head">
-                <p>대표 사례 외 경험은 핵심 판단과 결과만 남겼습니다. 제목을 누르면 펼쳐집니다.</p>
-              </div>
-
-
-              <!-- ────────── 05. A/B Experiment ────────── -->
-              <details class="more-case" id="case-membership">
-                <summary>
-                  <div>
-                    <h3>A/B Experiment</h3>
-                    <div class="meta">실험군 분배 · 테스트 계정 제어 · 데이터 오염 검증</div>
-                  </div>
-                  <span class="role-badge">Experiment QA</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>신규 멤버십 전환율 A/B 실험</h3>
-                      <div class="meta">Firebase · Experiment · Testability · Shift-Left</div>
-                    </div>
-                    <span class="role-badge">Experiment QA</span>
-                  </div>
-
-                  <div class="par">
-                    <div class="box problem"><div class="l">PROBLEM</div><p>QA가 원하는 실험군을 안정적으로 재현하기 어려웠습니다.</p></div>
-                    <div class="box"><div class="l">ACTION</div><p>서버에서 테스트 계정을 특정 그룹으로 제어하는 구조를 제안하고 실험군 분배·강제 할당·데이터 오염 여부를 검증했습니다.</p></div>
-                    <div class="box result"><div class="l">RESULT</div><p>실험군 재현성을 높이고 무료체험·권한·동시재생 같은 경계 조건을 설계 단계부터 검증할 수 있게 했습니다.</p></div>
-                  </div>
-                </article>
-              </details>
-
-
-              <!-- ────────── 06. B2B Partnership ────────── -->
-              <details class="more-case" id="case-ncsoft">
-                <summary>
-                  <div>
-                    <h3>B2B Partnership</h3>
-                    <div class="meta">External API · Reverse Spec · 권한 · 동시재생 · 정산</div>
-                  </div>
-                  <span class="role-badge">Partnership QA</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>B2B 제휴 검증</h3>
-                      <div class="meta">외부 서비스 경계 · Reverse Spec · 현장 검수</div>
-                    </div>
-                    <span class="role-badge">Partnership QA</span>
-                  </div>
-
-                  <p class="case-lead">
-                    두 서비스에 나뉜 멤버십 권한·동시재생·정산 상태를 하나의 사용자 흐름으로 검증했습니다.
-                  </p>
-                  <div class="par">
-                    <div class="box problem"><div class="l">PROBLEM</div><p>문서만으로 정상 동작을 판단하기 어려운 응답과 정책 차이가 있었습니다.</p></div>
-                    <div class="box"><div class="l">ACTION</div><p>실제 API 응답과 화면을 대조해 에러 조건을 Reverse Spec으로 정리하고 권한·동시재생·정산 경계를 분리했습니다.</p></div>
-                    <div class="box result"><div class="l">RESULT</div><p>문서에 없던 조건까지 QA 판정 기준으로 남겨 제휴 환경의 회귀 기준을 만들었습니다.</p></div>
-                  </div>
-                </article>
-              </details>
-
-
-              <!-- ────────── 07. RN Migration ────────── -->
-              <details class="more-case" id="case-newarch">
+              <details class="more-case" id="case-newarch" open>
                 <summary>
                   <div>
                     <h3>React Native New Architecture</h3>
@@ -3362,10 +3212,33 @@
                 </article>
               </details>
 
+              <details class="more-case" id="case-membership" open>
+                <summary>
+                  <div>
+                    <h3>A/B Experiment</h3>
+                    <div class="meta">실험군 분배 · 테스트 계정 제어 · 데이터 오염 검증</div>
+                  </div>
+                  <span class="role-badge">Experiment QA</span>
+                </summary>
+                <article class="case">
+                  <div class="case-title">
+                    <div>
+                      <h3>신규 멤버십 전환율 A/B 실험</h3>
+                      <div class="meta">Firebase · Experiment · Testability · Shift-Left</div>
+                    </div>
+                    <span class="role-badge">Experiment QA</span>
+                  </div>
 
-              <!-- ────────── 08. Technical Investigation ────────── -->
+                  <div class="par">
+                    <div class="box problem"><div class="l">PROBLEM</div><p>QA가 원하는 실험군을 안정적으로 재현하기 어려웠습니다.</p></div>
+                    <div class="box"><div class="l">ACTION</div><p>서버에서 테스트 계정을 특정 그룹으로 제어하는 구조를 제안하고 실험군 분배·강제 할당·데이터 오염 여부를 검증했습니다.</p></div>
+                    <div class="box result"><div class="l">RESULT</div><p>실험군 재현성을 높이고 무료체험·권한·동시재생 같은 경계 조건을 설계 단계부터 검증할 수 있게 했습니다.</p></div>
+                  </div>
+                </article>
+              </details>
+
               <span id="case-perf" class="legacy-anchor"></span><span id="case-performance" class="legacy-anchor"></span>
-              <details class="more-case" id="case-technical">
+              <details class="more-case" id="case-technical" open>
                 <summary>
                   <div>
                     <h3>Technical Investigation</h3>
@@ -3401,11 +3274,146 @@
                 </article>
               </details>
 
-<!-- ────────── 09. WMS 풀필먼트 QC ────────── -->
+              <details class="more-case" id="case-ncsoft">
+                <summary>
+                  <div>
+                    <h3>B2B Partnership</h3>
+                    <div class="meta">External API · Reverse Spec · 권한 · 동시재생 · 정산</div>
+                  </div>
+                  <span class="role-badge">Partnership QA</span>
+                </summary>
+                <article class="case">
+                  <div class="case-title">
+                    <div>
+                      <h3>B2B 제휴 검증</h3>
+                      <div class="meta">외부 서비스 경계 · Reverse Spec · 현장 검수</div>
+                    </div>
+                    <span class="role-badge">Partnership QA</span>
+                  </div>
+
+                  <p class="case-lead">
+                    두 서비스에 나뉜 멤버십 권한·동시재생·정산 상태를 하나의 사용자 흐름으로 검증했습니다.
+                  </p>
+                  <div class="par">
+                    <div class="box problem"><div class="l">PROBLEM</div><p>문서만으로 정상 동작을 판단하기 어려운 응답과 정책 차이가 있었습니다.</p></div>
+                    <div class="box"><div class="l">ACTION</div><p>실제 API 응답과 화면을 대조해 에러 조건을 Reverse Spec으로 정리하고 권한·동시재생·정산 경계를 분리했습니다.</p></div>
+                    <div class="box result"><div class="l">RESULT</div><p>문서에 없던 조건까지 QA 판정 기준으로 남겨 제휴 환경의 회귀 기준을 만들었습니다.</p></div>
+                  </div>
+                </article>
+              </details>
+
+              <details class="more-case" id="case-live">
+                <summary>
+                  <div>
+                    <h3>Live / Player</h3>
+                    <div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
+                  </div>
+                  <span class="role-badge">Live QA</span>
+                </summary>
+              <article class="case">
+                <div class="case-title">
+                  <div>
+                    <h3>Live / Player</h3>
+                    <div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
+                  </div>
+                  <span class="role-badge">Live QA</span>
+                </div>
+
+                <div class="par">
+                  <div class="box problem">
+                    <div class="l">RISK</div>
+                    <p>편성표·플레이어·시간 경계가 동시에 바뀌어 기능 단위 테스트만으로는 상태 전이를 놓치기 쉬웠습니다.</p>
+                  </div>
+                  <div class="box">
+                    <div class="l">STRATEGY</div>
+                    <p>프로그램 전환 시점을 기준으로 EPG · 재생 · 연령 등급 · 프로그레스가 함께 갱신되는 E2E 흐름을 설계했습니다.</p>
+                  </div>
+                  <div class="box result">
+                    <div class="l">RESULT</div>
+                    <p>Live 검증을 시간 경계 중심의 공통 시나리오로 정리해 반복 회귀 기준으로 사용했습니다.</p>
+                  </div>
+                </div>
+
+                <div class="evidence">
+                  <div class="evidence-head">
+                    <strong>시간 경계 E2E 시나리오</strong>
+                    <span>프로그램 전환 순간에 함께 바뀌어야 하는 상태</span>
+                  </div>
+                  <div class="evidence-body">
+                    <div class="live-mock">
+                      <div class="player-slim">
+                        <b>LIVE</b><span class="ps-time">23:59</span><span class="ps-track"></span><span>ANIPLUS</span>
+                      </div>
+
+                      <div class="epg2">
+                        <div class="epg2-col a">
+                          <div class="t">23:58 — 23:59</div>
+                          <b>프로그램 A</b>
+                          <span>15세</span>
+                        </div>
+                        <div class="epg2-bound" data-label="00:00"></div>
+                        <div class="epg2-col">
+                          <div class="t">00:00 —</div>
+                          <b>프로그램 B</b>
+                          <span>19세</span>
+                        </div>
+                      </div>
+
+                      <ul class="bound-list">
+                        <li>제목 변경</li>
+                        <li>EPG 갱신</li>
+                        <li>연령 등급 재체크</li>
+                        <li>프로그레스 유지</li>
+                        <li>플레이어 끊김 없음</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              </details>
+
+              <details class="more-case" id="case-tv">
+                <summary>
+                  <div>
+                    <h3>Smart TV 멀티플랫폼</h3>
+                    <div class="meta">Android TV · Tizen · webOS · 플랫폼별 Full TC</div>
+                  </div>
+                  <span class="role-badge">Smart TV QA</span>
+                </summary>
+                <article class="case">
+                  <div class="cond-tags">
+                    <span>Android TV</span><span>Tizen</span><span>webOS</span>
+                  </div>
+                  <div class="cond-tags" style="margin-top: 7px">
+                    <span>QR Login</span><span>Remote / Media Key</span><span>Focus</span><span>Player</span><span>Concurrent Playback</span>
+                  </div>
+                  <p class="case-lead" style="margin-top: 14px">
+                    같은 OTT 기능도 TV에서는 OS · 입력 방식 · Focus · Player Lifecycle에 따라 동작 조건이 달라지는
+                    환경이었습니다. 따라서
+                    <b>플랫폼 차이 자체를 테스트 조건으로 정의해</b> 검증 범위를 설계했습니다.
+                  </p>
+
+                  <div class="par">
+                    <div class="box problem">
+                      <div class="l">RISK</div>
+                      <p>리빌드·리팩토링 과정에서 공통 기능은 같아도 플랫폼별 입력·포커스·플레이어 동작이 다르게 깨질 수 있었습니다.</p>
+                    </div>
+                    <div class="box">
+                      <div class="l">STRATEGY</div>
+                      <p>Android TV · Tizen · webOS를 플랫폼 축으로 두고 핵심 사용자 흐름과 재생 조건을 매트릭스로 구성했습니다.</p>
+                    </div>
+                    <div class="box result">
+                      <div class="l">RESULT</div>
+                      <p>플랫폼별 Full TC를 구축하고 리빌드·리팩토링 전수검사에 적용해, 이후 TV 회귀 검증의 공통 기준으로 남겼습니다.</p>
+                    </div>
+                  </div>
+                </article>
+              </details>
+
               <details class="more-case" id="case-wms">
                 <summary>
                   <div>
-                    <h3>03. WMS 풀필먼트 리뉴얼 QC</h3>
+                    <h3>WMS 풀필먼트 리뉴얼 QC</h3>
                     <div class="meta">다우기술 · PHP → Java/Vue 전환 </div>
                   </div>
                   <span class="role-badge">Fulfillment QA</span>
@@ -3413,7 +3421,7 @@
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>03. WMS 풀필먼트 리뉴얼 QC</h3>
+                      <h3>WMS 풀필먼트 리뉴얼 QC</h3>
                       <div class="meta">다우기술 · 2024.10–2025.01 · PHP → Java/Vue 리뉴얼 · 3PL/1PL 물류 · 7개 업무 시나리오</div>
                     </div>
                     <span class="role-badge">Fulfillment QA</span>
@@ -3508,11 +3516,10 @@
                 </article>
               </details>
 
-              <!-- ────────── 04. 용인시청 민원상담 챗봇 (개발자 시절 · 품질 검증의 출발점) ────────── -->
               <details class="more-case" id="case-yongin">
                 <summary>
                   <div>
-                    <h3>04. 용인시청 민원상담 챗봇</h3>
+                    <h3>용인시청 민원상담 챗봇</h3>
                     <div class="meta">아이브릭스 · 성능 테스트 · 통합테스트</div>
                   </div>
                   <span class="role-badge">Dev + Test</span>
@@ -3520,7 +3527,7 @@
                 <article class="case">
                   <div class="case-title">
                     <div>
-                      <h3>04. 용인시청 민원상담 챗봇</h3>
+                      <h3>용인시청 민원상담 챗봇</h3>
                       <div class="meta">아이브릭스 · 2023.06–2023.10 · 성능 테스트 250,000건 · 통합테스트 직접 설계</div>
                     </div>
                     <span class="role-badge">Dev + Test</span>
