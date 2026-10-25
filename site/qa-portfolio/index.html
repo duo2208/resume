@@ -2817,17 +2817,26 @@
                 <span class="tag">테스트 설계를 구조화</span>
               </div>
               <p class="pipe-desc">
-                QA가 각자 로컬에서 쓰는 CLI 도구로 만들었습니다. Jira 에픽만 지정하면 Notion·Figma·Slack·스펙 경로를
-                MCP로 끌어와 스쿼드 설정이 끝나고, <b>스프레드시트에서 테스트 케이스가</b> 작성됩니다. Figma로 유저플로우·화면
-                골격을 잡고 SDD 스펙으로 정책·백엔드 판정 깊이를 채우는 순서를 규칙으로 고정했습니다.
+                Figma · SDD · Jira · Slack을 참조해 <b>스프레드시트에 테스트 케이스를 생성하고 최신화하는 팀 공용 도구</b>를 만들었습니다.
+                Figma로 유저플로우·화면 골격을 잡고 SDD 스펙으로 정책·백엔드 판정 깊이를 채우는 순서를 규칙으로 고정했습니다.
+              </p>
+              <p class="pipe-desc">
+                처음에는 CLI로 제공했지만, 필요한 입력값과 명령어를 사용자가 직접 챙겨야 하는 과정이 번거로워 동료들의 활용으로 잘 이어지지 않았습니다.
+                외부 발표와 도구 운영 사례를 접하면서, 기능 구현뿐 아니라 <b>사용자가 무엇을 입력하고 다음에 무엇을 해야 하는지 쉽게 알 수 있는 흐름</b>도 필요하다고 판단했습니다.
+              </p>
+              <p class="pipe-desc">
+                이를 개선하기 위해 <b>Electron 기반 폼 앱</b>으로 확장했습니다. 스쿼드 등록과 시트 연결에 필요한 정보를 화면에서 안내·입력받고,
+                검토 결과는 미리보기 후 버튼으로 반영하도록 했습니다. 기존 스크립트를 앱에서도 재사용해 처리 로직을 유지했고,
+                TC 생성·수정 제안처럼 대화하며 판단하는 단계는 터미널로 연결했습니다. 입력을 모두 없애기보다 설정과 실행 순서를 따로 찾아보는 부담부터 줄이는 데 집중했습니다.
               </p>
               <p class="pipe-desc">
                 초안 이후의 수정 부담을 줄이기 위해 실제 스쿼드 기획서에 적용하며 <b>용어집·공통 프롬프트·출력 규칙을 지속적으로 정비</b>하고 있습니다.
                 TC 제목·사전 조건·절차·기대 결과의 형식을 맞추고, 이벤트 순서·상태 전이·동시성 시나리오의 핵심 조건 누락을 평가하는 기준도 고도화하고 있습니다.
               </p>
               <div class="pipe-stat">고도화 목표 · 형식 준수율 90% 이상 · 수동 초안 대비 최초 TC 작성 시간 30% 이상 단축</div>
-
-
+              <div class="pipe-flow" aria-label="Electron 앱의 입력과 검토 결과 반영 흐름">
+                <span class="stage">폼으로 스쿼드·시트 설정</span><span class="sep">▸</span><span class="stage">터미널에서 TC 생성·수정 제안</span><span class="sep">▸</span><span class="stage">시트에서 승인·반려</span><span class="sep">▸</span><span class="stage">앱에서 미리보기·반영</span>
+              </div>
               <figure class="flowfig">
                 <svg viewBox="0 0 720 300" role="img" aria-label="요구사항 소스에서 LLM과 결정론적 스크립트를 거쳐 Google Spreadsheet로 이어지는 워크플로우 구성도">
                   <defs>
@@ -2874,7 +2883,8 @@
                 </svg>
                 <figcaption>
                   판단이 필요한 구간만 LLM이 맡고, 읽고 쓰는 구간은 결정론적 스크립트가 담당합니다.<br />
-                  <b>5개 스쿼드 · Smart TV Full TC 적용</b>
+                  <!-- 적용 규모는 이력서의 5개 서비스와 단위를 확인한 뒤 복원. -->
+                  <b>Smart TV Full TC 작성에 적용 · Electron 폼 앱으로 사용 흐름 개선</b>
                 </figcaption>
               </figure>
             </div>
@@ -2912,6 +2922,28 @@
                 상태를 한 번에 만들 수 있는 어드민 MCP 도입을 제안했습니다.
               </p>
               <div class="pipe-stat">회고에서 채택되어 백엔드팀 작업 완료 후, 검수 가이드 세션 운영 중</div>
+            </div>
+            <div class="pipe-row">
+              <div class="pipe-top">
+                <span class="pipe-num">04</span>
+                <h3>채팅 부하테스트의 조건 설계</h3>
+                <span class="tag">준비 자동화에서 측정 조건까지</span>
+              </div>
+              <p class="pipe-desc">
+                같이보기 채팅 부하테스트를 위해 <b>AI의 도움으로 대량 테스트 계정 준비를 스크립트화</b>하고 JMeter 시나리오에 활용했습니다.
+                로그인부터 사용자를 동시에 투입하자 로그인 지연이 커지면서 채팅·재생 API의 측정에도 영향을 주는 상황을 확인했습니다.
+              </p>
+              <p class="pipe-desc">
+                이미 로그인한 사용자가 상영회에 입장하는 흐름에 맞춰 <b>사전 로그인과 본 부하 시나리오를 분리</b>했습니다.
+                또한 채널 전체 전송량 제한에 따른 응답과 사용자별 도배 제한을 구분해, 설계된 제한 동작을 모두 같은 실패로 집계하지 않도록 판정 기준을 정리했습니다.
+              </p>
+              <div class="pipe-flow">
+                <span class="stage">계정·토큰 준비</span><span class="sep">▸</span><span class="stage">입장·재생 세션·채팅 발송</span><span class="sep">▸</span><span class="stage">지연·실패 원인 구분</span>
+              </div>
+              <p class="pipe-desc">
+                검증 범위는 QA 환경의 상영회 API·재생 세션·채팅 발송입니다. 영상 전송과 실시간 채팅 수신은 포함하지 않았으며,
+                QA 환경의 결과를 상용 환경의 수용 인원으로 해석하지 않았습니다.
+              </p>
             </div>
           </div>
           <div class="deep-dive" id="automation">
@@ -2984,12 +3016,17 @@
               <p class="dd-ops-note">
                 감지 주기는 줄이되, 실결제 횟수와 데이터 파이프라인 부하는 늘리지 않는 방향으로 실행 레인을 분리했습니다.
               </p>
+              <p class="dd-ops-note">
+                <b>Flaky 실패 추이를 보고 담당자에게 멘션을 보내도록 운영</b>하고, 알림에는 해당 실행의 리포트를 연결했습니다.
+                시간이 지난 뒤에도 같은 실행 결과를 확인할 수 있게 해, 실패 확인과 후속 대응에 필요한 정보를 함께 전달했습니다.
+              </p>
             </div>
 
             <div class="dd-metrics">
               <div><b>120개</b><span>자동화 TC · 실결제 · DRM 포함</span></div>
               <div><b>상시 운영</b><span>정기 회귀 · Smoke · 실행 상태 감시</span></div>
-              <div><b>약 70%↓</b><span>Sanity 리드타임 단축</span></div>
+              <!-- 기존 수치: 약 70%↓. 이력서의 30분 → 5분과 측정 조건 확인 후 복원. -->
+              <div><b>담당자 알림</b><span>실패 추이 · 실행별 리포트 연결</span></div>
             </div>
           </div>
         </div>
