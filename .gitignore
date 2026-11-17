@@ -27,3 +27,7 @@ _source/
 .DS_Store
 .idea/
 .vscode/
+
+# PDF exports and render previews
+output/pdf/
+tmp/pdfs/
