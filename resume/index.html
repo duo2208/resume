@@ -85,7 +85,7 @@
     /* 회사 단위 도메인 메시지 — 개별 프로젝트가 어떤 영역의 일이었는지 먼저 규정한다 */
     .company-domain{margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.02em;
       color:#2f4a7a;border-top:1px solid var(--line);padding-top:9px}
-    .project{padding:0 0 34px;margin-bottom:34px;border-bottom:1px solid var(--line)}
+    .project{padding:0 0 44px;margin-bottom:44px;border-bottom:1px solid var(--line)}
     .project:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
     .project h3{font-size:22px;line-height:1.35;margin:0 0 7px;letter-spacing:-.025em}
     /* 한 회사 안에서 프로젝트가 나란히 설 때 번호로 대등하게 묶는다 */
@@ -106,8 +106,8 @@
     /* 역량 묶음 — 한 프로젝트 안에서 검증 영역별로 나눠 스캔되게 한다 */
     .cap{margin-top:16px}
     .cap-k{font-size:14px;font-weight:800;color:#2f4a7a;letter-spacing:-.01em;margin-bottom:5px}
-    .cap ul{padding-left:18px}
-    .cap li{font-size:14.5px;color:#344054}
+    .project ul{padding-left:18px}
+    .project li{font-size:14.5px;line-height:1.72;color:#344054}
     /* 역량 블록 안에 놓인 링크는 해당 항목의 근거이므로 간격을 좁혀 붙인다 */
     .cap .linkrow{margin-top:8px}
     .stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
@@ -186,6 +186,68 @@
       #experience{-webkit-print-color-adjust:exact;print-color-adjust:exact;margin-top:32px}
     }
   </style>
+  <style>
+    .print-intro{display:none}
+    @media print{
+      @page{size:A4;margin:14mm 15mm 16mm}
+      body{font-size:10pt;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .page{padding:0;width:100%;max-width:none}
+      .hero{padding-bottom:16px}
+      h1{font-size:28pt;margin-bottom:5px}
+      .role{font-size:12pt;margin-bottom:12px}
+      .intro{font-size:10pt;max-width:none}
+      .skills{gap:5px;margin-top:12px}
+      .chip{font-size:8pt;padding:3px 7px}
+      .hero-role{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+      .print-intro{display:block;text-align:right;margin-top:0;font-size:8pt;color:#2f4a7a}
+      .print-intro a{font-weight:700;border-bottom:1px solid #c3cede}
+      section{padding-top:18px}
+      #experience{margin-top:24px;padding-top:0}
+      #experience .section-title{font-size:19pt;margin-bottom:12px}
+      .section-title{font-size:12pt;margin-bottom:12px;break-after:avoid}
+      .company{display:block;padding:18px 0;break-inside:auto}
+      .company-meta{position:static;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:12px;break-after:avoid}
+      .company-name{font-size:14pt;display:inline-block;margin-right:12px}
+      .company-role{display:inline-block;font-size:9pt}
+      .company-period{font-size:8.5pt;margin-top:2px}
+      .company-domain{display:none}
+      .company-lede{font-size:9pt;margin-bottom:8px}
+      .scale{font-size:8.5pt;margin-bottom:12px;gap:16px}
+      .project{break-inside:auto;margin-bottom:28px;padding-bottom:24px}
+      .project h3{font-size:14pt;break-after:avoid}
+      .pnum{font-size:9pt}
+      .project .subtitle,.description{font-size:9pt;margin-bottom:8px}
+      .stack{gap:5px}
+      .subtitle + .stack{margin-bottom:9px}
+      .stack span{font-size:7.5pt;padding:2px 6px}
+      .cap{margin-top:10px;break-inside:avoid}
+      .cap-k{font-size:9.5pt}
+      .project li{font-size:9pt;margin:3px 0}
+      .linkrow{justify-content:flex-end;margin-top:8px;gap:12px;break-inside:avoid}
+      .case-link{font-size:8pt;white-space:normal}
+      .case-link::after{content:none}
+      .grid2,.certs{grid-template-columns:1fr 1fr;gap:10px 20px}
+      .card{padding:12px;break-inside:avoid}
+      .card h4{font-size:10pt;margin-bottom:8px}
+      .tech{font-size:8pt;padding:3px 6px}
+      .techs{gap:5px}
+      .cert{font-size:8.5pt;padding:7px 0;break-inside:avoid}
+      .cert b{font-size:9pt}
+      .ci-value{font-size:9pt}
+      .ci-label{font-size:8pt}
+      #about{break-inside:avoid}
+      footer{margin-top:16px;padding-top:10px;font-size:8pt}
+      .project.print-quality{break-before:page}
+      .company:nth-of-type(2){break-before:page}
+      .company:not(:first-of-type) .project{break-inside:avoid}
+      .hero{padding-bottom:10px}
+      .company-lede{font-size:8.7pt;line-height:1.5}
+      .cap{margin-top:8px}
+      .project li{font-size:8.7pt;line-height:1.5}
+      .company:not(:first-of-type){padding:12px 0}
+      .company:not(:first-of-type) .project{margin-bottom:10px;padding-bottom:8px}
+    }
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#experience">본문으로 건너뛰기</a>
@@ -205,18 +267,17 @@
   <main class="page">
     <header class="hero" id="top">
       <h1>이지민</h1>
-      <div class="role">QA Engineer</div>
+      <div class="hero-role"><div class="role">QA Engineer</div><div class="print-intro"><a href="https://duo2208.github.io/resume/resume/">웹 경력 기술서 보기 ↗</a> · duo2208.github.io/resume/resume/</div></div>
       <p class="intro">
-        커머스·풀필먼트의 주문·클레임·재고·배송부터 B2C OTT의 결제·구독·계정·플레이어까지
-        복잡한 상태와 정책을 검증해왔습니다.
-        최근에는 E2E 자동화와 AI 기반 테스트 설계 워크플로우를 구축하며,
-        개인의 경험에 의존하던 검증을 반복 가능한 기준과 시스템으로 옮기고 있습니다.
+        개발 경험을 바탕으로 커머스·풀필먼트와 OTT 서비스의 QA를 담당해왔습니다.
+        요구사항 검토부터 테스트 설계와 배포 검수까지 참여하며, 반복 검증을 줄이기 위한 자동화와 테스트 도구도 만들고 있습니다.
       </p>
       <div class="skills">
         <span class="chip">Python</span><span class="chip">Pytest</span><span class="chip">Playwright</span><span class="chip">Selenium</span>
         <span class="chip">GitHub Actions</span><span class="chip">Jira</span><span class="chip">Charles Proxy</span>
         <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Django</span><span class="chip">Elasticsearch</span><span class="chip">SQL</span><span class="chip">Apache NiFi</span>
       </div>
+
     </header>
 
     <section id="experience">
@@ -231,12 +292,12 @@
         </aside>
         <div>
           <p class="company-lede">
-            B2C OTT 서비스의 iOS · Android · Web · Smart TV 품질을 담당합니다. 프로젝트 초기부터 QA 담당자로 참여해 요구사항
-            분석부터 테스트 설계·E2E 검증·릴리즈까지 수행하고, 자동화와 AI를 활용해 반복 검증을 구조화하고 있습니다.
+            iOS·Android·Web·Smart TV의 기능별 스쿼드 검수와 정기 배포 QA를 담당합니다.
+            요구사항 검토와 테스트 케이스 작성부터 결함 보고·수정 확인·릴리즈 검수까지 수행하며,
+            E2E 회귀 테스트 자동화와 AI를 활용한 테스트 케이스 작성 도구를 개발합니다.
           </p>
           <div class="scale">
-            <span><b>30+</b> Projects / Squads</span>
-            <span><b>30+</b> Regular Releases</span>
+            <span>스쿼드·통합검수 <b>35건</b></span>
           </div>
 
           <div class="project">
@@ -248,14 +309,15 @@
               <div class="cap-k">Account / Authentication</div>
               <ul>
                 <li>Apple · Google · Kakao 소셜 로그인과 계정 상태 조합의 가입·인증 검증.</li>
-                <li>비정상 계정 상태를 구조화하고 정책 개선 후 관련 CS 사실상 0건, 이메일 미인증 계정 30~37% 감소.</li>
+                <li>반복되는 가입·로그인 문의와 결제 후 계정 탈퇴 문제를 해결하기 위한 계정 체계 개선 스쿼드에 QA로 참여.</li>
+                <li>계정 상태별 가입·로그인 흐름을 테스트하고, 수정 후 계정 접근 복구를 포함한 사용자 흐름 재검증.</li>
               </ul>
             </div>
             <div class="cap">
               <div class="cap-k">Billing / Subscription</div>
               <ul>
                 <li>Apple IAP 전환과 결제 → 구독 → 복원 → 해지의 멤버십 상태 전이 검증.</li>
-                <li>Sandbox · Sentry · API · DB를 교차 분석해 외부 결제 상태와 내부 구독 데이터 정합성 검증.</li>
+                <li>Sandbox 결제 결과를 Sentry 로그·API 응답·DB와 대조해, 외부 결제 상태가 내부 구독 데이터에 맞게 반영되는지 확인.</li>
               </ul>
             </div>
             <div class="cap">
@@ -268,16 +330,30 @@
             <div class="cap">
               <div class="cap-k">Smart TV / Device</div>
               <ul>
-                <li>Android TV · Tizen · webOS 리빌드·리팩토링에서 플랫폼별 Full TC 설계 및 전수검사.</li>
-                <li>OS · 입력 방식 · 재생 환경 차이를 테스트 매트릭스로 구성해 핵심 사용자 흐름과 Player 동작 검증.</li>
+                <li>Tizen·webOS 스마트 TV 앱 리빌드 QA 참여 및 플랫폼별 Full TC 설계·전수검사.</li>
+                <li>Android TV·Tizen·webOS의 OS·입력 방식·재생 환경 차이를 테스트 매트릭스로 정리하고, 핵심 사용자 흐름과 Player 동작의 회귀 검증.</li>
               </ul>
             </div>
             <div class="cap">
-              <div class="cap-k">Commerce / Partnership · Experiment</div>
+              <div class="cap-k">Commerce</div>
               <ul>
-                <li>Store의 상품 탐색 → 주문 → 결제와 외부 제휴의 이용권·권한·동시재생 상태 정합성 검증.</li>
+                <li>OTT 멤버십 이용자를 대상으로 굿즈를 정기 제공하는 스토어 구독 상품의 구매 자격과 회차별 결제 상태 검증.</li>
+                <li>OTT 멤버십 상태에 따른 구매 제한과, 멤버십 자격 상실 후 스토어 구독 종료·주문 상세 표시·안내 메일 발송까지 서비스 간 연계 검증.</li>
+                <li>구독 해지 후 첫 회차 상품을 반복 구매할 수 있는 문제 제기. 주문·배송과 모집 정원의 관계를 정리해 재구매 제한·정원 반환 정책 보완에 참여.</li>
+                <li>스토어 적립금 도입 QA 담당. 주문 조건에 따른 적립금 사용 한도와 취소·환불 시 적립금 환원·결제 금액 반환 흐름 검증.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">Partnership</div>
+              <ul>
+                <li>NC소프트 제휴 QA 참여. 외부 제휴 이용권의 상태에 따른 이용 권한과 동시재생 제한 검증.</li>
+                <li>기프티콘 연동의 사용·취소·환불 흐름 검증.</li>
+              </ul>
+            </div>
+            <div class="cap">
+              <div class="cap-k">A/B Experiment</div>
+              <ul>
                 <li>Firebase A/B Test의 실험군 분기·이벤트 로깅·플랫폼별 정책 및 명세 밖 경계 조건 검증.</li>
-                <li>기프티콘 연동과 커머스 정기구독의 사용·취소·환불·회차별 결제 상태 검증.</li>
               </ul>
             </div>
             <div class="cap">
@@ -291,9 +367,9 @@
             </div>
           </div>
 
-          <div class="project">
+          <div class="project print-quality">
             <h3><span class="pnum">02</span>Quality Engineering</h3>
-            <div class="subtitle">테스트 설계와 반복 검증을 재현 가능한 시스템으로 전환</div>
+            <div class="subtitle">반복 회귀 자동화와 테스트 케이스 작성 도구 개발</div>
             <div class="stack"><span>Python</span><span>Pytest</span><span>Playwright</span><span>GitHub Actions</span><span>Allure</span><span>AI Workflow</span></div>
 
             <div class="cap">
@@ -322,7 +398,7 @@
               <div class="cap-k">AI-assisted Test Design</div>
               <ul>
                 <!-- 적용 규모 확인 필요: 기존 이력서는 5개 서비스, 포트폴리오는 5개 스쿼드로 기록돼 있음. -->
-                <li>Figma · SDD · Jira · Slack을 참조해 TC를 생성·최신화하는 팀 공용 도구를 구축하고 Smart TV Full TC 작성에 활용.</li>
+                <li>Figma · SDD · Jira · Slack을 참조해 TC를 생성·최신화하는 팀 공용 도구를 구축하고, 3개 서비스·8개 스쿼드의 시트 연동 설정 구성.</li>
                 <li>CLI의 입력·설정 부담을 줄이기 위해 Electron 폼 앱으로 확장. 스쿼드 등록·시트 연결을 화면에서 안내하고, 검토 결과 반영을 버튼으로 실행하도록 개선.</li>
                 <li>생성·수정 제안을 사람이 검토한 뒤 반영하도록 구성하고, 용어·출력 형식과 핵심 조건 누락을 확인하는 기준을 정비.</li>
               </ul>
@@ -334,8 +410,8 @@
             <div class="cap">
               <div class="cap-k">Load Test Design</div>
               <ul>
-                <li>AI를 활용해 대량 테스트 계정 준비를 스크립트화하고, 같이보기 채팅 부하테스트에 적용.</li>
-                <li>로그인 지연이 채팅·재생 API 측정에 영향을 주는 상황을 확인하고, 사전 로그인과 본 부하 시나리오를 분리.</li>
+                <li>상용과 가장 유사한 서버 구성을 갖춘 dev 환경에서 선행 상영회의 동시 입장·방송 시작·추가 입장 상황을 JMeter로 재현하고, 부하에 따라 입장·재생 요청이 실패하는 구간을 확인.</li>
+                <li>대기 중 채팅보다 입장과 방송 시작 시 재생 요청이 먼저 실패하는 양상을 공유하고, dev 환경의 결과와 상용 수용 인원 추정을 구분.</li>
               </ul>
             </div>
           </div>
@@ -345,9 +421,10 @@
             <div class="subtitle">프로젝트 QA 담당 · 요구사항 분석부터 릴리즈까지</div>
             <div class="stack"><span>Shift-Left</span><span>RCA</span><span>Testability</span><span>Risk</span></div>
             <ul>
-              <li>프로젝트 초기부터 QA 담당자로 참여해 요구사항의 모순·정책 누락·경계 조건을 분석하고 테스트 전략 수립.</li>
-              <li>동적 상태 등 검증이 어려운 영역은 개발 단계에서 테스트 기능을 요구하여 Testability 확보.</li>
-              <li>adb logcat · Sentry · API · DB를 활용해 Client / Server / Network / Data 계층으로 결함 원인 분리.</li>
+              <li>프로젝트 초기부터 QA로 참여해 요구사항에서 서로 맞지 않는 내용과 빠진 정책을 확인하고, 경계 조건을 포함해 테스트 범위를 정리.</li>
+              <li>테스트 중 필요한 상태를 직접 만들기 어려운 경우, 개발 단계에서 해당 상태를 설정할 수 있는 테스트 기능을 요청.</li>
+              <li>검수용 데이터를 빠르게 구성할 수 있도록 관리자 기능 지원을 요청하고, 기능 통합에 맞춰 수동 TC와 자동화 테스트를 함께 갱신.</li>
+              <li>adb logcat·Sentry 로그, API 응답과 DB를 확인해 클라이언트·서버·네트워크·데이터 중 어느 부분에서 문제가 발생하는지 추적.</li>
               <li>결함 심각도·Side Effect·잔여 리스크를 기반으로 검수 Hold/릴리즈 판단에 참여하고, VOC·운영 이슈를 후속 회귀 범위에 반영.</li>
             </ul>
           </div>
