@@ -1,14 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>이지민 | QA Engineer Portfolio - Case Study</title>
-    <meta
-      name="description"
-      content="QA Engineer 이지민 포트폴리오. OTT QA, Web E2E Automation, 결제/계정/라이브/제휴 Case Study와 실제 검증 문서 예시."
-    />
-    <style>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>이지민 | QA Engineer Portfolio - Case Study</title>
+<meta content="QA Engineer 이지민 포트폴리오. OTT QA, Web E2E Automation, 결제/계정/라이브/제휴 Case Study와 실제 검증 문서 예시." name="description"/>
+<style>
       :root {
         --bg: #fcfcfb;
         --paper: #ffffff;
@@ -2240,7 +2238,7 @@
         color: #c4ccda;
         font-size: 13.5px;
         line-height: 1.7;
-        max-width: 560px;
+        max-width: none;
       }
       .dd-stack {
         display: flex;
@@ -2665,7 +2663,7 @@
         }
       }
     </style>
-    <style>
+<style>
       .print-cover{display:none}
       @media print{
         @page{size:A4;margin:14mm 14mm 16mm}
@@ -2786,816 +2784,751 @@
         .more-case > summary > div{flex:1;min-width:0}
       }
     </style>
-  </head>
-  <body>
-    <!-- ===== 상단 고정 네비게이션 ===== -->
-    <nav class="nav">
-      <div class="wrap">
-        <a class="brand" href="#top">이지민 · QA Engineer</a>
-        <div class="links"><a href="#approach">Approach</a><a href="#process">Engineering</a><a href="#cases">Case Studies</a></div>
-      </div>
-    </nav>
-    <main id="top">
-      <div class="wrap print-cover"><strong>이지민 · QA Portfolio</strong><p>제품의 맥락을 이해하고, 팀이 믿고 배포할 수 있는 검증을 만듭니다.</p><p style="font-size:9pt;color:#667085;margin-top:16px">웹에서 보시면 도식과 상세 자료를 더 편하게 확인할 수 있습니다.</p><p><a href="https://duo2208.github.io/resume/qa-portfolio/">웹 포트폴리오 보기 ↗</a> · duo2208.github.io/resume/qa-portfolio/</p></div>
-      <!-- ===== 01. 어떤 QA인가 : 말 대신 담당 범위로 ===== -->
-      <!-- ===== 01. 어떤 QA인가 : 실제 검증 방식 ===== -->
-      <section id="approach">
-        <div class="wrap">
-          <div class="section-head">
-            <div>
-              <h2>어떤 QA인가</h2>
-              <div class="domains">제품의 맥락을 이해하고, 팀이 믿고 배포할 수 있는 검증을 만듭니다.</div>
-            </div>
-          </div>
-          <div class="layers">
-            <div class="ly">
-              <div class="ly-k">먼저 확인해야 할 위험을 정합니다</div>
-              <div class="ly-t">요구사항 · 사용자 흐름 · 변경 영향도</div>
-              <p>
-                기획 단계부터 정책과 사용자 흐름을 살펴보고, API·스키마의 연결 관계까지 확인해 검증 범위를 정합니다.
-                고객 영향과 잔여 리스크를 근거로 검수 우선순위와 릴리즈 판단을 팀과 논의합니다.
-              </p>
-            </div>
-            <div class="ly">
-              <div class="ly-k">실제 동작을 근거로 원인을 좁힙니다</div>
-              <div class="ly-t">화면 · API · 데이터 · 기기 환경</div>
-              <p>
-                화면의 결과를 API 응답·DB 이력·기기 로그와 대조해 문제의 발생 지점을 좁힙니다.
-                검수 환경의 제약도 함께 살피고, 필요한 흐름을 확인할 수 있도록 제품과 환경의 개선을 제안합니다.
-              </p>
-            </div>
-            <div class="ly">
-              <div class="ly-k">검증 경험을 팀의 자산으로 남깁니다</div>
-              <div class="ly-t">회귀 자동화 · 케이스 동기화 · 검수 가이드</div>
-              <p>
-                반복 회귀를 자동화하고, 테스트 코드와 케이스 문서를 동기화합니다.
-                검수 절차와 실패 대응 기준을 공유해 담당자가 바뀌어도 같은 기준으로 검증할 수 있게 만듭니다.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+<style id="approach-four-cards">
+#approach .layers {grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;}
+#approach .ly {grid-template-columns:1fr;gap:6px;align-content:start;}
+#approach .ly-t {margin-top:0;}
+#approach .ly p {grid-column:1;grid-row:auto;margin-top:6px;}
+@media(max-width:760px){#approach .layers{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<!-- ===== 상단 고정 네비게이션 ===== -->
+<nav class="nav">
+<div class="wrap">
+<a class="brand" href="#top">이지민 · QA Engineer</a>
+<div class="links"><a href="#approach">Approach</a><a href="#process">Engineering</a><a href="#cases">Case Studies</a></div>
+</div>
+</nav>
+<main id="top">
+<div class="wrap print-cover"><strong>이지민 · QA Portfolio</strong><p></p><p style="font-size:9pt;color:#667085;margin-top:16px">웹에서 보시면 도식과 상세 자료를 더 편하게 확인할 수 있습니다.</p><p><a href="https://duo2208.github.io/resume/qa-portfolio/">웹 포트폴리오 보기 ↗</a> · duo2208.github.io/resume/qa-portfolio/</p></div>
+<!-- ===== 01. 어떤 QA인가 : 말 대신 담당 범위로 ===== -->
+<!-- ===== 01. 어떤 QA인가 : 실제 검증 방식 ===== -->
+<section id="approach">
+<div class="wrap">
+<div class="section-head">
+<div>
+<h2>어떤 QA인가</h2>
+<div class="domains"></div>
+</div>
+</div>
+<div class="layers">
+<div class="ly">
+<div class="ly-k">사업 일정과 출시 목적을 고려해 QA를 수행합니다</div>
+<div class="ly-t">콘텐츠 커머스 · 시즌 프로모션 · 출시 대응</div>
+<p>콘텐츠 IP 상품의 구매 동기와 시즌별 판매 시점을 이해하고, MD 일정에 따라 단기간에 기능 반영이 필요한 프로젝트의 QA를 주로 담당했습니다. 덕키박스에서는 추석 시즌 판매와 온라인 구매 기회 확대라는 출시 목적을 바탕으로, 변경되는 요구사항과 일정에 대응하며 검수를 수행했습니다.</p>
+</div><div class="ly"><div class="ly-k">실제 동작을 근거로 원인을 좁힙니다</div><div class="ly-t">화면 · API · 데이터 · 기기 환경</div><p>화면의 결과를 API 응답·DB 이력·기기 로그와 대조해 문제가 발생하는 조건과 지점을 좁힙니다. 확인한 근거를 개발팀과 공유하고, 수정 후 같은 조건에서 다시 검증합니다.</p></div>
+<div class="ly">
+<div class="ly-k">협업 부서의 자율 검증을 지원합니다</div>
+<div class="ly-t">검수 정보 체계화 · 테스트 접근성 · 협업 효율</div>
+<p>분산된 테스트 환경과 관리자 접근 정보를 정리해, 협업 부서가 검수에 필요한 정보를 직접 확인할 수 있도록 했습니다. 비개발 직군도 별도 문의 없이 자가 검수를 진행할 수 있도록 지원하며, QA에 집중되던 정보 확인과 안내 부담을 줄이고자 했습니다.</p>
+</div>
+<div class="ly">
+<div class="ly-k">반복되는 제약은 방법을 바꿔 해결합니다</div>
+<div class="ly-t">테스트 자동화 · AI 활용 · 테스트 데이터 준비</div>
+<p>반복 검수를 자동화하고, 요구사항을 바탕으로 테스트 케이스 초안을 생성하는 AI 도구를 개발했습니다. 검수 조건에 맞는 테스트 계정도 사전에 구성해, 테스트 준비부터 실행까지 반복되는 수작업을 줄이는 방향으로 업무 방식을 개선했습니다.</p>
+</div>
+</div>
+</div>
+</section>
 <!-- ===== Engineering : 테스트 환경 개선 ===== -->
-      <section id="process">
-        <div class="wrap">
-          <div class="section-head">
-            <div>
-              <h2>테스트 환경 개선</h2>
-              <p>
-                테스트 케이스 작성과 데이터 준비를 돕는 도구를 만들고, 결제 검수 절차를 문서로 정리했습니다.<br>
+<section id="process">
+<div class="wrap">
+<div class="section-head">
+<div>
+<h2>테스트 환경 개선</h2>
+<p>
+                테스트 케이스 작성과 데이터 준비를 돕는 도구를 만들고, 결제 검수 절차를 문서로 정리했습니다.<br/>
                 반복 회귀는 E2E 자동화로 확인하고, 동시 접속 상황은 부하 테스트로 재현해 입장·재생 요청의 실패 양상을 살폈습니다.
               </p>
-            </div>
-          </div>
-          <div class="pipeline">
-            <div class="pipe-row">
-              <div class="pipe-top">
-                <span class="pipe-num">01</span>
-                <h3>AI 기반 Testcase Workflow</h3>
-                <span class="tag">테스트 설계를 구조화</span>
-              </div>
-              <p class="pipe-desc">
+</div>
+</div>
+<div class="pipeline">
+<div class="pipe-row">
+<div class="pipe-top">
+<span class="pipe-num">01</span>
+<h3>AI 기반 Testcase Workflow</h3>
+<span class="tag">테스트 설계를 구조화</span>
+</div>
+<p class="pipe-desc">
                 Figma·SDD·Jira·Slack을 참조해 <b>테스트 케이스를 생성·최신화하는 팀 공용 도구</b>를 만들었습니다.
               </p>
-              <p class="pipe-desc">
+<p class="pipe-desc">
                 CLI의 설정 부담을 줄이기 위해 <b>Electron 폼 앱</b>으로 확장했습니다.
                 AI의 생성·수정 제안은 사람이 검토한 뒤 시트에 반영하며, 용어·출력 형식과 조건 누락을 확인하는 기준을 보완하고 있습니다.
               </p>
-              <figure class="flowfig">
-                <svg viewBox="0 0 720 300" role="img" aria-label="요구사항 소스에서 LLM과 결정론적 스크립트를 거쳐 Google Spreadsheet로 이어지는 워크플로우 구성도">
-                  <defs>
-                    <marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                      <path d="M0 0 L10 5 L0 10 z" fill="#98a2b3" />
-                    </marker>
-                  </defs>
-                  <g font-family="inherit" text-anchor="middle">
-                    <rect x="180" y="8" width="360" height="34" rx="8" fill="#f5f5f2" stroke="#d9d9d5" />
-                    <text x="360" y="30" font-size="13" fill="#4d4d4d">Jira · Notion · Figma · Slack · SDD</text>
-                    <line x1="360" y1="42" x2="360" y2="66" stroke="#98a2b3" marker-end="url(#fa)" />
-
-                    <line x1="360" y1="66" x2="200" y2="66" stroke="#98a2b3" />
-                    <line x1="360" y1="66" x2="520" y2="66" stroke="#98a2b3" />
-                    <line x1="200" y1="66" x2="200" y2="80" stroke="#98a2b3" marker-end="url(#fa)" />
-                    <line x1="520" y1="66" x2="520" y2="80" stroke="#98a2b3" marker-end="url(#fa)" />
-
-                    <rect x="96" y="84" width="208" height="50" rx="8" fill="#fff" stroke="#d9d9d5" />
-                    <text x="200" y="104" font-size="13" font-weight="700" fill="#1a1a1a">Figma · 화면 인벤토리</text>
-                    <text x="200" y="122" font-size="11.5" fill="#666">화면 · 상태 · 사용자 흐름</text>
-
-                    <rect x="416" y="84" width="208" height="50" rx="8" fill="#fff" stroke="#d9d9d5" />
-                    <text x="520" y="104" font-size="13" font-weight="700" fill="#1a1a1a">SDD · Spec</text>
-                    <text x="520" y="122" font-size="11.5" fill="#666">정책 · 판정 기준</text>
-
-                    <line x1="200" y1="134" x2="200" y2="150" stroke="#98a2b3" />
-                    <line x1="520" y1="134" x2="520" y2="150" stroke="#98a2b3" />
-                    <line x1="200" y1="150" x2="520" y2="150" stroke="#98a2b3" />
-                    <line x1="360" y1="150" x2="360" y2="166" stroke="#98a2b3" marker-end="url(#fa)" />
-
-                    <rect x="228" y="170" width="264" height="46" rx="8" fill="#eef1f7" stroke="#c3cdfa" />
-                    <text x="360" y="189" font-size="13" font-weight="800" fill="#20347a">LLM</text>
-                    <text x="360" y="207" font-size="11.5" fill="#3b4a7a">TC 생성 · 변경 판단</text>
-                    <line x1="360" y1="216" x2="360" y2="232" stroke="#98a2b3" marker-end="url(#fa)" />
-
-                    <rect x="228" y="236" width="264" height="46" rx="8" fill="#eaf6ef" stroke="#bfe3cb" />
-                    <text x="360" y="255" font-size="13" font-weight="800" fill="#0b5c40">Deterministic Script</text>
-                    <text x="360" y="273" font-size="11.5" fill="#2f6b52">계약 검증 · 백업 · 시트 쓰기 · 병합</text>
-
-                    <line x1="492" y1="259" x2="560" y2="259" stroke="#98a2b3" marker-end="url(#fa)" />
-                    <text x="638" y="255" font-size="12" font-weight="800" fill="#1a1a1a">Google Spreadsheet</text>
-                    <text x="638" y="271" font-size="11" fill="#666">Single Source</text>
-                  </g>
-                </svg>
-                <figcaption>
+<figure class="flowfig">
+<svg aria-label="요구사항 소스에서 LLM과 결정론적 스크립트를 거쳐 Google Spreadsheet로 이어지는 워크플로우 구성도" role="img" viewbox="0 0 720 300">
+<defs>
+<marker id="fa" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="9" refy="5" viewbox="0 0 10 10">
+<path d="M0 0 L10 5 L0 10 z" fill="#98a2b3"></path>
+</marker>
+</defs>
+<g font-family="inherit" text-anchor="middle">
+<rect fill="#f5f5f2" height="34" rx="8" stroke="#d9d9d5" width="360" x="180" y="8"></rect>
+<text fill="#4d4d4d" font-size="13" x="360" y="30">Jira · Notion · Figma · Slack · SDD</text>
+<line marker-end="url(#fa)" stroke="#98a2b3" x1="360" x2="360" y1="42" y2="66"></line>
+<line stroke="#98a2b3" x1="360" x2="200" y1="66" y2="66"></line>
+<line stroke="#98a2b3" x1="360" x2="520" y1="66" y2="66"></line>
+<line marker-end="url(#fa)" stroke="#98a2b3" x1="200" x2="200" y1="66" y2="80"></line>
+<line marker-end="url(#fa)" stroke="#98a2b3" x1="520" x2="520" y1="66" y2="80"></line>
+<rect fill="#fff" height="50" rx="8" stroke="#d9d9d5" width="208" x="96" y="84"></rect>
+<text fill="#1a1a1a" font-size="13" font-weight="700" x="200" y="104">Figma · 화면 인벤토리</text>
+<text fill="#666" font-size="11.5" x="200" y="122">화면 · 상태 · 사용자 흐름</text>
+<rect fill="#fff" height="50" rx="8" stroke="#d9d9d5" width="208" x="416" y="84"></rect>
+<text fill="#1a1a1a" font-size="13" font-weight="700" x="520" y="104">SDD · Spec</text>
+<text fill="#666" font-size="11.5" x="520" y="122">정책 · 판정 기준</text>
+<line stroke="#98a2b3" x1="200" x2="200" y1="134" y2="150"></line>
+<line stroke="#98a2b3" x1="520" x2="520" y1="134" y2="150"></line>
+<line stroke="#98a2b3" x1="200" x2="520" y1="150" y2="150"></line>
+<line marker-end="url(#fa)" stroke="#98a2b3" x1="360" x2="360" y1="150" y2="166"></line>
+<rect fill="#eef1f7" height="46" rx="8" stroke="#c3cdfa" width="264" x="228" y="170"></rect>
+<text fill="#20347a" font-size="13" font-weight="800" x="360" y="189">LLM</text>
+<text fill="#3b4a7a" font-size="11.5" x="360" y="207">TC 생성 · 변경 판단</text>
+<line marker-end="url(#fa)" stroke="#98a2b3" x1="360" x2="360" y1="216" y2="232"></line>
+<rect fill="#eaf6ef" height="46" rx="8" stroke="#bfe3cb" width="264" x="228" y="236"></rect>
+<text fill="#0b5c40" font-size="13" font-weight="800" x="360" y="255">Deterministic Script</text>
+<text fill="#2f6b52" font-size="11.5" x="360" y="273">계약 검증 · 백업 · 시트 쓰기 · 병합</text>
+<line marker-end="url(#fa)" stroke="#98a2b3" x1="492" x2="560" y1="259" y2="259"></line>
+<text fill="#1a1a1a" font-size="12" font-weight="800" x="638" y="255">Google Spreadsheet</text>
+<text fill="#666" font-size="11" x="638" y="271">Single Source</text>
+</g>
+</svg>
+<figcaption>
                   AI가 테스트 케이스 초안과 수정안을 제안하고, 검토한 내용을 스크립트로 시트에 반영합니다.
-                  <div class="pipe-stat"><b>개선 목표</b> · TC 형식 준수율 90% 이상, 수동 작성 대비 초안 작성 시간 30% 이상 단축</div>
-                  <div class="pipe-stat"><b>현재 연결 범위</b> · 3개 서비스, 8개 스쿼드의 테스트 케이스 시트</div>
-                </figcaption>
-              </figure>
-            </div>
-            <div class="pipe-row">
-              <div class="pipe-top">
-                <span class="pipe-num">02</span>
-                <h3>결제 테스트 문서화</h3>
-                <span class="tag">테스트 지식을 구조화</span>
-              </div>
-              <div class="pipe-flow">
-                <span class="stage">상태 정의</span><span class="sep">▸</span><span class="stage">만드는 법</span
-                ><span class="sep">▸</span><span class="stage">확인 이벤트</span><span class="sep">▸</span
-                ><span class="stage">팀 위키</span>
-              </div>
-              <p class="pipe-desc">
-                샌드박스 상태 생성표, 온홀드 재현 절차, 계정 꼬임 예방 규칙을 팀 문서로 만들었습니다. <br />
+                  <div class="pipe-stat"><b>초안 작성 시간</b> · 수동 작성 대비 50% 이상 단축 (사용 경험 기준 추정)</div>
+<div class="pipe-stat"><b>개선 과제</b> · TC 형식 준수율 개선 중</div>
+
+</figcaption>
+</figure>
+</div>
+<div class="pipe-row">
+<div class="pipe-top">
+<span class="pipe-num">02</span>
+<h3>결제 테스트 문서화</h3>
+<span class="tag">테스트 지식을 구조화</span>
+</div>
+<div class="pipe-flow">
+<span class="stage">상태 정의</span><span class="sep">▸</span><span class="stage">만드는 법</span><span class="sep">▸</span><span class="stage">확인 이벤트</span><span class="sep">▸</span><span class="stage">팀 위키</span>
+</div>
+<p class="pipe-desc">
+                샌드박스 상태 생성표, 온홀드 재현 절차, 계정 꼬임 예방 규칙을 팀 문서로 만들었습니다. <br/>
                 담당자만 알고 있던 결제 테스트 절차를 누구나 따라 할 수 있게 했습니다.
               </p>
-              <div class="pipe-stat">✅ 사내 위키로 운영</div>
-            </div>
-            <div class="pipe-row">
-              <div class="pipe-top">
-                <span class="pipe-num">03</span>
-                <h3>테스트 데이터 세팅의 도구화</h3>
-                <span class="tag">테스트 상태 조립 실험</span>
-              </div>
-              <div class="pipe-flow">
-                <span class="stage">반복되는 데이터 준비 확인</span><span class="sep">▸</span><span class="stage">필요한 상태·액션 정리</span
-                ><span class="sep">▸</span><span class="stage">어드민 MCP 제안</span><span class="sep">▸</span
-                ><span class="stage">fixture 상태 조립 실험</span>
-              </div>
-              <p class="pipe-desc">
+<div class="pipe-stat">✅ 사내 위키로 운영</div>
+</div>
+<div class="pipe-row">
+<div class="pipe-top">
+<span class="pipe-num">03</span>
+<h3>테스트 데이터 세팅의 도구화</h3>
+<span class="tag">테스트 상태 조립 실험</span>
+</div>
+<div class="pipe-flow">
+<span class="stage">반복되는 데이터 준비 확인</span><span class="sep">▸</span><span class="stage">필요한 상태·액션 정리</span><span class="sep">▸</span><span class="stage">어드민 MCP 제안</span><span class="sep">▸</span><span class="stage">테스트 계정·데이터 사전 구성</span>
+</div>
+<p class="pipe-desc">
                 여러 스쿼드의 전수 검증을 병행하면서, 환경을 초기화할 때마다 테스트 데이터를
                 다시 준비해야 했습니다. 회고에서 데이터 준비에 드는 시간을 줄이기 위해, “온홀드 상태로 만들어줘”처럼 계정·결제·콘텐츠
                 상태를 한 번에 만들 수 있는 어드민 MCP 도입을 제안했습니다.
               </p>
-              <div class="pipe-stat">✅ 회고에서 채택되어 백엔드팀 작업 완료 후, 검수 가이드 세션 운영 중</div>
-              <p class="pipe-desc">
-                최근에는 스쿼드에서 fixture로 테스트에 필요한 상태를 조립하는 실험을 진행하고 있습니다.
-                현재 스쿼드 검수에 필요한 데이터를 준비하는 데 적용해보는 단계입니다.
-              </p>
-              <div class="pipe-stat">✅ 진행 중 · 스쿼드 검수에서 fixture 적용 실험</div>
-            </div>
-            <div class="pipe-row">
-              <div class="pipe-top">
-                <span class="pipe-num">04</span>
-                <h3>선행 상영회 입장·재생 부하 검증</h3>
-                <span class="tag">동시 접속 시 어느 단계부터 실패하는가</span>
-              </div>
-              <p class="pipe-desc">
+<div class="pipe-stat">✅ 회고에서 채택되어 백엔드팀 작업 완료 후, 검수 가이드 세션 운영 중</div>
+<p class="pipe-desc">백엔드와 협업해 테스트 계정과 데이터를 사전에 준비하여, 디자인팀과의 반복적인 확인·조율과 전체 검수 시간을 줄였습니다. 사전 데이터로 검증할 수 있는 범위를 구분해 검수 프로세스에 반영했으며, 확인된 효용을 바탕으로 고도화를 이어가기로 했습니다.</p>
+<div class="pipe-stat">✅ 검수 준비·조율 부담 감소 · 프로세스 반영 및 고도화 추진</div>
+</div>
+<div class="pipe-row">
+<div class="pipe-top">
+<span class="pipe-num">04</span>
+<h3>선행 상영회 입장·재생 부하 검증</h3>
+<span class="tag">동시 접속 시 어느 단계부터 실패하는가</span>
+</div>
+<p class="pipe-desc">
                 선행 상영회에 접속이 몰릴 때 <b>입장과 방송 시작 시 재생 요청이 정상적으로 처리되는지</b>를 확인하기 위해
-                상용과 가장 유사한 서버 구성을 갖춘 dev 환경에서 JMeter로 동시 입장·대기·방송 시작·추가 입장 상황을 검증했습니다.
+                상용과 가장 유사한 서버 구성을 갖춘 환경에서 JMeter로 동시 입장·대기·방송 시작·추가 입장 상황을 검증했습니다.
                 대량 계정 준비는 AI의 도움으로 스크립트화했습니다. <b>테스트 계정의 로그인을 미리 마친 뒤, 로그인된 사용자들이 동시에 상영회에 입장하도록 구성</b>했습니다.
               </p>
-              <p class="pipe-desc">
+<p class="pipe-desc">
                 테스트 결과 <b>대기 중 채팅보다 입장과 방송 시작 순간의 재생 요청이 먼저 실패</b>하는 양상을 확인했습니다.
                 시청자가 쌓이면서 홈·상영회 조회도 느려졌고, 함께 테스트한 개발자는 방송 시작 후 추가 입장 과정에서 서버가 응답하지 않는 상황을 공유했습니다.
-                단계별 실패 양상을 팀에 전달했습니다.
+                단계별 실패 양상과 서비스 이용에 미치는 리스크를 팀에 공유했습니다.
               </p>
-              <div class="pipe-flow">
-                <span class="stage">테스트 계정 로그인 완료</span><span class="sep">▸</span><span class="stage">동시 입장·재생 요청·채팅 발송</span><span class="sep">▸</span><span class="stage">지연·실패 원인 구분</span>
-              </div>
-            </div>
-          </div>
-          <div class="deep-dive" id="automation">
-            <div class="dd-head">
-              <div class="dd-main">
-                <div class="dd-top">
-                  <div class="dd-eyebrow">테스트 실행을 구조화</div>
-                </div>
-                <div class="dd-title">웹 자동화 0→1 구축</div>
-                <p class="dd-desc">
-                  사람이 반복하던 핵심 회귀를 코드로 옮기고, 실결제·DRM까지 포함한 E2E를 무인 운영하고 있습니다. 실행 빈도와
-                  실행 비용이 다른 테스트를 분리하고, 테스트가 실행되지 않는 상황도 감지하도록 구성했습니다.
-                </p>
-                <div class="dd-stack">
-                  <span>Playwright</span><span>pytest</span><span>GitHub Actions</span><span>Self-hosted Runner</span
-                  ><span>Storage State</span><span>CDP</span>
-                </div>
-              </div>
-              <div class="dd-actions">
-                <a
-                  class="dd-btn primary"
-                  href="https://duo2208.github.io/resume/allure/trends.html"
-                  target="_blank"
-                  rel="noopener"
-                  >Allure 데모 보기 →</a
-                >
-                <a class="dd-btn" href="https://blog.laftel.net/post/58" target="_blank" rel="noopener">구축 과정 보기 →</a>
-              </div>
-            </div>
-            <div class="dd-why">
-              <div class="dd-why-title">왜 이렇게 설계했나</div>
-              <ul>
-                <li><b>4-Layer 구조</b>화면 변경의 영향을 Locator 계층에 격리하도록 역할을 분리했습니다</li>
-                <li><b>Storage State</b>로그인 상태를 재사용해 반복 테스트의 준비 비용을 크게 줄였습니다</li>
-                <li><b>Self-hosted Runner</b>사내 네트워크와 DRM·실결제 등 실제 서비스 조건에서도 정기 회귀를 수행할 수 있도록 구성했습니다</li>
-                <li><b>실패 원인 분류</b>Product · Environment · Flaky를 구분해 자동화 실패를 곧바로 제품 결함으로 판단하지 않도록 했습니다</li>
-                <li><b>테스트 케이스 동기화</b>테스트 코드 수정 후 동기화 도구로 케이스 문서를 갱신해, 코드와 문서를 따로 수정하는 부담과 불일치를 줄였습니다</li>
-              </ul>
-            </div>
-
-            <!-- 배포 검증 사례와 실행 유형별 운영 기록 -->
-            <div class="dd-ops">
-              <div class="dd-why-title">자동화 신뢰성 유지와 배포 검증</div>
-              <p class="dd-ops-note">
+<div class="pipe-flow">
+<span class="stage">테스트 계정 로그인 완료</span><span class="sep">▸</span><span class="stage">동시 입장·재생 요청·채팅 발송</span><span class="sep">▸</span><span class="stage">지연·실패 원인 구분</span>
+</div>
+</div>
+</div>
+<div class="deep-dive" id="automation">
+<div class="dd-head">
+<div class="dd-main">
+<div class="dd-top">
+<div class="dd-eyebrow">테스트 실행을 구조화</div>
+</div>
+<div class="dd-title">웹 자동화 0→1 구축</div><p class="dd-desc">사람이 반복하던 핵심 회귀를 코드로 옮기고, 실결제·DRM까지 포함한 E2E를 무인 운영하고 있습니다.</p>
+<div class="dd-stack">
+<span>Playwright</span><span>pytest</span><span>GitHub Actions</span><span>Self-hosted Runner</span><span>Storage State</span><span>CDP</span>
+</div>
+</div>
+<div class="dd-actions">
+<a class="dd-btn primary" href="https://duo2208.github.io/resume/allure/trends.html" rel="noopener" target="_blank">Allure 데모 보기 →</a>
+<a class="dd-btn" href="https://blog.laftel.net/post/58" rel="noopener" target="_blank">구축 과정 보기 →</a>
+</div>
+</div>
+<div class="dd-why">
+<div class="dd-why-title">왜 이렇게 설계했나</div>
+<ul>
+<li><b>4-Layer 구조</b>화면 변경의 영향을 Locator 계층에 격리하도록 역할을 분리했습니다</li>
+<li><b>Storage State</b>로그인 상태를 재사용해 반복 테스트의 준비 비용을 크게 줄였습니다</li>
+<li><b>Self-hosted Runner</b>사내 네트워크와 DRM·실결제 등 실제 서비스 조건에서도 정기 회귀를 수행할 수 있도록 구성했습니다</li>
+<li><b>실패 원인 분류</b>Product · Environment · Flaky를 구분해 자동화 실패를 곧바로 제품 결함으로 판단하지 않도록 했습니다</li>
+<li><b>테스트 케이스 동기화</b>테스트 코드 수정 후 동기화 도구로 케이스 문서를 갱신해, 코드와 문서를 따로 수정하는 부담과 불일치를 줄였습니다</li>
+</ul>
+</div>
+<!-- 배포 검증 사례와 실행 유형별 운영 기록 -->
+<div class="dd-ops">
+<div class="dd-why-title">자동화 신뢰성 유지와 배포 검증</div>
+<p class="dd-ops-note">
                 자동화 결과를 신뢰할 수 있도록, <b>Flaky가 발생하면 담당자를 멘션해 빠르게 확인하고 대응할 수 있게</b> 했습니다.
                 알림에는 해당 실행의 리포트를 연결해 실패 내용을 바로 확인할 수 있도록 했습니다.
               </p>
-              <p class="dd-ops-note">
+<p class="dd-ops-note">
                 서버 정기 배포와 QA 스쿼드 배포 관련 검증에도 활용했습니다.
                 2026년 7월에는 배포 후 시간이 지나 발생한 라이브·이벤트 페이지 장애가 운영 E2E 테스트에서도 확인됐습니다.
                 후속 조사에서 운영 환경 설정 문제가 확인됐으며,
                 재배포 전에는 QA 환경에서 부하 테스트를 수행해 이상 응답 여부를 점검했습니다.
               </p>
-              <table class="lanes">
-                <caption class="dd-why-title">2026.04.30–10.06 실행 유형별 운영 기록</caption>
-                <thead><tr><th>실행 유형</th><th>횟수</th><th>검증 목적</th></tr></thead>
-                <tbody>
-                  <tr><td>Heartbeat Smoke</td><td>1,054회</td><td>2시간 간격 스모크. 결제·DRM 제외, 리포팅 미적재, 상태 전이 시에만 알림</td></tr>
-                  <tr><td>정기 회귀 (schedule)</td><td>272회</td><td>전수 회귀</td></tr>
-                  <tr><td>수동 디스패치</td><td>172회</td><td>서버 정기 배포·스쿼드 배포 검증에 활용</td></tr>
-                  <tr><td>PR Gate</td><td>42회</td><td>서버 정기 배포·스쿼드 배포 검증에 활용</td></tr>
-                </tbody>
-              </table>
-              <p class="dd-ops-note">
-                실행 유형별 수치는 운영 기록 기준이며, 배포 건수나 탐지한 결함 건수를 뜻하지 않습니다.
-              </p>
-              <p class="dd-ops-note">
-                <b>다음 과제는 배포 절차에 정착시키는 것입니다.</b>
+<table class="lanes">
+<caption class="dd-why-title">2026.04.30–10.06 실행 유형별 운영 기록</caption>
+<thead><tr><th>실행 유형</th><th>횟수</th><th>검증 목적</th></tr></thead>
+<tbody>
+<tr><td>Heartbeat Smoke</td><td>1,054회</td><td>2시간 간격 스모크. 결제·DRM 제외, 리포팅 미적재, 상태 전이 시에만 알림</td></tr>
+<tr><td>정기 회귀 (schedule)</td><td>272회</td><td>전수 회귀</td></tr>
+<tr><td>수동 디스패치</td><td>172회</td><td>서버 정기 배포·스쿼드 배포 검증에 활용</td></tr>
+<tr><td>PR Gate</td><td>42회</td><td>서버 정기 배포·스쿼드 배포 검증에 활용</td></tr>
+</tbody>
+</table>
+<p class="dd-ops-note">
+<b>다음 과제는 배포 절차에 정착시키는 것입니다.</b>
                 팀 피드백에서는 QA 중심의 사용을 넘어 각 팀이 결과를 활용하고, 배포 진행 판단에 연결할 필요가 제기되었습니다.
                 웹 E2E의 검증 범위와 앱 배포 검증을 구분하고, 앱 자동화의 구축·안정화와 함께 도입 범위를 넓히는 과제가 남아 있습니다.
               </p>
-            </div>
-
-            <div class="dd-metrics">
-              <div><b>120개</b><span>자동화 TC · 실결제 · DRM 포함</span></div>
-              <div><b>상시 운영</b><span>정기 회귀 · Smoke · 실행 상태 감시</span></div>
-              <!-- 기존 수치: 약 70%↓. 이력서의 30분 → 5분과 측정 조건 확인 후 복원. -->
-              <div><b>담당자 알림</b><span>실패 추이 · 실행별 리포트 연결</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- ===== Product QA Coverage : 담당 범위 전체를 한 장으로 ===== -->
-      <section id="cases">
-        <div class="wrap-wide">
-          <div class="section-head">
-            <div>
-              <h2>변경의 영향 범위부터 정의합니다</h2>
-            </div>
-          </div>
-          <div class="case-layout">
-            <aside class="toc">
-              <h3>Cases</h3>
-              <div class="toc-label first">라프텔</div>
-              <a href="#case-subscription">구독·계정 상태</a>
-              <a href="#case-commerce">커머스 구독·적립금</a>
-              <a href="#case-newarch">RN Architecture</a>
-              <a href="#case-membership">A/B Experiment</a>
-              <a href="#case-technical">Technical Investigation</a>
-              <a href="#case-ncsoft">B2B Partnership</a>
-              <a href="#case-live">Live / Player</a>
-              <a href="#case-tv">Smart TV 멀티플랫폼</a>
-              <div class="toc-label">다우기술</div>
-              <a href="#case-wms">WMS 풀필먼트</a>
-              <div class="toc-label">아이브릭스</div>
-              <a href="#case-yongin">용인시청 챗봇</a>
-            </aside>
-            <div class="case-list">
-              
-              <span id="case-apple" class="legacy-anchor"></span><span id="case-account" class="legacy-anchor"></span>
-              <article class="case" id="case-subscription">
-                <div class="case-title">
-                  <div>
-                    <h3>구독·계정 검증</h3>
-                    <div class="meta">결제 결과와 시청 권한 · 가입·로그인 복구</div>
-                  </div>
-                  <span class="role-badge">Payment · Account QA</span>
-                </div>
-                <p class="case-lead">
-                  <b>결제한 사용자가 서비스를 이용할 수 있는지, 가입 도중 멈춘 사용자가 다시 계정에 접근할 수 있는지</b>를 확인했습니다.
+</div>
+<div class="dd-metrics">
+<div><b>120개</b><span>자동화 TC · 실결제 · DRM 포함</span></div>
+<div><b>상시 운영</b><span>정기 회귀 · Smoke · 실행 상태 감시</span></div>
+<!-- 기존 수치: 약 70%↓. 이력서의 30분 → 5분과 측정 조건 확인 후 복원. -->
+<div><b>담당자 알림</b><span>실패 추이 · 실행별 리포트 연결</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- ===== Product QA Coverage : 담당 범위 전체를 한 장으로 ===== -->
+<section id="cases">
+<div class="wrap-wide">
+<div class="section-head">
+<div>
+<h2>변경의 영향 범위부터 정의합니다</h2>
+</div>
+</div>
+<div class="case-layout">
+<aside class="toc">
+<h3>Cases</h3>
+<div class="toc-label first">라프텔</div>
+<a href="#case-subscription">구독·계정 상태</a>
+<a href="#case-commerce">커머스 구독·적립금</a>
+<a href="#case-newarch">RN Architecture</a>
+<a href="#case-membership">A/B Experiment</a>
+<a href="#case-technical">Technical Investigation</a>
+<a href="#case-ncsoft">B2B Partnership</a>
+<a href="#case-live">Live / Player</a>
+<a href="#case-tv">Smart TV 멀티플랫폼</a>
+<div class="toc-label">다우기술</div>
+<a href="#case-wms">WMS 풀필먼트</a>
+<div class="toc-label">아이브릭스</div>
+<a href="#case-yongin">용인시청 챗봇</a>
+</aside>
+<div class="case-list">
+<span class="legacy-anchor" id="case-apple"></span><span class="legacy-anchor" id="case-account"></span>
+<article class="case" id="case-subscription">
+<div class="case-title">
+<div>
+<h3>구독·계정 검증</h3>
+<div class="meta">결제 결과와 시청 권한 · 가입·로그인 복구</div>
+</div>
+<span class="role-badge">Payment · Account QA</span>
+</div>
+<p class="case-lead">
+<b>결제한 사용자가 서비스를 이용할 수 있는지, 가입 도중 멈춘 사용자가 다시 계정에 접근할 수 있는지</b>를 확인했습니다.
                 </p>
-
-                <div class="side-finds commerce-cards">
-                  <div class="sf">
-                    <b>구독 — 결제 상태나 결제 수단이 바뀌어도 정상 동작할까?</b>
-                    <div class="commerce-story" role="img" aria-label="결제 상태와 기존 결제 이력에 따라 서비스 구독 정보, 멤버십 화면과 시청 가능 여부를 대조">
-                      <div class="story-row">
-                        <div class="story-step"><span class="story-icon" aria-hidden="true">💳</span><strong>결제 상태·이력</strong><small>갱신 실패·결제 수단 변경</small></div>
-                        <span class="story-arrow" aria-hidden="true">↔</span>
-                        <div class="story-step"><span class="story-icon" aria-hidden="true">🎫</span><strong>서비스 구독</strong><small>상품·이용 권한 반영</small></div>
-                        <span class="story-arrow" aria-hidden="true">↔</span>
-                        <div class="story-step"><span class="story-icon" aria-hidden="true">▶️</span><strong>화면·시청</strong><small>상태에 맞는 동작</small></div>
-                      </div>
-                      <div class="story-callout">갱신에 실패해 재시도·보류 상태가 되면?<br>기존 PG 결제에서 Apple 인앱 결제로 바뀌었다면?</div>
-                    </div>
-                    <p>정기 결제에 실패했을 때, Apple은 결제를 다시 시도하고 있었지만 서비스에서는 구독이 끝난 것처럼 보였습니다. 실제 결제 진행 상황과 서비스의 구독 정보를 비교해 이 차이를 확인하고, 이후 결제가 성공하면 멤버십을 다시 이용할 수 있는지까지 검수했습니다.</p>
-                  </div>
-                  <div class="sf">
-                    <b>계정 — 가입을 중단해도 다시 이어갈 수 있을까?</b>
-                    <p>계정 이용 문제가 제기되어 계정 체계 개선을 위한 QA로 참여했습니다.</p>
-                    <div class="commerce-story" role="img" aria-label="가입 중단 후 다시 로그인하여 누락 정보를 입력하고 계정을 이용하는 흐름 검증">
-                      <div class="story-row">
-                        <div class="story-step story-warn"><span class="story-icon" aria-hidden="true">⏸️</span><strong>가입 중단</strong><small>필수 정보 누락</small></div>
-                        <span class="story-arrow" aria-hidden="true">→</span>
-                        <div class="story-step"><span class="story-icon" aria-hidden="true">🔑</span><strong>다시 로그인</strong><small>기존 계정 접근</small></div>
-                        <span class="story-arrow" aria-hidden="true">→</span>
-                        <div class="story-step"><span class="story-icon" aria-hidden="true">📝</span><strong>누락 정보 입력</strong><small>계정 이용 재개</small></div>
-                      </div>
-                    </div>
-                    <p>계정 상태와 가입·로그인 방식에 따라 경우의 수가 많아, 조건을 조합해 가입·로그인·탈퇴 시나리오를 정리했습니다. 각 시나리오에서 확인할 화면 흐름과 API 응답을 함께 정리해 검수 기준으로 삼았습니다.</p>
-                    <p><b>배포 후 공유된 경과(2026.03)</b> · 기존 자동 탈퇴·이메일 인증 관련 CS는 특별히 인입되지 않았다고 공유됐습니다.</p>
-                  </div>
-                </div>
-              </article>
-
-              <article class="case" id="case-commerce">
-                <div class="case-title">
-                  <div>
-                    <h3>커머스 구독·적립금 검증</h3>
-                    <div class="meta">구독 해지·재구매 정책 · 적립금 사용·부분환불</div>
-                  </div>
-                  <span class="role-badge">Commerce QA</span>
-                </div>
-                <p class="case-lead">
+<div class="side-finds commerce-cards">
+<div class="sf">
+<b>구독 — 결제 상태나 결제 수단이 바뀌어도 정상 동작할까?</b>
+<div aria-label="결제 상태와 기존 결제 이력에 따라 서비스 구독 정보, 멤버십 화면과 시청 가능 여부를 대조" class="commerce-story" role="img">
+<div class="story-row">
+<div class="story-step"><span aria-hidden="true" class="story-icon">💳</span><strong>결제 상태·이력</strong><small>갱신 실패·결제 수단 변경</small></div>
+<span aria-hidden="true" class="story-arrow">↔</span>
+<div class="story-step"><span aria-hidden="true" class="story-icon">🎫</span><strong>서비스 구독</strong><small>상품·이용 권한 반영</small></div>
+<span aria-hidden="true" class="story-arrow">↔</span>
+<div class="story-step"><span aria-hidden="true" class="story-icon">▶️</span><strong>화면·시청</strong><small>상태에 맞는 동작</small></div>
+</div>
+<div class="story-callout">갱신에 실패해 재시도·보류 상태가 되면?<br/>기존 PG 결제에서 Apple 인앱 결제로 바뀌었다면?</div>
+</div>
+<p>정기 결제에 실패했을 때, Apple은 결제를 다시 시도하고 있었지만 서비스에서는 구독이 끝난 것처럼 보였습니다. 실제 결제 진행 상황과 서비스의 구독 정보를 비교해 이 차이를 확인하고, 이후 결제가 성공하면 멤버십을 다시 이용할 수 있는지까지 검수했습니다.</p>
+</div>
+<div class="sf">
+<b>계정 — 가입을 중단해도 다시 이어갈 수 있을까?</b>
+<p>계정 이용 문제가 제기되어 계정 체계 개선을 위한 QA로 참여했습니다.</p>
+<div aria-label="가입 중단 후 다시 로그인하여 누락 정보를 입력하고 계정을 이용하는 흐름 검증" class="commerce-story" role="img">
+<div class="story-row">
+<div class="story-step story-warn"><span aria-hidden="true" class="story-icon">⏸️</span><strong>가입 중단</strong><small>필수 정보 누락</small></div>
+<span aria-hidden="true" class="story-arrow">→</span>
+<div class="story-step"><span aria-hidden="true" class="story-icon">🔑</span><strong>다시 로그인</strong><small>기존 계정 접근</small></div>
+<span aria-hidden="true" class="story-arrow">→</span>
+<div class="story-step"><span aria-hidden="true" class="story-icon">📝</span><strong>누락 정보 입력</strong><small>계정 이용 재개</small></div>
+</div>
+</div>
+<p>계정 상태와 가입·로그인 방식에 따라 경우의 수가 많아, 조건을 조합해 가입·로그인·탈퇴 시나리오를 정리했습니다. 각 시나리오에서 확인할 화면 흐름과 API 응답을 함께 정리해 검수 기준으로 삼았습니다.</p>
+<p><b>배포 후 공유된 경과(2026.03)</b> · 기존 자동 탈퇴·이메일 인증 관련 CS는 특별히 인입되지 않았다고 공유됐습니다.</p>
+</div>
+</div>
+</article>
+<article class="case" id="case-commerce">
+<div class="case-title">
+<div>
+<h3>커머스 구독·적립금 검증</h3>
+<div class="meta">구독 해지·재구매 정책 · 적립금 사용·부분환불</div>
+</div>
+<span class="role-badge">Commerce QA</span>
+</div>
+<p class="case-lead">
                   OTT 멤버십 이용자에게 굿즈를 정기 제공하는 스토어 구독 상품과 적립금 기능을 검수했습니다.
                   <b>구독 해지가 주문·배송·모집 정원에 미치는 영향과, 주문 조건에 따른 적립금 사용·환불 처리</b>를 확인했습니다.
                 </p>
-
-                <div class="side-finds commerce-cards">
-                  <div class="sf">
-                    <b>구독 해지 — 상품은 배송되는데, 자리는 다시 열린다면?</b>
-                    <div class="commerce-story" role="img" aria-label="첫 상품 수령 후 구독을 해지하면 모집 자리가 다시 열려, 같은 상품 재구매 또는 신규 구독자의 추가 출고가 가능했던 상황">
-                      <div class="story-row">
-                        <div class="story-step"><span class="story-icon" aria-hidden="true">📦</span><strong>첫 상품 수령</strong><small>주문·배송은 유지</small></div>
-                        <span class="story-arrow" aria-hidden="true">→</span>
-                        <div class="story-step"><span class="story-icon" aria-hidden="true">👋</span><strong>구독 해지</strong><small>다음 결제 중단</small></div>
-                        <span class="story-arrow" aria-hidden="true">→</span>
-                        <div class="story-step story-warn"><span class="story-icon" aria-hidden="true">🪑</span><strong>빈자리 발생</strong><small>다시 구매 가능?</small></div>
-                      </div>
-                      <div class="story-callout">같은 사람이 다시 구매 → 첫 회차 상품 반복 수령<br>새 사람이 가입 → 예상보다 많은 상품 필요</div>
-                    </div>
-                    <p>해지 후 첫 회차 상품을 반복 구매할 수 있는 상황을 발견해 논의를 요청했습니다. 모집 정원과 실제 출고 수량이 달라지는 예시를 정리하고, 결정된 정책을 티켓에 반영했습니다.</p>
-                  </div>
-                  <div class="sf">
-                    <b>적립금 — 부분환불 처리 경로 확인</b>
-                    <div class="commerce-story" role="img" aria-label="최종 환불 내역만으로 부분환불과 테스트 환경의 자동 취소를 구분하기 어려워 PG 기록 확인을 요청한 과정">
-                      <div class="story-callout">💳 환불 내역은 보이는데…<br>부분환불 결과일까, 테스트 환경의 자동 취소일까?</div>
-                    </div>
-                    <p>적립금 관련 부분환불 검수에서 카드사 내역 반영 지연과 테스트 환경의 자동 취소가 겹쳤습니다. 최종 환불 내역만으로 부분환불 성공 여부를 판단하기 어려워, PG 기록으로 처리 경로를 구분해 확인하도록 요청했습니다.</p>
-                  </div>
-                </div>
-              </article>
-
-              <details class="more-case" id="case-newarch" open>
-                <summary>
-                  <div>
-                    <h3>React Native New Architecture</h3>
-                    <div class="meta">화면 렌더링 변경 · 공통 UI 중점 검증 · 전수검사</div>
-                  </div>
-                  <span class="role-badge">Architecture QA</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>React Native New Architecture</h3>
-                      <div class="meta">2026.04 — 2026.06 · iOS · Android · 1·2차 빌드 전수검사</div>
-                    </div>
-                    <span class="role-badge">Architecture QA</span>
-                  </div>
-                  <p class="case-lead">
+<div class="side-finds commerce-cards">
+<div class="sf">
+<b>구독 해지 — 상품은 배송되는데, 자리는 다시 열린다면?</b>
+<div aria-label="첫 상품 수령 후 구독을 해지하면 모집 자리가 다시 열려, 같은 상품 재구매 또는 신규 구독자의 추가 출고가 가능했던 상황" class="commerce-story" role="img">
+<div class="story-row">
+<div class="story-step"><span aria-hidden="true" class="story-icon">📦</span><strong>첫 상품 수령</strong><small>주문·배송은 유지</small></div>
+<span aria-hidden="true" class="story-arrow">→</span>
+<div class="story-step"><span aria-hidden="true" class="story-icon">👋</span><strong>구독 해지</strong><small>다음 결제 중단</small></div>
+<span aria-hidden="true" class="story-arrow">→</span>
+<div class="story-step story-warn"><span aria-hidden="true" class="story-icon">🪑</span><strong>빈자리 발생</strong><small>다시 구매 가능?</small></div>
+</div>
+<div class="story-callout">같은 사람이 다시 구매 → 첫 회차 상품 반복 수령<br/>새 사람이 가입 → 예상보다 많은 상품 필요</div>
+</div>
+<p>해지 후 첫 회차 상품을 반복 구매할 수 있는 상황을 발견해 논의를 요청했습니다. 모집 정원과 실제 출고 수량이 달라지는 예시를 정리하고, 결정된 정책을 티켓에 반영했습니다.</p>
+</div>
+<div class="sf">
+<b>적립금 — 부분환불 처리 경로 확인</b>
+<div aria-label="최종 환불 내역만으로 부분환불과 테스트 환경의 자동 취소를 구분하기 어려워 PG 기록 확인을 요청한 과정" class="commerce-story" role="img">
+<div class="story-callout">💳 환불 내역은 보이는데…<br/>부분환불 결과일까, 테스트 환경의 자동 취소일까?</div>
+</div>
+<p>적립금 관련 부분환불 검수에서 카드사 내역 반영 지연과 테스트 환경의 자동 취소가 겹쳤습니다. 최종 환불 내역만으로 부분환불 성공 여부를 판단하기 어려워, PG 기록으로 처리 경로를 구분해 확인하도록 요청했습니다.</p>
+</div>
+</div>
+</article>
+<details class="more-case" id="case-newarch" open="">
+<summary>
+<div>
+<h3>React Native New Architecture</h3>
+<div class="meta">화면 렌더링 변경 · 공통 UI 중점 검증 · 전수검사</div>
+</div>
+<span class="role-badge">Architecture QA</span>
+</summary>
+<article class="case">
+<div class="case-title">
+<div>
+<h3>React Native New Architecture</h3>
+<div class="meta">2026.04 — 2026.06 · iOS · Android · 1·2차 빌드 전수검사</div>
+</div>
+<span class="role-badge">Architecture QA</span>
+</div>
+<p class="case-lead">
                     이번 전환은 앱 화면을 그리는 방식의 변경이 중심이어서,
                     <b>영상 재생 로직보다 공통 모달과 버튼·레이어 등 UI 요소에 영향이 클 것으로 판단했습니다.</b>
-                  </p>
-
-                  <!-- ① 변경 지점에서 영향 표면을 역으로 그린다 -->
-                  <div class="blast">
-                    <div class="blast-head">
-                      <strong>변경 범위에 맞춘 검증</strong>
-                      <span>공통 UI를 중점적으로 보고 기존 기능도 회귀 검증</span>
-                    </div>
-                    <b class="blast-root">React Native New Architecture</b>
-                    <div class="blast-stem"></div>
-                    <div class="blast-cols">
-                      <div class="bc">
-                        <div class="bc-k">공통 모달</div>
-                        <ul><li>이전 문구 잔존</li><li>버튼 표시</li><li>반복 노출</li></ul>
-                      </div>
-                      <div class="bc">
-                        <div class="bc-k">화면·입력</div>
-                        <ul><li>화면 전환·회전</li><li>터치·제스처</li></ul>
-                      </div>
-                      <div class="bc">
-                        <div class="bc-k">플레이어 UI</div>
-                        <ul><li>전체 화면</li><li>화면 잠금</li><li>에피소드 목록</li></ul>
-                      </div>
-                      <div class="bc">
-                        <div class="bc-k">기존 기능</div>
-                        <ul><li>계정·결제</li><li>재생·다운로드</li></ul>
-                      </div>
-                    </div>
-                    <p class="blast-note">
+</p>
+<!-- ① 변경 지점에서 영향 표면을 역으로 그린다 -->
+<div class="blast">
+<div class="blast-head">
+<strong>변경 범위에 맞춘 검증</strong>
+<span>공통 UI를 중점적으로 보고 기존 기능도 회귀 검증</span>
+</div>
+<b class="blast-root">React Native New Architecture</b>
+<div class="blast-stem"></div>
+<div class="blast-cols">
+<div class="bc">
+<div class="bc-k">공통 모달</div>
+<ul><li>이전 문구 잔존</li><li>버튼 표시</li><li>반복 노출</li></ul>
+</div>
+<div class="bc">
+<div class="bc-k">화면·입력</div>
+<ul><li>화면 전환·회전</li><li>터치·제스처</li></ul>
+</div>
+<div class="bc">
+<div class="bc-k">플레이어 UI</div>
+<ul><li>전체 화면</li><li>화면 잠금</li><li>에피소드 목록</li></ul>
+</div>
+<div class="bc">
+<div class="bc-k">기존 기능</div>
+<ul><li>계정·결제</li><li>재생·다운로드</li></ul>
+</div>
+</div>
+<p class="blast-note">
                       실제 검수에서는 <b>이전에 띄운 로그아웃 모달의 내용이 다른 모달에 섞이는 현상</b>을 공유했습니다.
                       본인확인 바텀 시트의 반복 노출도 확인했습니다.
                       일반·라이브·오프라인 재생은 필수 회귀 범위에 포함했습니다. 플레이어에서는 주로 전체화면 전환 실패와 댓글 바텀 시트 닫힘 불가 등 UI 문제가 확인됐습니다.
                     </p>
-                  </div>
-
-                  <p class="blast-result">
-                    <b>Result</b>
+</div>
+<p class="blast-result">
+<b>Result</b>
                     기존 상용 버전에서도 재현되는 문제와 전환 후 발생한 문제를 구분했습니다.
                     배포 시점에는 해결된 이슈와 남은 이슈를 정리해, 이후 CS 확인에 참고할 수 있도록 공유했습니다.
                   </p>
-                </article>
-              </details>
-
-              <details class="more-case" id="case-membership" open>
-                <summary>
-                  <div>
-                    <h3>A/B Experiment</h3>
-                    <div class="meta">실험군 분배 · 테스트 계정 제어 · 데이터 오염 검증</div>
-                  </div>
-                  <span class="role-badge">Experiment QA</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>신규 멤버십 전환율 A/B 실험</h3>
-                      <div class="meta">Firebase · Experiment · Testability · Shift-Left</div>
-                    </div>
-                    <span class="role-badge">Experiment QA</span>
-                  </div>
-
-                  <div class="par">
-                    <div class="box problem"><div class="l">PROBLEM</div><p>QA가 원하는 실험군을 안정적으로 재현하기 어려웠습니다.</p></div>
-                    <div class="box"><div class="l">ACTION</div><p>서버에서 테스트 계정을 특정 그룹으로 제어하는 구조를 제안하고 실험군 분배·강제 할당·데이터 오염 여부를 검증했습니다.</p></div>
-                    <div class="box result"><div class="l">RESULT</div><p>실험군 재현성을 높이고 무료체험·권한·동시재생 같은 경계 조건을 설계 단계부터 검증할 수 있게 했습니다.</p></div>
-                  </div>
-                </article>
-              </details>
-
-              <span id="case-perf" class="legacy-anchor"></span><span id="case-performance" class="legacy-anchor"></span>
-              <details class="more-case" id="case-technical" open>
-                <summary>
-                  <div>
-                    <h3>Technical Investigation</h3>
-                    <div class="meta">Device RCA · gfxinfo · 렌더링 성능</div>
-                  </div>
-                  <span class="role-badge">Technical QA</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>기기별 렌더링 성능 원인 분석</h3>
-                      <div class="meta">Device RCA · gfxinfo</div>
-                    </div>
-                    <span class="role-badge">Technical QA</span>
-                  </div>
-
-                  <div class="par">
-                    <div class="box problem"><div class="l">PROBLEM</div><p>120Hz 태블릿에서 스크롤 렉과 발열이 발생했습니다.</p></div>
-                    <div class="box"><div class="l">ACTION</div><p>60Hz 단말과 비교하고 gfxinfo·Janky Frames·Pipeline을 확인해 GPU 병목을 제외했습니다. 재현 조건을 나눠 원인을 이미지 반복 재디코드까지 좁혔습니다.</p></div>
-                    <div class="box result"><div class="l">RESULT</div><p>수정 후 해당 단말에서 스크롤 렉과 발열이 개선됐는지 검증했습니다.</p></div>
-                  </div>
-                </article>
-              </details>
-
-              <details class="more-case" id="case-ncsoft">
-                <summary>
-                  <div>
-                    <h3>B2B Partnership</h3>
-                    <div class="meta">External API · Reverse Spec · 권한 · 동시재생 · 정산</div>
-                  </div>
-                  <span class="role-badge">Partnership QA</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>B2B 제휴 검증</h3>
-                      <div class="meta">외부 서비스 경계 · Reverse Spec · 현장 검수</div>
-                    </div>
-                    <span class="role-badge">Partnership QA</span>
-                  </div>
-
-                  <p class="case-lead">
+</article>
+</details>
+<details class="more-case" id="case-membership" open="">
+<summary>
+<div>
+<h3>A/B Experiment</h3>
+<div class="meta">실험군 분배 · 테스트 계정 제어 · 데이터 오염 검증</div>
+</div>
+<span class="role-badge">Experiment QA</span>
+</summary>
+<article class="case">
+<div class="case-title">
+<div>
+<h3>신규 멤버십 전환율 A/B 실험</h3>
+<div class="meta">Firebase · Experiment · Testability · Shift-Left</div>
+</div>
+<span class="role-badge">Experiment QA</span>
+</div>
+<div class="par">
+<div class="box problem"><div class="l">PROBLEM</div><p>QA가 원하는 실험군을 안정적으로 재현하기 어려웠습니다.</p></div>
+<div class="box"><div class="l">ACTION</div><p>서버에서 테스트 계정을 특정 그룹으로 제어하는 구조를 제안하고 실험군 분배·강제 할당·데이터 오염 여부를 검증했습니다.</p></div>
+<div class="box result"><div class="l">RESULT</div><p>실험군 재현성을 높이고 무료체험·권한·동시재생 같은 경계 조건을 설계 단계부터 검증할 수 있게 했습니다.</p></div>
+</div>
+</article>
+</details>
+<span class="legacy-anchor" id="case-perf"></span><span class="legacy-anchor" id="case-performance"></span>
+<details class="more-case" id="case-technical" open="">
+<summary>
+<div>
+<h3>Technical Investigation</h3>
+<div class="meta">Device RCA · gfxinfo · 렌더링 성능</div>
+</div>
+<span class="role-badge">Technical QA</span>
+</summary>
+<article class="case">
+<div class="case-title">
+<div>
+<h3>기기별 렌더링 성능 원인 분석</h3>
+<div class="meta">Device RCA · gfxinfo</div>
+</div>
+<span class="role-badge">Technical QA</span>
+</div>
+<div class="par">
+<div class="box problem"><div class="l">PROBLEM</div><p>120Hz 태블릿에서 스크롤 렉과 발열이 발생했습니다.</p></div>
+<div class="box"><div class="l">ACTION</div><p>60Hz 단말과 비교하고 gfxinfo·Janky Frames·Pipeline을 확인해 GPU 병목을 제외했습니다. 재현 조건을 나눠 원인을 이미지 반복 재디코드까지 좁혔습니다.</p></div>
+<div class="box result"><div class="l">RESULT</div><p>수정 후 해당 단말에서 스크롤 렉과 발열이 개선됐는지 검증했습니다.</p></div>
+</div>
+</article>
+</details>
+<details class="more-case" id="case-ncsoft">
+<summary>
+<div>
+<h3>B2B Partnership</h3>
+<div class="meta">External API · Reverse Spec · 권한 · 동시재생 · 정산</div>
+</div>
+<span class="role-badge">Partnership QA</span>
+</summary>
+<article class="case">
+<div class="case-title">
+<div>
+<h3>B2B 제휴 검증</h3>
+<div class="meta">외부 서비스 경계 · Reverse Spec · 현장 검수</div>
+</div>
+<span class="role-badge">Partnership QA</span>
+</div>
+<p class="case-lead">
                     두 서비스에 나뉜 멤버십 권한·동시재생·정산 상태를 하나의 사용자 흐름으로 검증했습니다.
                   </p>
-                  <div class="par">
-                    <div class="box problem"><div class="l">PROBLEM</div><p>문서만으로 정상 동작을 판단하기 어려운 응답과 정책 차이가 있었습니다.</p></div>
-                    <div class="box"><div class="l">ACTION</div><p>실제 API 응답과 화면을 대조해 에러 조건을 Reverse Spec으로 정리하고 권한·동시재생·정산 경계를 분리했습니다.</p></div>
-                    <div class="box result"><div class="l">RESULT</div><p>문서에 없던 조건까지 QA 판정 기준으로 남겨 제휴 환경의 회귀 기준을 만들었습니다.</p></div>
-                  </div>
-                </article>
-              </details>
-
-              <details class="more-case" id="case-live">
-                <summary>
-                  <div>
-                    <h3>Live / Player</h3>
-                    <div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
-                  </div>
-                  <span class="role-badge">Live QA</span>
-                </summary>
-              <article class="case">
-                <div class="case-title">
-                  <div>
-                    <h3>Live / Player</h3>
-                    <div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
-                  </div>
-                  <span class="role-badge">Live QA</span>
-                </div>
-
-                <div class="par">
-                  <div class="box problem">
-                    <div class="l">RISK</div>
-                    <p>편성표·플레이어·시간 경계가 동시에 바뀌어 기능 단위 테스트만으로는 상태 전이를 놓치기 쉬웠습니다.</p>
-                  </div>
-                  <div class="box">
-                    <div class="l">STRATEGY</div>
-                    <p>프로그램 전환 시점을 기준으로 EPG · 재생 · 연령 등급 · 프로그레스가 함께 갱신되는 E2E 흐름을 설계했습니다.</p>
-                  </div>
-                  <div class="box result">
-                    <div class="l">RESULT</div>
-                    <p>Live 검증을 시간 경계 중심의 공통 시나리오로 정리해 반복 회귀 기준으로 사용했습니다.</p>
-                  </div>
-                </div>
-
-                <div class="evidence">
-                  <div class="evidence-head">
-                    <strong>시간 경계 E2E 시나리오</strong>
-                    <span>프로그램 전환 순간에 함께 바뀌어야 하는 상태</span>
-                  </div>
-                  <div class="evidence-body">
-                    <div class="live-mock">
-                      <div class="player-slim">
-                        <b>LIVE</b><span class="ps-time">23:59</span><span class="ps-track"></span><span>ANIPLUS</span>
-                      </div>
-
-                      <div class="epg2">
-                        <div class="epg2-col a">
-                          <div class="t">23:58 — 23:59</div>
-                          <b>프로그램 A</b>
-                          <span>15세</span>
-                        </div>
-                        <div class="epg2-bound" data-label="00:00"></div>
-                        <div class="epg2-col">
-                          <div class="t">00:00 —</div>
-                          <b>프로그램 B</b>
-                          <span>19세</span>
-                        </div>
-                      </div>
-
-                      <ul class="bound-list">
-                        <li>제목 변경</li>
-                        <li>EPG 갱신</li>
-                        <li>연령 등급 재체크</li>
-                        <li>프로그레스 유지</li>
-                        <li>플레이어 끊김 없음</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              </details>
-
-              <details class="more-case" id="case-tv">
-                <summary>
-                  <div>
-                    <h3>Smart TV 멀티플랫폼</h3>
-                    <div class="meta">Android TV · Tizen · webOS · 플랫폼별 Full TC</div>
-                  </div>
-                  <span class="role-badge">Smart TV QA</span>
-                </summary>
-                <article class="case">
-                  <div class="cond-tags">
-                    <span>Android TV</span><span>Tizen</span><span>webOS</span>
-                  </div>
-                  <div class="cond-tags" style="margin-top: 7px">
-                    <span>QR Login</span><span>Remote / Media Key</span><span>Focus</span><span>Player</span><span>Concurrent Playback</span>
-                  </div>
-                  <p class="case-lead" style="margin-top: 14px">
+<div class="par">
+<div class="box problem"><div class="l">PROBLEM</div><p>문서만으로 정상 동작을 판단하기 어려운 응답과 정책 차이가 있었습니다.</p></div>
+<div class="box"><div class="l">ACTION</div><p>실제 API 응답과 화면을 대조해 에러 조건을 Reverse Spec으로 정리하고 권한·동시재생·정산 경계를 분리했습니다.</p></div>
+<div class="box result"><div class="l">RESULT</div><p>문서에 없던 조건까지 QA 판정 기준으로 남겨 제휴 환경의 회귀 기준을 만들었습니다.</p></div>
+</div>
+</article>
+</details>
+<details class="more-case" id="case-live">
+<summary>
+<div>
+<h3>Live / Player</h3>
+<div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
+</div>
+<span class="role-badge">Live QA</span>
+</summary>
+<article class="case">
+<div class="case-title">
+<div>
+<h3>Live / Player</h3>
+<div class="meta">EPG · Player · Chromecast · 시간 경계 · 등급 재체크</div>
+</div>
+<span class="role-badge">Live QA</span>
+</div>
+<div class="par">
+<div class="box problem">
+<div class="l">RISK</div>
+<p>편성표·플레이어·시간 경계가 동시에 바뀌어 기능 단위 테스트만으로는 상태 전이를 놓치기 쉬웠습니다.</p>
+</div>
+<div class="box">
+<div class="l">STRATEGY</div>
+<p>프로그램 전환 시점을 기준으로 EPG · 재생 · 연령 등급 · 프로그레스가 함께 갱신되는 E2E 흐름을 설계했습니다.</p>
+</div>
+<div class="box result">
+<div class="l">RESULT</div>
+<p>Live 검증을 시간 경계 중심의 공통 시나리오로 정리해 반복 회귀 기준으로 사용했습니다.</p>
+</div>
+</div>
+<div class="evidence">
+<div class="evidence-head">
+<strong>시간 경계 E2E 시나리오</strong>
+<span>프로그램 전환 순간에 함께 바뀌어야 하는 상태</span>
+</div>
+<div class="evidence-body">
+<div class="live-mock">
+<div class="player-slim">
+<b>LIVE</b><span class="ps-time">23:59</span><span class="ps-track"></span><span>ANIPLUS</span>
+</div>
+<div class="epg2">
+<div class="epg2-col a">
+<div class="t">23:58 — 23:59</div>
+<b>프로그램 A</b>
+<span>15세</span>
+</div>
+<div class="epg2-bound" data-label="00:00"></div>
+<div class="epg2-col">
+<div class="t">00:00 —</div>
+<b>프로그램 B</b>
+<span>19세</span>
+</div>
+</div>
+<ul class="bound-list">
+<li>제목 변경</li>
+<li>EPG 갱신</li>
+<li>연령 등급 재체크</li>
+<li>프로그레스 유지</li>
+<li>플레이어 끊김 없음</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+</details>
+<details class="more-case" id="case-tv">
+<summary>
+<div>
+<h3>Smart TV 멀티플랫폼</h3>
+<div class="meta">Android TV · Tizen · webOS · 플랫폼별 Full TC</div>
+</div>
+<span class="role-badge">Smart TV QA</span>
+</summary>
+<article class="case">
+<div class="cond-tags">
+<span>Android TV</span><span>Tizen</span><span>webOS</span>
+</div>
+<div class="cond-tags" style="margin-top: 7px">
+<span>QR Login</span><span>Remote / Media Key</span><span>Focus</span><span>Player</span><span>Concurrent Playback</span>
+</div>
+<p class="case-lead" style="margin-top: 14px">
                     같은 OTT 기능도 TV에서는 OS · 입력 방식 · Focus · Player Lifecycle에 따라 동작 조건이 달라지는
                     환경이었습니다. 따라서
                     <b>플랫폼 차이 자체를 테스트 조건으로 정의해</b> 검증 범위를 설계했습니다.
                   </p>
-
-                  <div class="par">
-                    <div class="box problem">
-                      <div class="l">RISK</div>
-                      <p>리빌드·리팩토링 과정에서 공통 기능은 같아도 플랫폼별 입력·포커스·플레이어 동작이 다르게 깨질 수 있었습니다.</p>
-                    </div>
-                    <div class="box">
-                      <div class="l">STRATEGY</div>
-                      <p>Android TV · Tizen · webOS를 플랫폼 축으로 두고 핵심 사용자 흐름과 재생 조건을 매트릭스로 구성했습니다.</p>
-                    </div>
-                    <div class="box result">
-                      <div class="l">RESULT</div>
-                      <p>플랫폼별 Full TC를 구축하고 리빌드·리팩토링 전수검사에 적용해, 이후 TV 회귀 검증의 공통 기준으로 남겼습니다.</p>
-                    </div>
-                  </div>
-                </article>
-              </details>
-
-              <details class="more-case" id="case-wms">
-                <summary>
-                  <div>
-                    <h3>WMS 풀필먼트 리뉴얼 QC</h3>
-                    <div class="meta">다우기술 · PHP → Java/Vue 전환 </div>
-                  </div>
-                  <span class="role-badge">Fulfillment QA</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>WMS 풀필먼트 리뉴얼 QC</h3>
-                      <div class="meta">다우기술 · 2024.10–2025.01 · PHP → Java/Vue 리뉴얼 · 3PL/1PL 물류 · 7개 업무 시나리오</div>
-                    </div>
-                    <span class="role-badge">Fulfillment QA</span>
-                  </div>
-                  <p class="case-lead">
+<div class="par">
+<div class="box problem">
+<div class="l">RISK</div>
+<p>리빌드·리팩토링 과정에서 공통 기능은 같아도 플랫폼별 입력·포커스·플레이어 동작이 다르게 깨질 수 있었습니다.</p>
+</div>
+<div class="box">
+<div class="l">STRATEGY</div>
+<p>Android TV · Tizen · webOS를 플랫폼 축으로 두고 핵심 사용자 흐름과 재생 조건을 매트릭스로 구성했습니다.</p>
+</div>
+<div class="box result">
+<div class="l">RESULT</div>
+<p>플랫폼별 Full TC를 구축하고 리빌드·리팩토링 전수검사에 적용해, 이후 TV 회귀 검증의 공통 기준으로 남겼습니다.</p>
+</div>
+</div>
+</article>
+</details>
+<details class="more-case" id="case-wms">
+<summary>
+<div>
+<h3>WMS 풀필먼트 리뉴얼 QC</h3>
+<div class="meta">다우기술 · PHP → Java/Vue 전환 </div>
+</div>
+<span class="role-badge">Fulfillment QA</span>
+</summary>
+<article class="case">
+<div class="case-title">
+<div>
+<h3>WMS 풀필먼트 리뉴얼 QC</h3>
+<div class="meta">다우기술 · 2024.10–2025.01 · PHP → Java/Vue 리뉴얼 · 3PL/1PL 물류 · 7개 업무 시나리오</div>
+</div>
+<span class="role-badge">Fulfillment QA</span>
+</div>
+<p class="case-lead">
                     WMS는 상품 등록, 입고, 출고, 택배 연동, CS가 하나의 업무 흐름으로 이어집니다. 리뉴얼에서 확인해야 할 것은
                     화면이 잘 뜨는지가 아니라, <b>기존 업무 흐름과 데이터 정합성이 새 시스템에서도 유지되는지</b>였습니다.
                   </p>
-
-                  <!-- ① 검증 대상 지도 — 어떤 흐름을 어떤 권한으로 봤는가 -->
-                  <div class="wms-map">
-                    <div class="wms-map-head">
-                      <strong>검증 범위</strong>
-                      <span>3개 권한 × 업무 전 구간</span>
-                    </div>
-                    <div class="wms-flow">
-                      <div class="wf"><b>상품등록</b><span>고객사</span><em>필수값 · 중복</em></div>
-                      <div class="wf"><b>입고</b><span>물류사</span><em>수량 · 재고 반영</em></div>
-                      <div class="wf"><b>출고</b><span>마스터</span><em>주문 · 상태 전이</em></div>
-                      <div class="wf on"><b>택배 연동</b><span>마스터</span><em>접수 · 송장</em></div>
-                      <div class="wf"><b>CS</b><span>고객사</span><em>취소 · 반품 정합성</em></div>
-                    </div>
-                    <p class="wms-map-note">
+<!-- ① 검증 대상 지도 — 어떤 흐름을 어떤 권한으로 봤는가 -->
+<div class="wms-map">
+<div class="wms-map-head">
+<strong>검증 범위</strong>
+<span>3개 권한 × 업무 전 구간</span>
+</div>
+<div class="wms-flow">
+<div class="wf"><b>상품등록</b><span>고객사</span><em>필수값 · 중복</em></div>
+<div class="wf"><b>입고</b><span>물류사</span><em>수량 · 재고 반영</em></div>
+<div class="wf"><b>출고</b><span>마스터</span><em>주문 · 상태 전이</em></div>
+<div class="wf on"><b>택배 연동</b><span>마스터</span><em>접수 · 송장</em></div>
+<div class="wf"><b>CS</b><span>고객사</span><em>취소 · 반품 정합성</em></div>
+</div>
+<p class="wms-map-note">
                       3PL/1PL 물류사와 셀러 유형을 조합해 7개 업무 시나리오를 구성하고, 마스터·물류사·고객사 권한별 기능과
                       데이터 흐름을 교차 검증했습니다.
                     </p>
-                  </div>
-
-                  <!-- ② 어떤 순서로 좁혀 갔는가 -->
-                  <div class="stages">
-                    <div class="stages-head">
-                      <strong>검증 단계</strong>
-                      <span>7 Business Scenarios · 533+ TC · 418 Defects</span>
-                    </div>
-                    <ol class="stage-list">
-                      <li>
-                        <b>1차 단위테스트</b>
-                        <p>TC 기반으로 메뉴별 기능을 검증했습니다.</p>
-                      </li>
-                      <li>
-                        <b>권한별 탐색 테스트</b>
-                        <p>사이드 이펙트를 고려해 권한별 전체 메뉴를 탐색 테스트로 검증했습니다. 사전에 정의한 TC 밖의 결함도 이 과정에서 다수 발견했습니다.</p>
-                      </li>
-                      <li>
-                        <b>시나리오 테스트</b>
-                        <p>셀러 유형별 업무 흐름을 End-to-End로 이었습니다.</p>
-                      </li>
-                      <li>
-                        <b>추가 개발 메뉴 테스트</b>
-                        <p>리뉴얼과 함께 신규 개발된 재고 관리 메뉴를 별도 범위로 검증했습니다.</p>
-                      </li>
-                      <li>
-                        <b>운송장 출력 전수검사</b>
-                        <p>택배사별 출력 규격을 전수 검증했습니다.</p>
-                      </li>
-                      <li>
-                        <b>자동화 검수 모니터링</b>
-                        <p>자동화 검수 결과의 에러 로그를 모니터링하고 이슈를 보고했습니다.</p>
-                      </li>
-                    </ol>
-                  </div>
-
-                  <!-- ③ 왜 거길 봤는가 — 세 사례 모두 정책 개선으로 끝난다 -->
-                  <div class="blk-head">
-                    <h4 class="blk-h">그러려니 넘기지 않고, 기준을 다시 확인했습니다</h4>
-                  </div>
-                  <div class="side-finds three">
-                    <div class="sf">
-                      <b>구현 방식이 달라졌다면 경계값도 다시 봅니다</b>
-                      <p>
+</div>
+<!-- ② 어떤 순서로 좁혀 갔는가 -->
+<div class="stages">
+<div class="stages-head">
+<strong>검증 단계</strong>
+<span>7 Business Scenarios · 533+ TC · 418 Defects</span>
+</div>
+<ol class="stage-list">
+<li>
+<b>1차 단위테스트</b>
+<p>TC 기반으로 메뉴별 기능을 검증했습니다.</p>
+</li>
+<li>
+<b>권한별 탐색 테스트</b>
+<p>사이드 이펙트를 고려해 권한별 전체 메뉴를 탐색 테스트로 검증했습니다. 사전에 정의한 TC 밖의 결함도 이 과정에서 다수 발견했습니다.</p>
+</li>
+<li>
+<b>시나리오 테스트</b>
+<p>셀러 유형별 업무 흐름을 End-to-End로 이었습니다.</p>
+</li>
+<li>
+<b>추가 개발 메뉴 테스트</b>
+<p>리뉴얼과 함께 신규 개발된 재고 관리 메뉴를 별도 범위로 검증했습니다.</p>
+</li>
+<li>
+<b>운송장 출력 전수검사</b>
+<p>택배사별 출력 규격을 전수 검증했습니다.</p>
+</li>
+<li>
+<b>자동화 검수 모니터링</b>
+<p>자동화 검수 결과의 에러 로그를 모니터링하고 이슈를 보고했습니다.</p>
+</li>
+</ol>
+</div>
+<!-- ③ 왜 거길 봤는가 — 세 사례 모두 정책 개선으로 끝난다 -->
+<div class="blk-head">
+<h4 class="blk-h">그러려니 넘기지 않고, 기준을 다시 확인했습니다</h4>
+</div>
+<div class="side-finds three">
+<div class="sf">
+<b>구현 방식이 달라졌다면 경계값도 다시 봅니다</b>
+<p>
                         PHP/Java 기반 시스템이 Vue.js로 전환되면서 숫자 입력값을 처리하는 방식에도 차이가 생긴다는 점을
                         인지했습니다. 경계값을 검증해 <b>잘못된 값이 저장되는 오류</b>를 발견하고, 입력 단계에서 유효성
                         검사를 적용하도록 제안했습니다.
                       </p>
-                    </div>
-                    <div class="sf">
-                      <b>연결된 상태를 확인합니다</b>
-                      <p>
+</div>
+<div class="sf">
+<b>연결된 상태를 확인합니다</b>
+<p>
                         개별 화면의 정상 동작만 보지 않고 주문·택배 등 연동된 정보까지 함께 검증했습니다. 그 과정에서
                         간헐적으로 접수가 실패해도 <b>‘접수 요청’ 상태에 그대로 머무는 것</b>을 발견해, 별도 실패 상태값 도입을
                         제안하고 고객 이관 테스트 체크리스트에 반영했습니다.
                       </p>
-                    </div>
-                    <div class="sf">
-                      <b>이전 경험도 새로운 도메인의 검증 기준으로 씁니다</b>
-                      <p>
+</div>
+<div class="sf">
+<b>이전 경험도 새로운 도메인의 검증 기준으로 씁니다</b>
+<p>
                         검색 솔루션 개발 경험을 바탕으로 검색 정확도를 검증하면서, 공통 검색 정책을 일부 필드에는 그대로
                         적용할 수 없는 예외를 발견했습니다. 공통 정책과 예외 조건을 구분해 시스템 가이드라인에 반영했습니다.
                       </p>
-                    </div>
-                  </div>
-                </article>
-              </details>
-
-              <details class="more-case" id="case-yongin">
-                <summary>
-                  <div>
-                    <h3>용인시청 민원상담 챗봇</h3>
-                    <div class="meta">아이브릭스 · 성능 테스트 · 통합테스트</div>
-                  </div>
-                  <span class="role-badge">Dev + Test</span>
-                </summary>
-                <article class="case">
-                  <div class="case-title">
-                    <div>
-                      <h3>용인시청 민원상담 챗봇</h3>
-                      <div class="meta">아이브릭스 · 2023.06–2023.10 · 성능 테스트 250,000건 · 통합테스트 직접 설계</div>
-                    </div>
-                    <span class="role-badge">Dev + Test</span>
-                  </div>
-
-                  <div class="axis">
-                    <section class="ax">
-                      <header class="ax-h">
-                        <h4>성능 테스트</h4>
-                      </header>
-                      <p class="ax-lead">
+</div>
+</div>
+</article>
+</details>
+<details class="more-case" id="case-yongin">
+<summary>
+<div>
+<h3>용인시청 민원상담 챗봇</h3>
+<div class="meta">아이브릭스 · 성능 테스트 · 통합테스트</div>
+</div>
+<span class="role-badge">Dev + Test</span>
+</summary>
+<article class="case">
+<div class="case-title">
+<div>
+<h3>용인시청 민원상담 챗봇</h3>
+<div class="meta">아이브릭스 · 2023.06–2023.10 · 성능 테스트 250,000건 · 통합테스트 직접 설계</div>
+</div>
+<span class="role-badge">Dev + Test</span>
+</div>
+<div class="axis">
+<section class="ax">
+<header class="ax-h">
+<h4>성능 테스트</h4>
+</header>
+<p class="ax-lead">
                         각 부서 콜센터의 민원 상담 데이터를 NiFi로 수집·정제해 Elasticsearch에 적재하고,
                         시민이 질문하면 유사 민원을 찾아 답변하는 챗봇이었습니다. 요청 하나가 수집·검색·DB를
                         모두 거치는 구조라, <b>JMeter로 25만 건을 태워 응답 분포</b>를 확인했습니다.
                       </p>
-
-                      <figure class="ax-fig">
-                        <a href="assets/yongin-integration.png" target="_blank" rel="noopener">
-                          <img src="assets/yongin-integration.png" alt="챗봇 데이터 파이프라인 구성 — 챗봇, Node.js, Elasticsearch, DB 프로시저를 잇는 NiFi 프로세서 흐름"
-                               onerror="this.style.display='none'; this.closest('a').nextElementSibling.style.display='block'" />
-                        </a>
-                        <div class="ax-ph">assets/yongin-integration.png</div>
-                      </figure>
-
-                      <figure class="ax-fig">
-                        <a href="assets/yongin-loadtest.png" target="_blank" rel="noopener">
-                          <img src="assets/yongin-loadtest.png" alt="JMeter Summary Report — 250,000건 요청 성능 테스트 결과"
-                               onerror="this.style.display='none'; this.closest('a').nextElementSibling.style.display='block'" />
-                        </a>
-                        <div class="ax-ph">assets/yongin-loadtest.png</div>
-                      </figure>
-
-                      <p class="ax-stat">250,000 requests · 평균 41ms · 최대 14.4s · 오류율 0%</p>
-                    </section>
-
-                    <section class="ax">
-                      <header class="ax-h">
-                        <h4>통합테스트</h4>
-                      </header>
-                      <p class="ax-lead">브라우저·접속 환경·기기 설정을 교차한 통합테스트 시나리오를 직접 작성·수행했습니다.</p>
-                      <figure class="ax-fig">
-                        <a href="assets/yongin-testcase.png" target="_blank" rel="noopener">
-                          <img src="assets/yongin-testcase.png" alt="통합테스트 수행 기록 — 캡쳐 화면, 수정 및 보완 사항, 발생일, 처리일, 처리 결과, 추가 수정·확인사항"
-                               onerror="this.style.display='none'; this.closest('a').nextElementSibling.style.display='block'" />
-                        </a>
-                        <div class="ax-ph">assets/yongin-testcase.png</div>
-                      </figure>
-                    </section>
-                  </div>
-                </article>
-              </details>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <!-- ===== Footer ===== -->
-    <footer>
-      <div class="wrap footer-in">
-        <span>© 이지민 QA Engineer Portfolio</span>
-        <a href="https://velog.io/@duo22088/posts" target="_blank" rel="noopener">Blog ↗</a>
-      </div>
-    </footer>
-    <a class="to-top" href="#top" aria-label="맨 위로">↑</a>
-    <script>
+<figure class="ax-fig">
+<a href="https://duo2208.github.io/resume/qa-portfolio/assets/yongin-integration.png" rel="noopener" target="_blank">
+<img alt="챗봇 데이터 파이프라인 구성 — 챗봇, Node.js, Elasticsearch, DB 프로시저를 잇는 NiFi 프로세서 흐름" onerror="this.style.display='none'; this.closest('a').nextElementSibling.style.display='block'" src="https://duo2208.github.io/resume/qa-portfolio/assets/yongin-integration.png"/>
+</a>
+<div class="ax-ph">assets/yongin-integration.png</div>
+</figure>
+<figure class="ax-fig">
+<a href="https://duo2208.github.io/resume/qa-portfolio/assets/yongin-loadtest.png" rel="noopener" target="_blank">
+<img alt="JMeter Summary Report — 250,000건 요청 성능 테스트 결과" onerror="this.style.display='none'; this.closest('a').nextElementSibling.style.display='block'" src="https://duo2208.github.io/resume/qa-portfolio/assets/yongin-loadtest.png"/>
+</a>
+<div class="ax-ph">assets/yongin-loadtest.png</div>
+</figure>
+<p class="ax-stat">250,000 requests · 평균 41ms · 최대 14.4s · 오류율 0%</p>
+</section>
+<section class="ax">
+<header class="ax-h">
+<h4>통합테스트</h4>
+</header>
+<p class="ax-lead">브라우저·접속 환경·기기 설정을 교차한 통합테스트 시나리오를 직접 작성·수행했습니다.</p>
+<figure class="ax-fig">
+<a href="https://duo2208.github.io/resume/qa-portfolio/assets/yongin-testcase.png" rel="noopener" target="_blank">
+<img alt="통합테스트 수행 기록 — 캡쳐 화면, 수정 및 보완 사항, 발생일, 처리일, 처리 결과, 추가 수정·확인사항" onerror="this.style.display='none'; this.closest('a').nextElementSibling.style.display='block'" src="https://duo2208.github.io/resume/qa-portfolio/assets/yongin-testcase.png"/>
+</a>
+<div class="ax-ph">assets/yongin-testcase.png</div>
+</figure>
+</section>
+</div>
+</article>
+</details>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ===== Footer ===== -->
+<footer>
+<div class="wrap footer-in">
+<span>© 이지민 QA Engineer Portfolio</span>
+<a href="https://velog.io/@duo22088/posts" rel="noopener" target="_blank">Blog ↗</a>
+</div>
+</footer>
+<a aria-label="맨 위로" class="to-top" href="#top">↑</a>
+<script>
       // 인쇄할 때 접힌 케이스를 펼치고, 끝나면 원래 상태로 되돌린다
       let openedForPrint = [];
       window.addEventListener("beforeprint", () => {
@@ -3625,5 +3558,5 @@
       const toTop = document.querySelector(".to-top");
       window.addEventListener("scroll", () => toTop.classList.toggle("on", window.scrollY > 600), { passive: true });
     </script>
-  </body>
+</body>
 </html>
