@@ -2662,7 +2662,20 @@
           break-before: page;
         }
       }
-    </style>
+    
+
+/* Keep investigation list typography aligned with case text. */
+
+#case-newarch .sf .investigation-question { font-weight: 600; margin: 10px 0; }
+#case-newarch .sf ul { margin: 0; padding-left: 20px; }
+#case-newarch .sf li { font-size: 12.5px; line-height: 1.65; color: #555; margin: 0 0 10px; word-break: keep-all; overflow-wrap: anywhere; }
+#case-newarch .sf li:last-child { margin-bottom: 0; }
+@media print {
+  #case-newarch .sf > b { font-size: 8.5pt; }
+  #case-newarch .sf .investigation-question, #case-newarch .sf li { font-size: 8pt; line-height: 1.5; }
+  #case-newarch .sf li { margin-bottom: 6px; }
+}
+</style>
 <style>
       .print-cover{display:none}
       @media print{
@@ -3028,12 +3041,14 @@
 <div class="case-layout">
 <aside class="toc">
 <h3>Cases</h3>
-<div class="toc-label first">라프텔</div>
-<a href="#case-subscription">구독·계정 상태</a>
-<a href="#case-commerce">커머스 구독·적립금</a>
-<a href="#case-newarch">RN Architecture</a>
+<div class="toc-label first">대표 사례</div>
+<a href="#case-subscription">Apple 인앱 결제</a>
+<a href="#case-newarch">비교 검증·원인 분석</a>
+<a href="#case-commerce">덕키박스</a>
+<div class="toc-label">그 외 검증 경험</div>
+<a href="#case-account">계정·인증</a>
 <a href="#case-membership">A/B Experiment</a>
-<a href="#case-technical">Technical Investigation</a>
+
 <a href="#case-ncsoft">B2B Partnership</a>
 <a href="#case-live">Live / Player</a>
 <a href="#case-tv">Smart TV 멀티플랫폼</a>
@@ -3043,146 +3058,42 @@
 <a href="#case-yongin">용인시청 챗봇</a>
 </aside>
 <div class="case-list">
-<span class="legacy-anchor" id="case-apple"></span><span class="legacy-anchor" id="case-account"></span>
+<span class="legacy-anchor" id="case-apple"></span>
 <article class="case" id="case-subscription">
-<div class="case-title">
-<div>
-<h3>구독·계정 검증</h3>
-<div class="meta">결제 결과와 시청 권한 · 가입·로그인 복구</div>
-</div>
-<span class="role-badge">Payment · Account QA</span>
-</div>
-<p class="case-lead">
-<b>결제한 사용자가 서비스를 이용할 수 있는지, 가입 도중 멈춘 사용자가 다시 계정에 접근할 수 있는지</b>를 확인했습니다.
-                </p>
+<div class="case-title"><div>
+<h3>Apple 인앱 결제</h3>
+<div class="meta">결제 수단 전환 · App Store 국가 설정 · Sandbox 재현 조건</div>
+</div><span class="role-badge">In-App Purchase QA</span></div>
+<p class="case-lead">Apple 결제 생태계를 먼저 조사하고, 결제 상태와 서비스 이용 권한을 함께 검증했습니다.</p>
 <div class="side-finds commerce-cards">
-<div class="sf">
-<b>구독 — 결제 상태나 결제 수단이 바뀌어도 정상 동작할까?</b>
-<div aria-label="결제 상태와 기존 결제 이력에 따라 서비스 구독 정보, 멤버십 화면과 시청 가능 여부를 대조" class="commerce-story" role="img">
-<div class="story-row">
-<div class="story-step"><span aria-hidden="true" class="story-icon">💳</span><strong>결제 상태·이력</strong><small>갱신 실패·결제 수단 변경</small></div>
-<span aria-hidden="true" class="story-arrow">↔</span>
-<div class="story-step"><span aria-hidden="true" class="story-icon">🎫</span><strong>서비스 구독</strong><small>상품·이용 권한 반영</small></div>
-<span aria-hidden="true" class="story-arrow">↔</span>
-<div class="story-step"><span aria-hidden="true" class="story-icon">▶️</span><strong>화면·시청</strong><small>상태에 맞는 동작</small></div>
-</div>
-<div class="story-callout">갱신에 실패해 재시도·보류 상태가 되면?<br/>기존 PG 결제에서 Apple 인앱 결제로 바뀌었다면?</div>
-</div>
-<p>정기 결제에 실패했을 때, Apple은 결제를 다시 시도하고 있었지만 서비스에서는 구독이 끝난 것처럼 보였습니다. 실제 결제 진행 상황과 서비스의 구독 정보를 비교해 이 차이를 확인하고, 이후 결제가 성공하면 멤버십을 다시 이용할 수 있는지까지 검수했습니다.</p>
-</div>
-<div class="sf">
-<b>계정 — 가입을 중단해도 다시 이어갈 수 있을까?</b>
-<p>계정 이용 문제가 제기되어 계정 체계 개선을 위한 QA로 참여했습니다.</p>
-<div aria-label="가입 중단 후 다시 로그인하여 누락 정보를 입력하고 계정을 이용하는 흐름 검증" class="commerce-story" role="img">
-<div class="story-row">
-<div class="story-step story-warn"><span aria-hidden="true" class="story-icon">⏸️</span><strong>가입 중단</strong><small>필수 정보 누락</small></div>
-<span aria-hidden="true" class="story-arrow">→</span>
-<div class="story-step"><span aria-hidden="true" class="story-icon">🔑</span><strong>다시 로그인</strong><small>기존 계정 접근</small></div>
-<span aria-hidden="true" class="story-arrow">→</span>
-<div class="story-step"><span aria-hidden="true" class="story-icon">📝</span><strong>누락 정보 입력</strong><small>계정 이용 재개</small></div>
-</div>
-</div>
-<p>계정 상태와 가입·로그인 방식에 따라 경우의 수가 많아, 조건을 조합해 가입·로그인·탈퇴 시나리오를 정리했습니다. 각 시나리오에서 확인할 화면 흐름과 API 응답을 함께 정리해 검수 기준으로 삼았습니다.</p>
-<p><b>배포 후 공유된 경과(2026.03)</b> · 기존 자동 탈퇴·이메일 인증 관련 CS는 특별히 인입되지 않았다고 공유됐습니다.</p>
-</div>
-</div>
-</article>
-<article class="case" id="case-commerce">
-<div class="case-title">
-<div>
-<h3>커머스 구독·적립금 검증</h3>
-<div class="meta">구독 해지·재구매 정책 · 적립금 사용·부분환불</div>
-</div>
-<span class="role-badge">Commerce QA</span>
-</div>
-<p class="case-lead">
-                  OTT 멤버십 이용자에게 굿즈를 정기 제공하는 스토어 구독 상품과 적립금 기능을 검수했습니다.
-                  <b>구독 해지가 주문·배송·모집 정원에 미치는 영향과, 주문 조건에 따른 적립금 사용·환불 처리</b>를 확인했습니다.
-                </p>
-<div class="side-finds commerce-cards">
-<div class="sf">
-<b>구독 해지 — 상품은 배송되는데, 자리는 다시 열린다면?</b>
-<div aria-label="첫 상품 수령 후 구독을 해지하면 모집 자리가 다시 열려, 같은 상품 재구매 또는 신규 구독자의 추가 출고가 가능했던 상황" class="commerce-story" role="img">
-<div class="story-row">
-<div class="story-step"><span aria-hidden="true" class="story-icon">📦</span><strong>첫 상품 수령</strong><small>주문·배송은 유지</small></div>
-<span aria-hidden="true" class="story-arrow">→</span>
-<div class="story-step"><span aria-hidden="true" class="story-icon">👋</span><strong>구독 해지</strong><small>다음 결제 중단</small></div>
-<span aria-hidden="true" class="story-arrow">→</span>
-<div class="story-step story-warn"><span aria-hidden="true" class="story-icon">🪑</span><strong>빈자리 발생</strong><small>다시 구매 가능?</small></div>
-</div>
-<div class="story-callout">같은 사람이 다시 구매 → 첫 회차 상품 반복 수령<br/>새 사람이 가입 → 예상보다 많은 상품 필요</div>
-</div>
-<p>해지 후 첫 회차 상품을 반복 구매할 수 있는 상황을 발견해 논의를 요청했습니다. 모집 정원과 실제 출고 수량이 달라지는 예시를 정리하고, 결정된 정책을 티켓에 반영했습니다.</p>
-</div>
-<div class="sf">
-<b>적립금 — 부분환불 처리 경로 확인</b>
-<div aria-label="최종 환불 내역만으로 부분환불과 테스트 환경의 자동 취소를 구분하기 어려워 PG 기록 확인을 요청한 과정" class="commerce-story" role="img">
-<div class="story-callout">💳 환불 내역은 보이는데…<br/>부분환불 결과일까, 테스트 환경의 자동 취소일까?</div>
-</div>
-<p>적립금 관련 부분환불 검수에서 카드사 내역 반영 지연과 테스트 환경의 자동 취소가 겹쳤습니다. 최종 환불 내역만으로 부분환불 성공 여부를 판단하기 어려워, PG 기록으로 처리 경로를 구분해 확인하도록 요청했습니다.</p>
-</div>
+<div class="sf"><b>결제 이력과 상태 — 기존 로직에서 빠진 Apple 결제</b><p>PG에서 인앱 결제로 전환한 계정에 이전 상품 정보가 남아 있어 갱신 로직 점검을 제안했습니다. 별도로 Apple 결제 보류 상태의 화면 오류는 개발자 조사에서 PG 처리 분기로 진입하는 서버 문제로 확인돼 수정됐습니다.</p></div>
+<div class="sf"><b>해외 App Store 계정 — 기기마다 다른 구매 화면</b><p>같은 계정으로도 다른 기기에서는 재현되지 않는 구매 화면 문제에서 App Store 국가 설정과 해외 이용 이력을 확인해, 해외 App Store 계정과 관련된 현상으로 범위를 좁혔습니다.</p></div>
+<div class="sf"><b>샌드박스 테스트는 어디까지 신뢰할 수 있을까?</b><p>짧은 갱신 주기로 서버 반영 전에 다음 갱신이 발생해 구독 상태와 화면 표시가 어긋나는 현상을 확인했습니다. 구독 취소·갱신 차단을 조합한 상태도 실제 사용자 흐름에서 가능한지 검토했습니다.</p></div>
+<div class="sf"><b>검수 준비 — 필요한 결제 상태를 직접 설정</b><p>갱신일까지 기다려야 하는 검수 제약을 공유하고, 백엔드와 멤버십 일정 조정을 논의한 뒤 관리자에서 만료일을 수정하는 테스트 기능을 요청했습니다.</p></div>
 </div>
 </article>
 <details class="more-case" id="case-newarch" open="">
 <summary>
 <div>
-<h3>React Native New Architecture</h3>
-<div class="meta">화면 렌더링 변경 · 공통 UI 중점 검증 · 전수검사</div>
+<h3>기존 동작과 비교하고, 원인을 좁힙니다</h3>
+<div class="meta">RN 전환 · API 비교 · 기기별 렌더링 분석</div>
 </div>
-<span class="role-badge">Architecture QA</span>
+<span class="role-badge">Technical QA</span>
 </summary>
-<article class="case">
+<article class="case"><div class="side-finds commerce-cards"><div class="sf"><b>RN 전환 — 기존 동작과 데이터가 유지되는지 검증</b><p class="investigation-question"><strong>기능은 그대로인데 구현이 바뀌는 리빌드에서, QA는 무엇을 확인해야 할까?</strong></p><ul><li>상용 버전의 프로필 이미지 목록과 API 요청을 대조해 조회 개수 파라미터 누락을 확인했습니다.</li><li>네트워크 단절·복구 문제는 상용에서도 재현해 RN 전환 이슈와 구분했습니다.</li><li>삭제·로그아웃의 미동작을 공통 모달 문제로 묶고, 개발자와 수정 범위를 확인해 관련 검수를 수정 후 빌드로 조정했습니다.</li></ul></div><div class="sf" id="case-technical"><b>기기 성능 — 재현 조건과 지표로 원인 추적</b><p class="investigation-question">배포 일정이 촉박할 때, 우선순위가 낮은 성능 문제의 개선 필요성을 어떻게 설득할까?</p><ul><li>우선순위가 낮았던 스크롤 지연·발열 문제를 개선 과제로 논의할 수 있도록, 기기별 재현 조건과 성능 지표를 수집했습니다.</li><li>60Hz·120Hz 기기의 동작과 gfxinfo·Janky Frames·Pipeline을 비교해 GPU 병목 가능성을 배제하고, 이미지 반복 재디코드로 원인을 좁혔습니다.</li><li>분석 근거를 개발팀에 전달하고, 수정 전후 동일 조건에서 스크롤 지연과 발열의 개선 여부를 검증했습니다.</li></ul></div></div></article>
+</details>
+<article class="case" id="case-commerce">
 <div class="case-title">
 <div>
-<h3>React Native New Architecture</h3>
-<div class="meta">2026.04 — 2026.06 · iOS · Android · 1·2차 빌드 전수검사</div>
+<h3>덕키박스 — OTT·커머스 첫 결합 상품</h3>
+<div class="meta">OTT 멤버십 연계 · 굿즈 정기구독 · 해지·재구매 정책</div>
 </div>
-<span class="role-badge">Architecture QA</span>
+<span class="role-badge">Commerce QA</span>
 </div>
-<p class="case-lead">
-                    이번 전환은 앱 화면을 그리는 방식의 변경이 중심이어서,
-                    <b>영상 재생 로직보다 공통 모달과 버튼·레이어 등 UI 요소에 영향이 클 것으로 판단했습니다.</b>
-</p>
-<!-- ① 변경 지점에서 영향 표면을 역으로 그린다 -->
-<div class="blast">
-<div class="blast-head">
-<strong>변경 범위에 맞춘 검증</strong>
-<span>공통 UI를 중점적으로 보고 기존 기능도 회귀 검증</span>
-</div>
-<b class="blast-root">React Native New Architecture</b>
-<div class="blast-stem"></div>
-<div class="blast-cols">
-<div class="bc">
-<div class="bc-k">공통 모달</div>
-<ul><li>이전 문구 잔존</li><li>버튼 표시</li><li>반복 노출</li></ul>
-</div>
-<div class="bc">
-<div class="bc-k">화면·입력</div>
-<ul><li>화면 전환·회전</li><li>터치·제스처</li></ul>
-</div>
-<div class="bc">
-<div class="bc-k">플레이어 UI</div>
-<ul><li>전체 화면</li><li>화면 잠금</li><li>에피소드 목록</li></ul>
-</div>
-<div class="bc">
-<div class="bc-k">기존 기능</div>
-<ul><li>계정·결제</li><li>재생·다운로드</li></ul>
-</div>
-</div>
-<p class="blast-note">
-                      실제 검수에서는 <b>이전에 띄운 로그아웃 모달의 내용이 다른 모달에 섞이는 현상</b>을 공유했습니다.
-                      본인확인 바텀 시트의 반복 노출도 확인했습니다.
-                      일반·라이브·오프라인 재생은 필수 회귀 범위에 포함했습니다. 플레이어에서는 주로 전체화면 전환 실패와 댓글 바텀 시트 닫힘 불가 등 UI 문제가 확인됐습니다.
-                    </p>
-</div>
-<p class="blast-result">
-<b>Result</b>
-                    기존 상용 버전에서도 재현되는 문제와 전환 후 발생한 문제를 구분했습니다.
-                    배포 시점에는 해결된 이슈와 남은 이슈를 정리해, 이후 CS 확인에 참고할 수 있도록 공유했습니다.
-                  </p>
+<div class="par"><div class="box problem"><div class="l">PROBLEM</div><p>OTT 멤버십과 굿즈 정기구독을 처음 결합한 상품으로, 구독 해지가 주문·배송·모집 정원에 미치는 영향을 함께 확인해야 했습니다.</p></div><div class="box"><div class="l">ACTION</div><p>OTT 멤버십 상태에 따른 구매·구독 종료 흐름을 검증하고, 해지 후 첫 회차 상품을 반복 구매할 수 있는 문제를 제기했습니다.</p></div><div class="box result"><div class="l">RESULT</div><p>모집 정원과 실제 출고 수량이 달라지는 사례를 정리해 재구매 제한·정원 반환 정책 보완에 참여하고, 결정된 내용을 티켓에 반영했습니다.</p></div></div>
 </article>
-</details>
-<details class="more-case" id="case-membership" open="">
+<details class="more-case" id="case-account"><summary><div><h3>계정·인증 검증</h3><div class="meta">가입 · 로그인 · 탈퇴 · 계정 접근 복구</div></div><span class="role-badge">Account QA</span></summary><article class="case"><div class="par"><div class="box problem"><div class="l">PROBLEM</div><p>가입 중단이나 계정 상태에 따라 사용자가 다시 계정에 접근할 수 있는지 확인이 필요했습니다.</p></div><div class="box"><div class="l">ACTION</div><p>계정 상태와 가입·로그인 방식을 조합해 가입·탈퇴·접근 복구 흐름을 검증했습니다.</p></div><div class="box result"><div class="l">RESULT</div><p>시나리오별 화면 흐름과 API 응답을 정리해 계정 검수 기준으로 삼았습니다.</p></div></div></article></details>
+<details class="more-case" id="case-membership">
 <summary>
 <div>
 <h3>A/B Experiment</h3>
@@ -3199,36 +3110,14 @@
 <span class="role-badge">Experiment QA</span>
 </div>
 <div class="par">
-<div class="box problem"><div class="l">PROBLEM</div><p>QA가 원하는 실험군을 안정적으로 재현하기 어려웠습니다.</p></div>
+<div class="box problem"><div class="l">PROBLEM</div><p>Firebase에서는 QA가 원하는 실험군을 재현하기 어려웠습니다.</p></div>
 <div class="box"><div class="l">ACTION</div><p>서버에서 테스트 계정을 특정 그룹으로 제어하는 구조를 제안하고 실험군 분배·강제 할당·데이터 오염 여부를 검증했습니다.</p></div>
 <div class="box result"><div class="l">RESULT</div><p>실험군 재현성을 높이고 무료체험·권한·동시재생 같은 경계 조건을 설계 단계부터 검증할 수 있게 했습니다.</p></div>
 </div>
 </article>
 </details>
 <span class="legacy-anchor" id="case-perf"></span><span class="legacy-anchor" id="case-performance"></span>
-<details class="more-case" id="case-technical" open="">
-<summary>
-<div>
-<h3>Technical Investigation</h3>
-<div class="meta">Device RCA · gfxinfo · 렌더링 성능</div>
-</div>
-<span class="role-badge">Technical QA</span>
-</summary>
-<article class="case">
-<div class="case-title">
-<div>
-<h3>기기별 렌더링 성능 원인 분석</h3>
-<div class="meta">Device RCA · gfxinfo</div>
-</div>
-<span class="role-badge">Technical QA</span>
-</div>
-<div class="par">
-<div class="box problem"><div class="l">PROBLEM</div><p>120Hz 태블릿에서 스크롤 렉과 발열이 발생했습니다.</p></div>
-<div class="box"><div class="l">ACTION</div><p>60Hz 단말과 비교하고 gfxinfo·Janky Frames·Pipeline을 확인해 GPU 병목을 제외했습니다. 재현 조건을 나눠 원인을 이미지 반복 재디코드까지 좁혔습니다.</p></div>
-<div class="box result"><div class="l">RESULT</div><p>수정 후 해당 단말에서 스크롤 렉과 발열이 개선됐는지 검증했습니다.</p></div>
-</div>
-</article>
-</details>
+
 <details class="more-case" id="case-ncsoft">
 <summary>
 <div>
@@ -3273,11 +3162,11 @@
 </div>
 <div class="par">
 <div class="box problem">
-<div class="l">RISK</div>
+<div class="l">PROBLEM</div>
 <p>편성표·플레이어·시간 경계가 동시에 바뀌어 기능 단위 테스트만으로는 상태 전이를 놓치기 쉬웠습니다.</p>
 </div>
 <div class="box">
-<div class="l">STRATEGY</div>
+<div class="l">ACTION</div>
 <p>프로그램 전환 시점을 기준으로 EPG · 재생 · 연령 등급 · 프로그레스가 함께 갱신되는 E2E 흐름을 설계했습니다.</p>
 </div>
 <div class="box result">
@@ -3285,39 +3174,7 @@
 <p>Live 검증을 시간 경계 중심의 공통 시나리오로 정리해 반복 회귀 기준으로 사용했습니다.</p>
 </div>
 </div>
-<div class="evidence">
-<div class="evidence-head">
-<strong>시간 경계 E2E 시나리오</strong>
-<span>프로그램 전환 순간에 함께 바뀌어야 하는 상태</span>
-</div>
-<div class="evidence-body">
-<div class="live-mock">
-<div class="player-slim">
-<b>LIVE</b><span class="ps-time">23:59</span><span class="ps-track"></span><span>ANIPLUS</span>
-</div>
-<div class="epg2">
-<div class="epg2-col a">
-<div class="t">23:58 — 23:59</div>
-<b>프로그램 A</b>
-<span>15세</span>
-</div>
-<div class="epg2-bound" data-label="00:00"></div>
-<div class="epg2-col">
-<div class="t">00:00 —</div>
-<b>프로그램 B</b>
-<span>19세</span>
-</div>
-</div>
-<ul class="bound-list">
-<li>제목 변경</li>
-<li>EPG 갱신</li>
-<li>연령 등급 재체크</li>
-<li>프로그레스 유지</li>
-<li>플레이어 끊김 없음</li>
-</ul>
-</div>
-</div>
-</div>
+
 </article>
 </details>
 <details class="more-case" id="case-tv">
@@ -3329,31 +3186,7 @@
 <span class="role-badge">Smart TV QA</span>
 </summary>
 <article class="case">
-<div class="cond-tags">
-<span>Android TV</span><span>Tizen</span><span>webOS</span>
-</div>
-<div class="cond-tags" style="margin-top: 7px">
-<span>QR Login</span><span>Remote / Media Key</span><span>Focus</span><span>Player</span><span>Concurrent Playback</span>
-</div>
-<p class="case-lead" style="margin-top: 14px">
-                    같은 OTT 기능도 TV에서는 OS · 입력 방식 · Focus · Player Lifecycle에 따라 동작 조건이 달라지는
-                    환경이었습니다. 따라서
-                    <b>플랫폼 차이 자체를 테스트 조건으로 정의해</b> 검증 범위를 설계했습니다.
-                  </p>
-<div class="par">
-<div class="box problem">
-<div class="l">RISK</div>
-<p>리빌드·리팩토링 과정에서 공통 기능은 같아도 플랫폼별 입력·포커스·플레이어 동작이 다르게 깨질 수 있었습니다.</p>
-</div>
-<div class="box">
-<div class="l">STRATEGY</div>
-<p>Android TV · Tizen · webOS를 플랫폼 축으로 두고 핵심 사용자 흐름과 재생 조건을 매트릭스로 구성했습니다.</p>
-</div>
-<div class="box result">
-<div class="l">RESULT</div>
-<p>플랫폼별 Full TC를 구축하고 리빌드·리팩토링 전수검사에 적용해, 이후 TV 회귀 검증의 공통 기준으로 남겼습니다.</p>
-</div>
-</div>
+<div class="par"><div class="box problem"><div class="l">PROBLEM</div><p>리빌드·리팩토링 과정에서 플랫폼별 입력·포커스·재생 동작이 다르게 깨질 수 있었습니다.</p></div><div class="box"><div class="l">ACTION</div><p>Android TV·Tizen·webOS의 차이를 테스트 조건으로 정리하고, 플랫폼별 전체 테스트 케이스를 작성했습니다.</p></div><div class="box result"><div class="l">RESULT</div><p>플랫폼별 테스트 케이스를 전수검사에 적용하고 이후 TV 회귀 검증에도 활용했습니다.</p></div></div>
 </article>
 </details>
 <details class="more-case" id="case-wms">
