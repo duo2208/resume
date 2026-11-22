@@ -2960,7 +2960,7 @@
 <div class="dd-top">
 <div class="dd-eyebrow">테스트 실행을 구조화</div>
 </div>
-<div class="dd-title">웹 자동화 0→1 구축</div><p class="dd-desc">사람이 반복하던 핵심 회귀를 코드로 옮기고, 실결제·DRM까지 포함한 E2E를 무인 운영하고 있습니다.</p>
+<div class="dd-title">웹 E2E 자동화 구축·운영</div><p class="dd-desc">사람이 반복하던 핵심 회귀를 코드로 옮기고, 실결제·DRM까지 포함한 E2E를 무인 운영하고 있습니다.</p>
 <div class="dd-stack">
 <span>Playwright</span><span>pytest</span><span>GitHub Actions</span><span>Self-hosted Runner</span><span>Storage State</span><span>CDP</span>
 </div>
@@ -2969,30 +2969,18 @@
 <a class="dd-btn primary" href="https://duo2208.github.io/resume/allure/trends.html" rel="noopener" target="_blank">Allure 데모 보기 →</a>
 <a class="dd-btn" href="https://blog.laftel.net/post/58" rel="noopener" target="_blank">구축 과정 보기 →</a>
 </div>
-</div>
-<div class="dd-why">
-<div class="dd-why-title">왜 이렇게 설계했나</div>
-<ul>
-<li><b>4-Layer 구조</b>화면 변경의 영향을 Locator 계층에 격리하도록 역할을 분리했습니다</li>
-<li><b>Storage State</b>로그인 상태를 재사용해 반복 테스트의 준비 비용을 크게 줄였습니다</li>
-<li><b>Self-hosted Runner</b>사내 네트워크와 DRM·실결제 등 실제 서비스 조건에서도 정기 회귀를 수행할 수 있도록 구성했습니다</li>
-<li><b>실패 원인 분류</b>Product · Environment · Flaky를 구분해 자동화 실패를 곧바로 제품 결함으로 판단하지 않도록 했습니다</li>
-<li><b>테스트 케이스 동기화</b>테스트 코드 수정 후 동기화 도구로 케이스 문서를 갱신해, 코드와 문서를 따로 수정하는 부담과 불일치를 줄였습니다</li>
-</ul>
-</div>
-<!-- 배포 검증 사례와 실행 유형별 운영 기록 -->
-<div class="dd-ops">
-<div class="dd-why-title">자동화 신뢰성 유지와 배포 검증</div>
-<p class="dd-ops-note">
-                자동화 결과를 신뢰할 수 있도록, <b>Flaky가 발생하면 담당자를 멘션해 빠르게 확인하고 대응할 수 있게</b> 했습니다.
-                알림에는 해당 실행의 리포트를 연결해 실패 내용을 바로 확인할 수 있도록 했습니다.
-              </p>
-<p class="dd-ops-note">
+</div><div class="dd-ops">
+<div class="dd-why-title">자동화 신뢰성 유지와 배포 검증</div><p class="dd-ops-note">
                 서버 정기 배포와 QA 스쿼드 배포 관련 검증에도 활용했습니다.
                 2026년 7월에는 배포 후 시간이 지나 발생한 라이브·이벤트 페이지 장애가 운영 E2E 테스트에서도 확인됐습니다.
                 후속 조사에서 운영 환경 설정 문제가 확인됐으며,
                 재배포 전에는 QA 환경에서 부하 테스트를 수행해 이상 응답 여부를 점검했습니다.
               </p>
+<p class="dd-ops-note">
+                자동화 결과를 신뢰할 수 있도록, <b>Flaky가 발생하면 담당자를 멘션해 빠르게 확인하고 대응할 수 있게</b> 했습니다.
+                알림에는 해당 실행의 리포트를 연결해 실패 내용을 바로 확인할 수 있도록 했습니다.
+              </p>
+
 <table class="lanes">
 <caption class="dd-why-title">2026.04.30–10.06 실행 유형별 운영 기록</caption>
 <thead><tr><th>실행 유형</th><th>횟수</th><th>검증 목적</th></tr></thead>
@@ -3008,14 +2996,26 @@
                 팀 피드백에서는 QA 중심의 사용을 넘어 각 팀이 결과를 활용하고, 배포 진행 판단에 연결할 필요가 제기되었습니다.
                 웹 E2E의 검증 범위와 앱 배포 검증을 구분하고, 앱 자동화의 구축·안정화와 함께 도입 범위를 넓히는 과제가 남아 있습니다.
               </p>
+</div><div class="dd-ops" id="automation-reuse"><div class="dd-why-title">다른 스쿼드의 자동화 구축 기반으로 재사용</div><p class="dd-ops-note">직접 구축한 OTT 웹 E2E의 테스트 구조와 TC 문서 동기화·리포팅 유틸이 스토어 스쿼드의 자동화 초기 기반으로 활용됐습니다. 이후 스토어 담당자들이 커머스 도메인에 맞게 API 테스트와 실행·CI 기능을 추가하며 확장했습니다.</p></div>
+<div class="dd-why">
+<div class="dd-why-title">왜 이렇게 설계했나</div>
+<ul>
+<li><b>4-Layer 구조</b>화면 변경의 영향을 Locator 계층에 격리하도록 역할을 분리했습니다</li>
+<li><b>Storage State</b>로그인 상태를 재사용해 반복 테스트의 준비 비용을 크게 줄였습니다</li>
+<li><b>Self-hosted Runner</b>사내 네트워크와 DRM·실결제 등 실제 서비스 조건에서도 정기 회귀를 수행할 수 있도록 구성했습니다</li>
+<li><b>실패 원인 분류</b>Product · Environment · Flaky를 구분해 자동화 실패를 곧바로 제품 결함으로 판단하지 않도록 했습니다</li>
+<li><b>테스트 케이스 동기화</b>테스트 코드 수정 후 동기화 도구로 케이스 문서를 갱신해, 코드와 문서를 따로 수정하는 부담과 불일치를 줄였습니다</li>
+</ul>
 </div>
+<!-- 배포 검증 사례와 실행 유형별 운영 기록 -->
+
 <div class="dd-metrics">
 <div><b>120개</b><span>자동화 TC · 실결제 · DRM 포함</span></div>
 <div><b>상시 운영</b><span>정기 회귀 · Smoke · 실행 상태 감시</span></div>
 <!-- 기존 수치: 약 70%↓. 이력서의 30분 → 5분과 측정 조건 확인 후 복원. -->
 <div><b>담당자 알림</b><span>실패 추이 · 실행별 리포트 연결</span></div>
 </div>
-<div class="dd-ops" id="automation-reuse"><div class="dd-why-title">다른 스쿼드의 자동화 구축 기반으로 재사용</div><p class="dd-ops-note">직접 구축한 OTT 웹 E2E의 테스트 구조와 TC 문서 동기화·리포팅 유틸이 스토어 스쿼드의 자동화 초기 기반으로 활용됐습니다. 이후 스토어 담당자들이 커머스 도메인에 맞게 API 테스트와 실행·CI 기능을 추가하며 확장했습니다.</p></div></div>
+</div>
 </div>
 </section>
 <!-- ===== Product QA Coverage : 담당 범위 전체를 한 장으로 ===== -->

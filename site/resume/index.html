@@ -249,7 +249,15 @@
       .company:not(:first-of-type) .project{margin-bottom:10px;padding-bottom:8px}
     }
   </style>
-</head>
+<style id="resume-header-layout">
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:48px;row-gap:24px;align-items:start;padding-bottom:44px}
+.hero-main .role{margin-bottom:14px}.hero-main .intro{margin:0;font-size:16px;line-height:1.7}.hero-main .intro b{font-weight:500}
+.career-total{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 10px;margin-top:20px;font-size:14px}.career-total>span{color:#667085}.career-total strong{font-size:19px}.career-total small{flex-basis:100%;font-size:11px;line-height:1.6;color:#777}
+.hero-side{padding-top:5px;display:flex;flex-direction:column;align-items:flex-start;gap:20px}.hero-contacts{display:grid;gap:10px;font-size:13px}.hero-contacts>div{display:flex;gap:12px;align-items:baseline}.hero-contacts span{min-width:42px;color:#777;font-size:10px;letter-spacing:.08em}.hero-contacts a{color:inherit;border-bottom:1px solid #d0d5dd;text-decoration:none}
+.resume-print-button{margin:0;padding:11px 18px;border:1px solid #344054;background:transparent;color:#111;font:inherit;font-size:13px;cursor:pointer}.resume-print-button:hover{background:#f2f4f7}.resume-print-button:focus-visible{outline:2px solid #2f4a7a;outline-offset:3px}.hero>.skills{grid-column:1/-1;margin:0;padding-top:22px;border-top:1px solid var(--line)}
+@media(max-width:760px){.hero{grid-template-columns:1fr;gap:20px}.hero-side{padding:0;gap:16px}.hero>.skills{grid-column:1}}
+@media print{.hero{display:block;padding-bottom:16px}.hero-main .intro{font-size:10pt}.career-total{margin-top:10px;font-size:9pt}.career-total strong{font-size:12pt}.career-total small{font-size:8pt}.hero-side{margin-top:10px;padding:0}.hero-contacts{font-size:8pt;gap:4px}.resume-print-button{display:none!important}.hero>.skills{margin-top:12px;padding-top:10px}}
+</style><style id="experience-career-position">#experience>.career-total{margin:0 0 28px;gap:5px 10px}#experience>.career-total small{flex-basis:auto;margin-left:4px}@media(max-width:760px){#experience>.career-total small{flex-basis:100%;margin-left:0}}@media print{#experience>.career-total{margin-bottom:14px}}</style></head>
 <body>
 <a class="skip-link" href="#experience">본문으로 건너뛰기</a>
 <header class="sitebar">
@@ -264,21 +272,13 @@
 </div>
 </header>
 <main class="page">
-<header class="hero" id="top">
-<h1>이지민</h1>
-<div class="hero-role"><div class="role">QA Engineer</div><div class="print-intro"><a href="https://duo2208.github.io/resume/resume/">웹 경력 기술서 보기 ↗</a> · duo2208.github.io/resume/resume/</div></div>
-<p class="intro">
-        개발 경험을 바탕으로 커머스·풀필먼트와 OTT 서비스의 QA를 담당해왔습니다.
-        요구사항 검토부터 테스트 설계와 배포 검수까지 참여하며, 반복 검증을 줄이기 위한 자동화와 테스트 도구도 만들고 있습니다.
-      </p>
-<div class="skills">
+<header class="hero" id="top"><div class="hero-main"><h1>이지민</h1><div class="hero-role"><div class="role">QA Engineer</div><div class="print-intro"><a href="https://duo2208.github.io/resume/resume/">웹 경력 기술서 보기 ↗</a> · duo2208.github.io/resume/resume/</div></div><p class="intro"><b>테스트 결과를 어디까지 신뢰할 수 있는지 고민하는 QA입니다.</b></p></div><div class="hero-side"><button class="resume-print-button" onclick="window.print()" type="button">PDF로 저장 / 인쇄</button></div><div class="skills">
 <span class="chip">Python</span><span class="chip">Pytest</span><span class="chip">Playwright</span><span class="chip">Selenium</span>
 <span class="chip">GitHub Actions</span><span class="chip">Jira</span><span class="chip">Charles Proxy</span>
 <span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Django</span><span class="chip">Elasticsearch</span><span class="chip">SQL</span><span class="chip">Apache NiFi</span>
-</div>
-</header>
+</div></header>
 <section id="experience">
-<div class="section-title">Experience</div>
+<div class="section-title">Experience</div><div class="career-total"><span>총 경력</span> <strong>3년 9개월</strong></div>
 <article class="company">
 <aside class="company-meta">
 <div class="company-name">라프텔 (Laftel)</div>
